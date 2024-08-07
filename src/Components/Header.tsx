@@ -1,24 +1,6 @@
-// import React from 'react'
 import { Link } from 'react-router-dom'
-
-// export default function Header() {
-//   return (
-//     <div className='flex justify-between items-center w-4/5 mt-5 font-semibold text-lg'>
-//       <Link to="/" className='border border-gray-200 rounded-full p-1' >DASI</Link>
-//       <nav className='border border-gray-200 rounded-2xl w-96 flex justify-between items-center px-2 py-1 shadow-md'>
-//       <Link to="/community" className='hover:text-gray-600'>커뮤니티</Link>
-//       <Link to="/job" className='hover:text-gray-600'>일자리</Link>
-//       <Link to="/education" className='hover:text-gray-600'>교육</Link>
-//       <Link to="/recommendations" className='hover:text-gray-600'>추천</Link>
-//       </nav>
-
-//       <Link to="/login" className='border border-gray-200 rounded-full p-1'>로그인</Link>
-
-
-//     </div>
-//   )
-// }
 import React, { useState } from 'react';
+import logo from '../Images/logo3.jpeg'
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,13 +10,18 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="w-full">
+      <nav className="flex items-center justify-between p-3 mt-3 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Dasi</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
+            <img className="h-20 w-auto" src={logo} alt="" />
+          </Link>
+          <div className='ml-3 mt-2 font-mono font-extrabold text-base'>
+            <p>Dreaming</p>
+            <p>Age</p>
+            <p>Senior</p>
+          </div>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -48,14 +35,14 @@ const Header: React.FC = () => {
             </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-          <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">일자리</Link>
-          <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">교육</Link>
-          <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">추천</Link>
-          <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">커뮤니티</Link>
+        <div className="hidden lg:flex lg:gap-x-12 Haeparang">
+          <Link to="/" className="text-4xl leading-6 text-gray-900">일자리</Link>
+          <Link to="/" className="text-4xl leading-6 text-gray-900">교육</Link>
+          <Link to="/" className="text-4xl leading-6 text-gray-900">추천</Link>
+          <Link to="/" className="text-4xl leading-6 text-gray-900">커뮤니티</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+          <a href="#" className="text-2xl font-semibold leading-6 text-gray-900 font-mono">Login <span aria-hidden="true">&rarr;</span></a>
         </div>
       </nav>
       {/* Mobile menu, show/hide based on menu open state. */}
@@ -67,7 +54,7 @@ const Header: React.FC = () => {
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                <img className="h-8 w-auto" src={logo} alt="" />
               </a>
               <button
                 type="button"
@@ -83,13 +70,13 @@ const Header: React.FC = () => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
+                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
+                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">추천</Link>
+                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">커뮤니티</Link>
                 </div>
                 <div className="py-6">
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                  <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</Link>
                 </div>
               </div>
             </div>
