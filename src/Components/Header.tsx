@@ -36,13 +36,13 @@ const Header: React.FC = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12 Haeparang">
-          <Link to="/" className="text-4xl leading-6 text-gray-900">일자리</Link>
-          <Link to="/" className="text-4xl leading-6 text-gray-900">교육</Link>
-          <Link to="/" className="text-4xl leading-6 text-gray-900">추천</Link>
-          <Link to="/" className="text-4xl leading-6 text-gray-900">커뮤니티</Link>
+          <Link to="/job" className="text-4xl leading-6 text-gray-900">일자리</Link>
+          <Link to="/education" className="text-4xl leading-6 text-gray-900">교육</Link>
+          <Link to="/recommendations" className="text-4xl leading-6 text-gray-900">추천</Link>
+          <Link to="/fund" className="text-4xl leading-6 text-gray-900">지원금</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-2xl font-semibold leading-6 text-gray-900 font-mono">Login <span aria-hidden="true">&rarr;</span></a>
+          <Link to="/login" className="text-2xl font-semibold leading-6 text-gray-900 font-mono">Login <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </nav>
       {/* Mobile menu, show/hide based on menu open state. */}
@@ -70,10 +70,10 @@ const Header: React.FC = () => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
-                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
-                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">추천</Link>
-                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">커뮤니티</Link>
+                  <Link to="/job" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
+                  <Link to="/education" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
+                  <Link to="/recommendations" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">추천</Link>
+                  <Link to="/fund" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
                 </div>
                 <div className="py-6">
                   <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</Link>

@@ -45,3 +45,20 @@ code {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.buttonPosition {
+  position: relative;
+  text-align: center;
+  z-index: 99;
+  animation-name: scrlDwnIndc;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes scrlDwnIndc {
+0%    {bottom: 80px;}
+20%   {bottom: 84px;}
+40%   {bottom: 88px;}
+60%   {bottom: 92px;}
+80%   {bottom: 94px;}
+100%  {bottom: 84px;}
+}
