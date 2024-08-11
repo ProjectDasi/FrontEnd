@@ -1,9 +1,26 @@
-import React, { useEffect } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import scroll from '../Images/scroll4.png'
+import React, { useState, useEffect } from 'react';
+
+const sections = ['section1', 'section2', 'section3'];
 
 export default function MainPage() {
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const handleScroll = (event: React.WheelEvent) => {
+    if (event.deltaY > 0) {
+      // 스크롤을 내릴 때
+      setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
+    } else {
+      // 스크롤을 올릴 때
+      setCurrentSection((prev) => Math.max(prev - 1, 0));
+    }
+  };
+
+  useEffect(() => {
+    document.getElementById(sections[currentSection])?.scrollIntoView({ behavior: 'smooth' });
+  }, [currentSection]);
   useEffect(() => {
     // 비디오의 재생 속도를 0.5배로 설정
     const video = document.getElementById('mainVideo') as HTMLVideoElement;
@@ -13,9 +30,11 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div className='h-full'>
+    <div onWheel={handleScroll} className='h-full w-full'>
+      <div className='fixed top-0 w-full z-10 bg-white'>
       <Header />
-      <div className='w-full flex items-start justify-center my-3'>
+      </div>
+      <div id='section1'className='w-full flex items-start justify-center'>
         <div className='text-center relative'>
           <video
             id='mainVideo'
@@ -29,7 +48,15 @@ export default function MainPage() {
           <div className='absolute md:top-28 md:right-48 lg:top-80 lg:right-72'><img src={scroll} className='buttonPosition h-10'/></div>
         </div>
       </div>
-        <div className='h-[100vh] w-full bg-red-300 relative'>
+        <div id='section2' className='h-[100vh] w-full bg-red-300 flex items-center justify-center'>
+          <div className='grid grid-cols-2 w-2/3 p-20 gap-y-16 gap-x-32'>
+            <div className='bg-purple-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼1</div>
+            <div className='bg-lime-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼2</div>
+            <div className='bg-yellow-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼3</div>
+            <div className='bg-orange-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼4</div>
+          </div>
+        </div>
+        <div id='section3' className='h-[100vh] w-full bg-blue-300'>
           <div className='bg-purple-400'></div>
           <div className='bg-lime-400'></div>
           <div className='bg-yellow-400'></div>
