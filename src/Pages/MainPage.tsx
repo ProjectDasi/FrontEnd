@@ -4,7 +4,6 @@ import scroll from '../Images/scroll4.png'
 import React, { useState, useEffect, useRef } from 'react';
 
 const sections = ['section1', 'section2', 'section3'];
-
 export default function MainPage() {
   const [currentSection, setCurrentSection] = useState(0);
   // const [isScrolling, setIsScrolling] = useState(false);
@@ -34,7 +33,7 @@ export default function MainPage() {
   //   };
   // }, [currentSection]);
   useEffect(() => {
-    // 비디오의 재생 속도를 0.5배로 설정
+    // 비디오의 재생 속도를 0.7배로 설정
     const video = document.getElementById('mainVideo') as HTMLVideoElement;
     if (video) {
       video.playbackRate = 0.7;
@@ -48,16 +47,21 @@ export default function MainPage() {
       </div>
       <div className='w-full flex items-start justify-center pt-16'>
         <div className='text-center relative'>
+
           <video
-            id='mainVideo'
-            src='/videos/senior.mp4'
+            id="mainVideo"
+            src="/videos/senior.mp4"
             autoPlay
             loop
             muted
-            className='opacity-80'
+            className="opacity-80"
           />
-          <div className='absolute md:top-24 md:right-40 lg:top-36 lg:right-20 Blueroad text-green-900 text-5xl font-extrabold animate-pulse'>&nbsp;&nbsp;당신의 새로운 시작을 응원합니다&nbsp;&nbsp;</div>
-          <div className='absolute md:top-28 md:right-48 lg:top-80 lg:right-72'><img src={scroll} className='buttonPosition h-10'/></div>
+          <div className="absolute md:top-24 md:right-40 lg:top-36 lg:right-20 Blueroad text-green-900 text-5xl font-extrabold animate-pulse">
+            &nbsp;&nbsp;당신의 새로운 시작을 응원합니다&nbsp;&nbsp;
+          </div>
+          <div className="absolute md:top-28 md:right-48 lg:top-80 lg:right-72">
+            <img src={scroll} className="buttonPosition h-10" />
+          </div>
         </div>
       </div>
         <div  className='h-[86vh] w-full flex items-center justify-center'>
@@ -80,9 +84,7 @@ export default function MainPage() {
         </div>
         
         <Footer />
-        
-        
-      
+
     </div>
   );
 }
