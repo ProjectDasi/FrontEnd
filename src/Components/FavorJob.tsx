@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import sampleJob from '../Data/sampledata.json';
 import './FavorCss.css';
 
 export default function FavorJob() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(3);
   const totalSlides = sampleJob.length;
-  const slidesToShow = 3;
+
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth >= 1300) {
+        setSlidesToShow(5); // lg 화면일 때 5개
+      } else if (window.innerWidth >= 768) {
+        setSlidesToShow(3); // md 화면일 때 3개
+      } else {
+        setSlidesToShow(1); // 기본 값은 1개
+      }
+    };
+
+    updateSlidesToShow(); // 컴포넌트가 마운트될 때 초기 설정
+    window.addEventListener('resize', updateSlidesToShow); // 화면 크기 변경 감지
+
+    return () => {
+      window.removeEventListener('resize', updateSlidesToShow); // 정리 작업
+    };
+  }, []);
 
   const goToNextSlide = () => {
     setCurrentSlide((prev) => (prev + slidesToShow) % totalSlides);
@@ -16,16 +35,23 @@ export default function FavorJob() {
   };
 
   return (
+    <div className='flex justify-center flex-col w-full items-center'>
+    <div className='bg-gray-300 m-2 p-1 w-2/5 text-center Haeparang text-3xl rounded-xl'>추천 일자리</div>
     <div className="slider__wrap w-full">
+      <div className="slider__btn">
+        <button onClick={goToPrevSlide} className="prev" title="이전이미지">
+          prev
+        </button>
+      </div>
       <div className="slider__img">
         <div className="slider__inner" style={{ display: 'flex', gap: '1rem' }}>
           {sampleJob
             .slice(currentSlide, currentSlide + slidesToShow)
             .map((job, index) => (
               <div key={job.id} className="slider">
-                <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
                   <svg
-                    className="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3"
+                    className="w-7 h-7 text-gray-500 mb-3"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -34,12 +60,12 @@ export default function FavorJob() {
                     <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
                   </svg>
                   <a href="#">
-                    <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
                       {job.institution}
                     </h5>
                   </a>
-                  <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{job.field}</p>
-                  <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{job.type}</p>
+                  <p className="mb-3 font-normal text-gray-500">{job.field}</p>
+                  <p className="mb-3 font-normal text-gray-500">{job.type}</p>
                   <a
                     href="#"
                     className="inline-flex font-medium items-center text-blue-600 hover:underline"
@@ -67,14 +93,16 @@ export default function FavorJob() {
         </div>
       </div>
       <div className="slider__btn">
-        <button onClick={goToPrevSlide} className="prev" title="이전이미지">
+        {/* <button onClick={goToPrevSlide} className="prev" title="이전이미지">
           prev
-        </button>
+        </button> */}
         <button onClick={goToNextSlide} className="next" title="다음이미지">
           next
         </button>
       </div>
-      <div className="slider__dot">
+    </div>
+    {/* <div className='flex justify-center'>
+      <div className="slider__dot mx-5">
         {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }, (_, index) => (
           <button
             key={index}
@@ -85,6 +113,7 @@ export default function FavorJob() {
           </button>
         ))}
       </div>
-    </div>
+      </div> */}
+      </div>
   );
 }

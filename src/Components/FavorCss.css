@@ -1,6 +1,6 @@
 .slider__wrap {
     width: 100%;
-    height: 50vh;
+    height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,8 +8,8 @@
 
 .slider__img { /* 이미지가 보이는 영역 */
     position: relative;
-    width: 1000px; /* 3개의 카드가 보일 수 있도록 영역 확장 */
-    height: 450px;
+    width: 1400px; /* 3개의 카드가 보일 수 있도록 영역 확장 */
+    height: 350px;
     overflow: hidden;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .slider__btn button {
-    position: absolute;
+    position: relative;
     top: 28%;
     transform: translateY(-50%);
     width: 50px;
@@ -47,17 +47,17 @@
 }
 
 .slider__btn button.prev {
-    left: 100px;
+    left: 5%;
 }
 
 .slider__btn button.next {
-    right: 100px;
+    right: 5%;
 }
 
 .slider__dot {
-    position: absolute;
+    position: relative;
     left: 50%;
-    top: 430px;
+    top: 0px;
     transform: translateX(-50%);
 }
 

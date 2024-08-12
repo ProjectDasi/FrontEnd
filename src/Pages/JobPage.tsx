@@ -7,10 +7,11 @@ import Footer from '../Components/Footer'
 export default function JobPage() {
   return (
     <div className='h-full w-full'>
+      <div className='shadow-md'>
     <Header/>
+    </div>
     <div className='w-full flex justify-center'>
-      <div className='h-screen w-5/6 bg-lime-300 flex flex-col justify-start'>
-        job
+      <div className='h-screen w-5/6 flex flex-col justify-start'>
         <FavorJob/>
         <JobList/>
       </div>
