@@ -43,9 +43,10 @@ export default function MainPage() {
 
   return (
     <div className='h-screen w-full'>
+      <div className='fixed top-0 left-0 right-0 bg-white z-50'>
       <Header />
-      <div className='flex flex-col overflow-auto w-full h-full'>
-      <div className='w-full flex items-start justify-center'>
+      </div>
+      <div className='w-full flex items-start justify-center pt-16'>
         <div className='text-center relative'>
           <video
             id='mainVideo'
@@ -59,10 +60,12 @@ export default function MainPage() {
           <div className='absolute md:top-28 md:right-48 lg:top-80 lg:right-72'><img src={scroll} className='buttonPosition h-10'/></div>
         </div>
       </div>
-        <div  className='h-[86vh] w-full bg-red-300 flex items-center justify-center'>
+        <div  className='h-[86vh] w-full flex items-center justify-center'>
           <div className='grid grid-cols-2 w-2/3 p-20 gap-y-16 gap-x-32 h-full'>
             <div className='bg-purple-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼1</div>
-            <div className='bg-lime-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼2</div>
+            <div className='bg-lime-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼2
+              &nbsp;sdsd
+            </div>
             <div className='bg-yellow-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼3</div>
             <div className='bg-orange-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼4</div>
           </div>
@@ -78,7 +81,7 @@ export default function MainPage() {
         
         <Footer />
         
-        </div>
+        
       
     </div>
   );
