@@ -1,0 +1,37 @@
+.welcome-video-wall-container{
+    border-radius: 40px;
+    height: 80vh;
+    min-height: 680px;
+    max-width: 1920px;
+    max-height: 1260px;
+    margin: 0 auto;
+    width: 87.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.welcome-video-video{
+    object-fit: cover;
+    position: relative;
+    left:0;
+}
+
+.welcome-video-start-frame, .welcome-video-video{
+    top:50%;
+    transform: translateY(-50%);
+    width: calc(100% + 2px);
+    left: -1px;
+}
+
+.welcome-video-content-container{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 36px;
+    position: relative;
+}

@@ -63,18 +63,8 @@ export default function MainPage() {
       <div className='fixed top-0 left-0 right-0 bg-white z-50'>
       <Header />
       </div>
-      <div  className='h-[86vh] w-full flex items-center justify-center'>
-          <div className='grid grid-cols-2 w-2/3 p-20 gap-y-16 gap-x-32 h-full'>
-            <div className='bg-purple-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼1</div>
-            <div className='bg-lime-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼2
-              &nbsp;sdsd
-            </div>
-            <div className='bg-yellow-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼3</div>
-            <div className='bg-orange-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼4</div>
-          </div>
-        </div>
-      <div className='welcome-video-wall-container'>
-        <div className='welcome-video-content-container'>
+      <div className='w-full flex items-start justify-center pt-16'>
+        <div className='text-center relative flex items-center justify-center'>
 
           <video
             id="mainVideo"
@@ -82,7 +72,7 @@ export default function MainPage() {
             autoPlay
             loop
             muted
-            className='welcome-video-video'
+            className={`opacity-80 ${isShrunk ? 'w-11/12 rounded-3xl mt-40' : ''}`}
           />
           <div className="absolute md:top-24 md:right-40 lg:top-36 lg:right-20 Blueroad text-green-900 text-5xl font-extrabold animate-pulse">
             &nbsp;&nbsp;당신의 새로운 시작을 응원합니다&nbsp;&nbsp;
