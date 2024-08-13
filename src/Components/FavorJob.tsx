@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import sampleJob from '../Data/sampledata.json';
+import sampleJob from '../Data/finalSample.json';
 import './FavorCss.css';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function FavorJob() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -35,12 +36,12 @@ export default function FavorJob() {
   };
 
   return (
-    <div className='flex justify-center flex-col w-full items-center'>
-    <div className='bg-gray-300 m-2 p-1 w-2/5 text-center Haeparang text-3xl rounded-xl'>추천 일자리</div>
+    <div className='flex justify-center flex-col w-full items-center Haeparang'>
+    <div className='bg-gray-300 mt-8 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white'>추천 일자리</div>
     <div className="slider__wrap w-full">
       <div className="slider__btn">
-        <button onClick={goToPrevSlide} className="prev" title="이전이미지">
-          prev
+        <button onClick={goToPrevSlide} className="prev rounded-md bg-white px-2 py-1.5 text-3xl font-bold text-gray-500 shadow-md ring-1 ring-inset ring-gray-300 hover:bg-gray-100" title="이전이미지">
+        <IoIosArrowBack />
         </button>
       </div>
       <div className="slider__img">
@@ -48,8 +49,8 @@ export default function FavorJob() {
           {sampleJob
             .slice(currentSlide, currentSlide + slidesToShow)
             .map((job, index) => (
-              <div key={job.id} className="slider">
-                <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
+              <div key={job.link} className="slider">
+                <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow h-[300px]">
                   <svg
                     className="w-7 h-7 text-gray-500 mb-3"
                     aria-hidden="true"
@@ -61,16 +62,16 @@ export default function FavorJob() {
                   </svg>
                   <a href="#">
                     <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
-                      {job.institution}
+                      {job.title}
                     </h5>
                   </a>
-                  <p className="mb-3 font-normal text-gray-500">{job.field}</p>
-                  <p className="mb-3 font-normal text-gray-500">{job.type}</p>
+                  <p className="mb-3 font-normal text-gray-500">{job.subtitle}</p>
+                  <p className="mb-3 font-normal text-gray-500">{job.location}</p>
                   <a
                     href="#"
                     className="inline-flex font-medium items-center text-blue-600 hover:underline"
                   >
-                    {job.applicationPeriod}
+                    {job.regidate}
                     <svg
                       className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]"
                       aria-hidden="true"
@@ -93,27 +94,11 @@ export default function FavorJob() {
         </div>
       </div>
       <div className="slider__btn">
-        {/* <button onClick={goToPrevSlide} className="prev" title="이전이미지">
-          prev
-        </button> */}
-        <button onClick={goToNextSlide} className="next" title="다음이미지">
-          next
+        <button onClick={goToNextSlide} className="next rounded-md bg-white px-3 py-1.5 text-3xl font-bold text-gray-500 shadow-md ring-1 ring-inset ring-gray-300 hover:bg-gray-100" title="다음이미지">
+        <IoIosArrowForward />
         </button>
       </div>
     </div>
-    {/* <div className='flex justify-center'>
-      <div className="slider__dot mx-5">
-        {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }, (_, index) => (
-          <button
-            key={index}
-            className={`dot ${index === Math.floor(currentSlide / slidesToShow) ? 'active' : ''}`}
-            onClick={() => setCurrentSlide(index * slidesToShow)}
-          >
-            {`이미지${index + 1}`}
-          </button>
-        ))}
-      </div>
-      </div> */}
       </div>
   );
 }

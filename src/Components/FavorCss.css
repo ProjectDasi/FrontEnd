@@ -23,6 +23,7 @@
     height: 100%; /* 카드 높이를 슬라이더 영역에 맞춤 */
     box-sizing: border-box;
     padding: 10px; /* 카드 간 간격 조절 */
+    animation: slider 7.5s infinite linear;
 }
 
 .slider__btn button {
@@ -31,20 +32,11 @@
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
-    background-color: gray;
-    line-height: 50px;
-    text-align: center;
-    color: #000;
+    
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 50%;
 } 
-
-.slider__btn button:hover {
-    border-radius: 50%;
-    background-color: #16189c;
-    color: #fff;
-}
 
 .slider__btn button.prev {
     left: 5%;

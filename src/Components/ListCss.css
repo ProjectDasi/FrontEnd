@@ -1,0 +1,41 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    margin: 1rem 0;
+  }
+  
+  .pagination li {
+    display: inline-block; /* 세로가 아닌 가로로 배치되도록 수정 */
+    margin: 0 5px;
+  }
+  
+  .pagination li a, .pagination li span {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #03672b;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pagination li a:hover {
+    background-color: #e9ecef;
+    color: #03672b;
+  }
+  
+  .pagination li.active span {
+    background-color: #03672b;
+    color: white;
+    border-color: #03672b;
+  }
+  
+  .pagination li.disabled span {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+  

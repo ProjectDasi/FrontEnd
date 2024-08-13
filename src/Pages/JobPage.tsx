@@ -10,10 +10,14 @@ export default function JobPage() {
       <div className='shadow-md'>
     <Header/>
     </div>
-    <div className='w-full flex justify-center'>
-      <div className='h-screen w-5/6 flex flex-col justify-start'>
+    <div className='w-full flex justify-center flex-col items-center'>
+      <div className='h-full w-5/6 flex flex-col justify-start mb-5'>
         <FavorJob/>
+      </div>
+      <div className=' bg-green-50 w-full flex justify-center items-center'>
+      <div className='h-full w-5/6 flex flex-col items-center mb-10'>
         <JobList/>
+      </div>
       </div>
     </div>
     <Footer/>
