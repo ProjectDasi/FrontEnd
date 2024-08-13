@@ -5,7 +5,7 @@
     max-width: 1920px;
     max-height: 1260px;
     margin: 0 auto;
-    width: 87.5%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,3 +35,10 @@
     border-radius: 36px;
     position: relative;
 }
+
+.shrunk-video {
+    width: 87.5%;
+    border-radius: 1.5rem; /* rounded-3xl equivalent */
+    margin-top: 2.5rem; /* mt-10 equivalent */
+    transition: width 0.5s ease, margin-top 0.5s ease; /* 부드러운 전환을 위해 추가 */
+  }

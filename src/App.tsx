@@ -13,7 +13,7 @@ import FundPage from './Pages/FundPage';
 
 function App() {
   return (
-    <div className='flex flex-col h-screen w-full justify-center items-center min-w-[1000px] overflow-auto'>
+    <div className='flex flex-col h-screen w-full justify-center items-center min-w-[1000px]'>
     <BrowserRouter>
 
       <Routes>
