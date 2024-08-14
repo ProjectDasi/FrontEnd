@@ -19,7 +19,7 @@ export default function JobList() {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
-      <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white'>일반 일자리</div>
+      <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
       <div className="-mx-4 mt-8 flow-root sm:mx-0 w-full">
         <table className="min-w-full">
           <colgroup>
