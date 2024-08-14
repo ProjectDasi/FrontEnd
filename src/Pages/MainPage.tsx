@@ -8,8 +8,41 @@ import './main.css';
 import edu from '../Images/school.png'
 import job from '../Images/job.png'
 import resume from '../Images/resume.png'
+import PopulationChart from '../Components/PopulationChart';
+import ElderlyChart from '../Components/PopulationJobChart';
 
 export default function MainPage() {
+  const data = [
+    { Year: '2014', 'Total Population': 50623704.0, 'Population 65+': 6989920.0, 'Aging Index': 16.01 },
+    { Year: '2015', 'Total Population': 50926264.0, 'Population 65+': 7383343.0, 'Aging Index': 16.84 },
+    { Year: '2016', 'Total Population': 51226497.0, 'Population 65+': 7795649.0, 'Aging Index': 17.69 },
+    { Year: '2017', 'Total Population': 51527999.0, 'Population 65+': 8224142.0, 'Aging Index': 18.58 },
+    { Year: '2018', 'Total Population': 51827313.0, 'Population 65+': 8666632.0, 'Aging Index': 19.50 },
+    { Year: '2019', 'Total Population': 52125411.0, 'Population 65+': 9122104.0, 'Aging Index': 20.45 },
+    { Year: '2020', 'Total Population': 52424047.0, 'Population 65+': 9590871.0, 'Aging Index': 21.43 },
+    { Year: '2021', 'Total Population': 52721621.0, 'Population 65+': 10062002.0, 'Aging Index': 22.38 },
+    { Year: '2022', 'Total Population': 53018394.0, 'Population 65+': 10544139.0, 'Aging Index': 23.32 },
+    { Year: '2023', 'Total Population': 53314782.0, 'Population 65+': 11054682.0, 'Aging Index': 24.27 },
+    { Year: '2024', 'Total Population': 53610543.0, 'Population 65+': 11584933.0, 'Aging Index': 25.23 },
+  ];
+
+  const data2 = [
+    { Year: '2019', TotalPopulation: 44504, ElderlyPercentage: 17.7, EmploymentRate: 66.9 },
+    { Year: '2020', TotalPopulation: 44785, ElderlyPercentage: 17.9, EmploymentRate: 66.6 },
+    { Year: '2021', TotalPopulation: 45080, ElderlyPercentage: 18.1, EmploymentRate: 66.3 },
+    { Year: '2022', TotalPopulation: 45260, ElderlyPercentage: 18.2, EmploymentRate: 68.8 },
+    { Year: '2023', TotalPopulation: 45407, ElderlyPercentage: 18.3, EmploymentRate: 69.9 },
+    { Year: '2024-01', TotalPopulation: 45514, ElderlyPercentage: 18.4, EmploymentRate: 68.2 },
+    { Year: '2024-02', TotalPopulation: 45525, ElderlyPercentage: 18.4, EmploymentRate: 68.5 },
+    { Year: '2024-03', TotalPopulation: 45529, ElderlyPercentage: 18.4, EmploymentRate: 69.4 },
+    { Year: '2024-04', TotalPopulation: 45539, ElderlyPercentage: 18.5, EmploymentRate: 69.8 },
+    { Year: '2024-05', TotalPopulation: 45543, ElderlyPercentage: 18.5, EmploymentRate: 70.5 },
+    { Year: '2024-06', TotalPopulation: 45550, ElderlyPercentage: 18.5, EmploymentRate: 70.3 },
+  ];
+  
+
+
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -154,16 +187,13 @@ export default function MainPage() {
           y: { duration: 1 },
         }}
       >
-        <div className='h-[100vh] w-full bg-blue-300 flex items-center justify-center'>
-          <div className='grid grid-cols-2 w-2/3 p-20 gap-y-16 gap-x-32 h-full'>
-            <div className='bg-purple-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼1</div>
-            <div className='bg-lime-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼2</div>
-            <div className='bg-yellow-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼3</div>
-            <div className='bg-orange-400 h-44 w-96 flex items-center justify-center rounded-2xl'>버튼4</div>
-          </div>
+        <div className='h-[100vh] w-full flex items-center justify-center'>
+          <PopulationChart data={data} />
         </div>
       </motion.div>
-
+      <div className='h-[100vh] w-full flex items-center justify-center'>
+        <ElderlyChart data={data2} />
+      </div>
       <Footer />
     </div>
   );
