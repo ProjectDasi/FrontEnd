@@ -4,7 +4,7 @@ import sampleJob from '../Data/finalSample.json';
 import './FavorCss.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function FavorJob() {
+export default function FavorEdu() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const totalSlides = sampleJob.length;
@@ -43,7 +43,7 @@ export default function FavorJob() {
 
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
-      <div className='bg-gray-300 mt-8 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white'>추천 일자리</div>
+      <div className='border border-gray-200 shadow mt-8 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>추천 교육과정</div>
       <div className="slider__wrap w-full">
         <div className="slider__btn">
           <button onClick={goToPrevSlide} className="prev rounded-md bg-white px-2 py-1.5 text-3xl font-bold text-gray-500 shadow-md ring-1 ring-inset ring-gray-300 hover:bg-gray-100" title="이전이미지">
