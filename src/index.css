@@ -27,7 +27,18 @@ code {
   font-weight: normal;
   font-style: normal;
 }
-
+@font-face {
+  font-family: 'GamtandotumRegular';
+  src: url('./assets/font/GamtandotumRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GamtandotumBold';
+  src: url('./assets/font/GamtandotumBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .Haeparang{
   font-family: 'Haeparang', sans-serif;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -39,6 +50,22 @@ code {
 
 .Blueroad{
   font-family: 'Blueroad', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.Gamtan{
+  font-family: 'GamtandotumRegular', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.GamtanBold{
+  font-family: 'GamtandotumBold', sans-serif;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
@@ -61,4 +88,13 @@ code {
 60%   {bottom: 92px;}
 80%   {bottom: 94px;}
 100%  {bottom: 84px;}
+}
+.nav-item {
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: left; /* 글자의 중앙을 기준으로 확대 */
+}
+
+.nav-item:hover {
+  transform: scale(1.2); /* 글자를 1.2배 확대 */
 }

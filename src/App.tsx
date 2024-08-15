@@ -10,6 +10,8 @@ import EduPage from './Pages/EduPage';
 import RecomPage from './Pages/RecomPage';
 import RegisterPage from './Pages/RegisterPage';
 import FundPage from './Pages/FundPage';
+import JobDetailPage from './Pages/JobDetailPage';
+import EduDetailPage from './Pages/EduDetailPage';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/education" element={<EduPage />} />
         <Route path="/recommendations" element={<RecomPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/jobdetail" element={<JobDetailPage />} />
+        <Route path="/edudetail" element={<EduDetailPage />} />
       </Routes>
 
     </BrowserRouter>

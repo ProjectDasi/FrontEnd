@@ -35,14 +35,14 @@ const Header: React.FC = () => {
             </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12 Haeparang">
-          <Link to="/job" className="text-4xl leading-6 text-gray-900">일자리</Link>
-          <Link to="/education" className="text-4xl leading-6 text-gray-900">교육</Link>
-          <Link to="/recommendations" className="text-4xl leading-6 text-gray-900">맞춤</Link>
-          <Link to="/fund" className="text-4xl leading-6 text-gray-900">지원금</Link>
+        <div className="hidden lg:flex lg:gap-x-12 GamtanBold font-bold">
+          <Link to="/job" className="nav-item text-4xl leading-6 text-gray-900">일자리</Link>
+          <Link to="/education" className="nav-item text-4xl leading-6 text-gray-900">교육</Link>
+          <Link to="/recommendations" className="nav-item text-4xl leading-6 text-gray-900">맞춤</Link>
+          <Link to="/fund" className="nav-item text-4xl leading-6 text-gray-900">지원금</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
-          <Link to="/login" className="text-2xl font-semibold leading-6 text-gray-900 Haeparang">로그인 <span aria-hidden="true">&rarr;</span></Link>
+          <Link to="/login" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그인 <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </nav>
       {/* Mobile menu, show/hide based on menu open state. */}
@@ -69,14 +69,14 @@ const Header: React.FC = () => {
             </div>
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6 Haeparang">
-                  <Link to="/job" className="-mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
-                  <Link to="/education" className="-mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
-                  <Link to="/recommendations" className="-mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">맞춤</Link>
-                  <Link to="/fund" className="-mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
+                <div className="space-y-2 py-6 GamtanBold">
+                  <Link to="/job" className="nav-item -mx-3 rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
+                  <Link to="/education" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
+                  <Link to="/recommendations" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">맞춤</Link>
+                  <Link to="/fund" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
                 </div>
                 <div className="py-6">
-                  <Link to="/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50 Haeparang">로그인</Link>
+                  <Link to="/login" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">로그인</Link>
                 </div>
               </div>
             </div>

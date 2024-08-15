@@ -84,10 +84,10 @@ export default function MainPage() {
             muted
             className={`opacity-80 ${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-40 lg:top-36 lg:right-20 Blueroad text-green-900 text-5xl font-extrabold animate-pulse">
+          <div className="absolute md:top-24 md:right-40 lg:top-36 lg:right-20 Gamtan text-black font-semibold text-5xl animate-pulse">
             &nbsp;&nbsp;당신의 새로운 시작을 응원합니다&nbsp;&nbsp;
           </div>
-          <div className="absolute md:top-28 md:right-48 lg:top-80 lg:right-72">
+          <div className="absolute md:top-28 md:right-48 lg:top-80 lg:right-72 animate-pulse">
             <img src={scroll} className="buttonPosition h-10" />
           </div>
         </div>
