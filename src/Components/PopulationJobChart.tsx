@@ -23,7 +23,7 @@ interface ElderlyData {
       labels: years,
       datasets: [
         {
-          label: 'Elderly Percentage (55~64세)',
+          label: '고령자 비율 (55~64세)',
           type: 'bar' as const,
           data: elderlyPercentage,
           backgroundColor: 'rgba(54, 162, 235, 0.5)',
@@ -32,7 +32,7 @@ interface ElderlyData {
           yAxisID: 'y-axis-1',
         },
         {
-          label: 'Employment Rate (55~64세)',
+          label: '고령자 고용률 (55~64세)',
           type: 'line' as const,
           data: employmentRate,
           fill: false,
@@ -85,7 +85,7 @@ interface ElderlyData {
     };
   return (
     <div className='w-[67vw] h-[67vh] items-center flex flex-col justify-center'>
-      <h2>Elderly Population and Employment (2019 - 2024)</h2>
+      <h2 className='text-2xl font-bold mb-10'>고령자 비율 및 고용률 (2019 - 2024)</h2>
       <Chart type="bar" data={combinedData} options={options} />
     </div>
   );

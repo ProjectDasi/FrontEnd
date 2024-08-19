@@ -75,7 +75,7 @@ export default function MainPage() {
       </div>
 
       <div className={`w-full flex items-start justify-center pt-16 ${isScrolled ? 'transition-all duration-500 ease-in-out' : ''}`}>
-        <div className='text-center relative flex items-center justify-center'>
+        <div className='w-full text-center relative flex items-center justify-center'>
           <video
             id="mainVideo"
             src="/videos/senior.mp4"
