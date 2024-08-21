@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react';
-import logo from '../Images/logo3.jpeg'
+import logo from '../Images/icon6.png'
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,10 +17,10 @@ const Header: React.FC = () => {
             <span className="sr-only">Dasi</span>
             <img className="h-20 w-auto" src={logo} alt="" />
           </Link>
-          <div className='ml-3 mt-2 font-mono font-extrabold text-base'>
-            <p>Dreaming</p>
-            <p>Age</p>
-            <p>Senior</p>
+          <div className='ml-3 mt-1 Gamtan text-[25px]'>
+            <p className='-mb-2'><span className='font-extrabold'>다 </span>시</p>
+            <p><span className='font-extrabold'>시 </span>작해</p>
+            <p className='text-[10px] -mt-1 font-extrabold'>Dreaming Age SenIor</p>
           </div>
         </div>
         <div className="flex lg:hidden">
