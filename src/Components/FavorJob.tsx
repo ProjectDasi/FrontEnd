@@ -18,7 +18,7 @@ export default function FavorJob() {
       } else {
         setSlidesToShow(3); // sm 화면일 때 1개
       }
-      setCurrentSlide(3); // 화면 크기 변경 시 첫 슬라이드로 초기화
+      setCurrentSlide(3);// 화면 크기 변경 시 첫 슬라이드로 초기화
     };
 
     updateSlidesToShow(); // 컴포넌트가 마운트될 때 초기 설정
