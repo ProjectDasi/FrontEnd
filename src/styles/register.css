@@ -1,0 +1,107 @@
+*{
+    /* border: 1px solid; */
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+    font-size:  1.5em;
+    font-weight: 700;
+}
+
+.wrapper{
+    width: 360px;
+    margin:0 auto;
+    position: relative;
+}
+
+.item{
+    clear: both;
+    padding-top: 24px;
+    position: relative;
+    width: 100%;
+}
+.item input{
+    width: 100%;
+}
+.item label strong {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #373f57;
+    font-size: 16px;
+}
+.TypoBox{
+    display: inline-block;
+    position: relative;
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.TypoBox .Typo {
+    
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--gray100);
+    font-size: 14px;
+    line-height: 20px;
+    background: none;
+    padding: 11px 12px;
+    height: 46px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+label{
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+}
+div{
+    display: block;
+}
+.TypoBox:hover{
+    border: 1px solid #8491a7;
+    background-color: #eff5ff;
+}
+
+.Btn{
+    margin-top: 24px;
+    padding: 10px 15px 12px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 24px;
+    width: 100%;
+    display: inline-flex;
+    position: relative;
+    border: 1px solid #28c657;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    text-align: center;
+    vertical-align: top;
+    background-color: #28c657;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mini_header{
+    display: flex;
+    height: 64px;
+    border-bottom: 1px solid #eaedf4;
+    line-height: 64px;
+    justify-content: space-between;
+}
+
+.area_right{
+    margin-right: 64px;
+}
+
+.area_left{
+    margin-left: 64px;
+}
