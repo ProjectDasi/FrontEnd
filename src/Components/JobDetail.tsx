@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 // import jobdetailSample from '../Data/jobdetailSample.json';
 
 interface jobdetailSample {
@@ -50,10 +51,10 @@ function classNames(...classes: (string | boolean | undefined)[]): string {
 
 export default function JobDetail() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 w-5/6 Gamtan">
+    <div className="px-4 sm:px-6 lg:px-8 w-6/7 Gamtan">
       <div className="mt-4 flow-root">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <div className="mb-10 text-center text-[36px] font-semibold text-gray-900 sm:pl-3 bg-gray-100 p-2 rounded-2xl GamtanBold">
+          <div className="mb-10 text-center text-[35px] text-gray-900 sm:pl-3 border border-gray-200 shadow p-2 rounded-2xl GamtanBold font-bold">
             채용정보</div>
             <div className='border border-gray-200 shadow rounded-lg p-5'>
             <table className="min-w-full">
@@ -64,7 +65,7 @@ export default function JobDetail() {
                       <th
                         colSpan={5}
                         scope="colgroup"
-                        className="py-2 pl-3 text-left text-2xl font-bold text-blue-700 sm:pl-3"
+                        className="py-2 pl-3 text-left text-xl text-blue-700 sm:pl-3 GamtanBold"
                       >
                         [{item.company}]
                       </th>
@@ -73,7 +74,7 @@ export default function JobDetail() {
                       <th
                         colSpan={5}
                         scope="colgroup"
-                        className="pt-5 pb-7 pl-5 pr-3 text-left text-4xl font-semibold text-gray-900 sm:pl-5"
+                        className="pt-5 pb-7 pl-5 pr-3 text-left text-3xl text-gray-900 sm:pl-5 GamtanBold"
                       >
                         {item.title}
                       </th>
@@ -82,70 +83,70 @@ export default function JobDetail() {
                       <th
                         colSpan={5}
                         scope="colgroup"
-                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-xl text-gray-900 sm:pl-3"
                       >
                         모집요강
                       </th>
                     </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           근무시간
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.work_type}{item.work_hours}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">근무업종</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.work_category}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.work_type}{item.work_hours}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">근무업종</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.work_category}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           임금
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.salary}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">근무지역</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.region_name}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.salary}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">근무지역</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.region_name}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           등록일
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.signup_date}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">마감일</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.due_date}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.signup_date}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">마감일</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.due_date}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           경력
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.career}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">학력</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.education}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.career}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">학력</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.education}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           필수자격증
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.certification}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.certification}</td>
                         </tr>
 
-                      <tr className='border-gray-200 border-t'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                      <tr className='border-gray-200 border-t font-semibold'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           담당자 연락처
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.contact}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900">이메일</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.email}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.contact}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">이메일</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.email}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
@@ -159,40 +160,43 @@ export default function JobDetail() {
                       <th
                         colSpan={5}
                         scope="colgroup"
-                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-xl text-gray-900 sm:pl-3"
                       >
                         세부사항
                       </th>
                     </tr>
                     <tr className='border-gray-200 border-t border-b'>
                         <td colSpan={5}
-                        className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                        className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           <div dangerouslySetInnerHTML={{__html:item.details}}/>
                         </td>
                         </tr>
-                  </Fragment>
-                  
-                ))}
-                {/* {jobdetailSample.map((item) => (
-                  <Fragment key={item.link}>
-                    <tr>
-                    <th
-                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+
+                        <tr className='border-gray-200 border-t'>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                        </td>
+                        </tr>
+
+                        <tr className="border-t border-b border-gray-200">
+                      <th
+                        colSpan={5}
+                        scope="colgroup"
+                        className="bg-gray-50 py-2 pl-4 pr-3 text-center text-xl text-gray-900 sm:pl-3 GamtanBold"
                       >
-                        세부사항
+                        <a href={item.link}>해당 채용공고 사이트로 이동하려면 <span className='text-yellow-600'>클릭</span>하세요</a>
                       </th>
                     </tr>
-                    <tr className='border-gray-200 border-t border-b'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                          <div dangerouslySetInnerHTML={{__html:item.details}}/>
-                        </td>
-                        </tr>
                   </Fragment>
-                  ))} */}
+                ))}
+
               </tbody>
             </table>
             </div>
           </div>
+          <div className='flex justify-end items-center px-8 py-5'>
+            <Link to='/job'>
+          <div className='border border-gray-200 shadow rounded-lg px-7 py-3 GamtanBold text-2xl'>목록</div></Link>
+      </div>
       </div>
     </div>
   );
