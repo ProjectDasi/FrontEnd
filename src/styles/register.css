@@ -90,18 +90,23 @@ div{
     cursor: pointer;
 }
 
-.mini_header{
+.birthdate-box {
     display: flex;
-    height: 64px;
-    border-bottom: 1px solid #eaedf4;
-    line-height: 64px;
+    gap: 10px;
     justify-content: space-between;
 }
 
-.area_right{
-    margin-right: 64px;
+.birthdate-input {
+    width: 30%;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 11px 12px;
+    height: 46px;
+    line-height: 20px;
 }
 
-.area_left{
-    margin-left: 64px;
+.birthdate-input:hover{
+    border: 1px solid #8491a7;
+    background-color: #eff5ff;
 }

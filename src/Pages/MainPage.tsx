@@ -39,7 +39,7 @@ export default function MainPage() {
     { Year: '2024-05', TotalPopulation: 45543, ElderlyPercentage: 18.5, EmploymentRate: 70.5 },
     { Year: '2024-06', TotalPopulation: 45550, ElderlyPercentage: 18.5, EmploymentRate: 70.3 },
   ];
-  
+
 
 
 
@@ -137,7 +137,7 @@ export default function MainPage() {
                   <h2 className="text-white text-2xl font-bold">교육검색</h2>
                   <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
                 </div>
-                
+
               </div>
             </Link>
             <Link to="/">
@@ -159,7 +159,7 @@ export default function MainPage() {
             </Link>
             <Link to="/">
               <div className="bg-[#E06500] w-full h-3/5 min-h-56 p-6 flex items-center rounded-xl shadow-lg hover:cursor-pointer">
-              <div className='mr-3'>
+                <div className='mr-3'>
                   <div className="bg-[#FF9A47] p-4 rounded-full">
                     <img
                       src={job}
@@ -172,7 +172,7 @@ export default function MainPage() {
                   <h2 className="text-white text-2xl font-bold">일자리검색</h2>
                   <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
                 </div>
-                
+
               </div>
             </Link>
           </div>
@@ -190,12 +190,10 @@ export default function MainPage() {
         }}
       >
         <div className='h-[100vh] w-full flex items-center justify-center'>
-          <PopulationChart data={data} />
+          <ElderlyChart data={data2} />
         </div>
       </motion.div>
-      <div className='h-[100vh] w-full flex items-center justify-center'>
-        <ElderlyChart data={data2} />
-      </div>
+
       <Footer />
     </div>
   );

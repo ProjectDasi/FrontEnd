@@ -1,7 +1,24 @@
 import React from 'react'
 import '../styles/register.css';
+import data from '../Data/register.json'
 import Header from '../Components/Header';
 export default function RegisterPage() {
+  const generateYears = () => {
+    const years = [];
+    const currentYear = new Date().getFullYear();
+    for (let i = currentYear; i >= 1900; i--) {
+      years.push(i);
+    }
+    return years;
+  };
+
+  const generateMonths = () => {
+    return Array.from({ length: 12 }, (_, i) => i + 1);
+  };
+
+  const generateDays = () => {
+    return Array.from({ length: 31 }, (_, i) => i + 1);
+  };
   return (
     <div className='h-screen w-full'>
       <div className='mb-20 bg-white border-b-slate-300 border'>
@@ -46,8 +63,12 @@ export default function RegisterPage() {
               <label htmlFor="birth_date" >
                 <strong>생년월일</strong>
               </label>
-              <div className='TypoBox'>
-                <input type='number' name='birth_date' id='birth_date' placeholder='YYYYMMDD' className='Typo'>
+              <div className='birthdate-box'>
+                <input type='number' name='birth_year' id='birth_year' placeholder='YYYY' className='Typo birthdate-input'>
+                </input>
+                <input type='number' name='birth_month' id='birth_month' placeholder='MM' className='Typo birthdate-input'>
+                </input>
+                <input type='number' name='birth_day' id='birth_day' placeholder='DD' className='Typo birthdate-input'>
                 </input>
               </div>
             </div>
