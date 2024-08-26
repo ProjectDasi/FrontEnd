@@ -134,7 +134,7 @@ export default function MainPage() {
                   </div>
                 </div>
                 <div className='flex flex-col'>
-                  <h2 className="text-white text-2xl font-bold">교육검색</h2>
+                  <h2 className="text-white text-2xl font-bold text-left">교육검색</h2>
                   <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
                 </div>
 
@@ -169,7 +169,7 @@ export default function MainPage() {
                   </div>
                 </div>
                 <div className='flex flex-col'>
-                  <h2 className="text-white text-2xl font-bold">일자리검색</h2>
+                  <h2 className="text-white text-2xl font-bold text-left">일자리검색</h2>
                   <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
                 </div>
 
