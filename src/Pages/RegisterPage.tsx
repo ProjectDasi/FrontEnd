@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../styles/register.css';
-import data from '../Data/register.json'
+import data from '../Data/preference.json';
 import Header from '../Components/Header';
+
 export default function RegisterPage() {
+  // JSON 파일로부터 데이터 가져오기
+  const descriptions = data;
+
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
+  const handleItemClick = (id: number) => {
+    setSelectedItems(prevState =>
+      prevState.includes(id)
+        ? prevState.filter(i => i !== id)
+        : [...prevState, id]
+    );
+  };
+
   const generateYears = () => {
     const years = [];
     const currentYear = new Date().getFullYear();
-    for (let i = currentYear; i >= 1900; i--) {
+    for (let i = 1924; i <= currentYear; i++) {
       years.push(i);
     }
     return years;
@@ -19,6 +33,7 @@ export default function RegisterPage() {
   const generateDays = () => {
     return Array.from({ length: 31 }, (_, i) => i + 1);
   };
+
   return (
     <div className='h-screen w-full'>
       <div className='mb-20 bg-white border-b-slate-300 border'>
@@ -64,12 +79,24 @@ export default function RegisterPage() {
                 <strong>생년월일</strong>
               </label>
               <div className='birthdate-box'>
-                <input type='number' name='birth_year' id='birth_year' placeholder='YYYY' className='Typo birthdate-input'>
-                </input>
-                <input type='number' name='birth_month' id='birth_month' placeholder='MM' className='Typo birthdate-input'>
-                </input>
-                <input type='number' name='birth_day' id='birth_day' placeholder='DD' className='Typo birthdate-input'>
-                </input>
+                <select name='birth_year' id='birth_year' className='Typo birthdate-input'>
+                  <option value="" disabled selected hidden>연도</option>
+                  {generateYears().map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
+                <select name='birth_month' id='birth_month' className='Typo birthdate-input'>
+                  <option value="" disabled selected hidden>월</option>
+                  {generateMonths().map(month => (
+                    <option key={month} value={month}>{month}</option>
+                  ))}
+                </select>
+                <select name='birth_day' id='birth_day' className='Typo birthdate-input'>
+                  <option value="" disabled selected hidden>일</option>
+                  {generateDays().map(day => (
+                    <option key={day} value={day}>{day}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -111,9 +138,41 @@ export default function RegisterPage() {
               </div>
             </div>
           </div>
+
+          <div>
+            <ul>
+              {descriptions.map((item: { ID: number; 설명: string }) => (
+                <li
+                  key={item.ID}
+                  onClick={() => handleItemClick(item.ID)}
+                  style={{
+                    cursor: 'pointer',
+                    padding: '5px 10px',
+                    border:'2px solid #7be388',
+                    marginTop:'15px',
+                    borderRadius:'15px',
+                    backgroundColor: selectedItems.includes(item.ID) ? '#d3f9d8' : '#fff'
+                  }}
+                >
+                  {item.설명}
+                </li>
+              ))}
+            </ul>
+
+            <div style={{ marginTop: '20px' }}>
+              <h3>Selected Descriptions:</h3>
+              <ul>
+                {selectedItems.map((id, index) => {
+                  const selectedItem = descriptions.find(item => item.ID === id);
+                  return selectedItem ? <li key={index}>{selectedItem.ID}</li> : null;
+                })}
+              </ul>
+            </div>
+          </div>
+
           <button type='button' id='btn_submit' className='Btn'>회원가입 완료</button>
         </form>
       </div>
     </div>
-  )
+  );
 }
