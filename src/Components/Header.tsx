@@ -42,6 +42,7 @@ const Header: React.FC = () => {
           <Link to="/fund" className="nav-item text-4xl leading-6 text-gray-900">지원금</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
+          <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">나의 정보</Link>
           <Link to="/login" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그인 <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </nav>
@@ -76,6 +77,7 @@ const Header: React.FC = () => {
                   <Link to="/fund" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
                 </div>
                 <div className="py-6">
+                  <Link to="/mypage" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">나의 정보</Link>
                   <Link to="/login" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">로그인</Link>
                 </div>
               </div>

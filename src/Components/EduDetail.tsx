@@ -96,9 +96,14 @@ export default function EduDetail() {
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           지원기간
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.application_start}&nbsp;~&nbsp;{item.application_end}</td>
+                        <td
+                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.application_start}&nbsp;&nbsp;~&nbsp;&nbsp;{item.application_end}</td>
+                      </tr>
+
+                      <tr className='border-gray-200 border-t font-semibold'>
                         <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">교육기간</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.progress_start}&nbsp;~&nbsp;{item.progress_end}</td>
+                        <td
+                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.progress_start}&nbsp;&nbsp;~&nbsp;&nbsp;{item.progress_end}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>

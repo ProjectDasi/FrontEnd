@@ -12,6 +12,7 @@ import RegisterPage from './Pages/RegisterPage';
 import FundPage from './Pages/FundPage';
 import JobDetailPage from './Pages/JobDetailPage';
 import EduDetailPage from './Pages/EduDetailPage';
+import InfoPage from './Pages/InfoPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/jobdetail" element={<JobDetailPage />} />
         <Route path="/edudetail" element={<EduDetailPage />} />
+        <Route path="/mypage" element={<InfoPage />} />
       </Routes>
 
     </BrowserRouter>
