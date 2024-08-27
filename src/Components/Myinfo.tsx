@@ -1,4 +1,5 @@
 import React,{ Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Myinfo() {
     const people = [
@@ -7,7 +8,7 @@ export default function Myinfo() {
       ]
   return (
 
-    <div className="w-full px-4 sm:px-6 lg:px-8 Gamtan my-10">
+    <div className="w-full  Gamtan my-10">
       <div className="w-full sm:flex sm:items-start">
         <div className="sm:flex-auto">
           <h1 className="w-full text-5xl font-semibold text-gray-900 GamtanBold">나의 정보</h1>
@@ -17,18 +18,20 @@ export default function Myinfo() {
             정확한 추천을 위해서 이력서를 입력해주세요.
           </div>
         <div className="mt-3">
+          <Link to="/resume">
           <button
             type="button"
             className="block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
           >
             이력서 입력
           </button>
+          </Link>
         </div>
         </div>
       </div>
-      <div className="mt-8 flow-root GamtanBold">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <div className="mt-20 flow-root GamtanBold">
+        <div className=" overflow-x-auto">
+          {/* <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"> */}
             <table className="min-w-full divide-y divide-gray-300 border-t border-b border-gray-200">
               <tbody className="divide-y divide-gray-200 bg-white text-center">
                 {people.map((person) => (
@@ -61,8 +64,12 @@ export default function Myinfo() {
                 ))}
               </tbody>
             </table>
-          </div>
+          {/* </div> */}
         </div>
+      </div>
+      <div className='flex justify-end items-center py-5'>
+        <button type="button"
+            className="block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]">수정하기</button>
       </div>
     </div>
   )

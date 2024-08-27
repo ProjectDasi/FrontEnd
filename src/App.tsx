@@ -13,6 +13,7 @@ import FundPage from './Pages/FundPage';
 import JobDetailPage from './Pages/JobDetailPage';
 import EduDetailPage from './Pages/EduDetailPage';
 import InfoPage from './Pages/InfoPage';
+import ResumePage from './Pages/ResumePage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/jobdetail" element={<JobDetailPage />} />
         <Route path="/edudetail" element={<EduDetailPage />} />
         <Route path="/mypage" element={<InfoPage />} />
+        <Route path="/resume" element={<ResumePage />} />
       </Routes>
 
     </BrowserRouter>
