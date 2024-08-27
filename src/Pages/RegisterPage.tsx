@@ -2,11 +2,31 @@ import React, { useState } from 'react';
 import '../styles/register.css';
 import data from '../Data/preference.json';
 import Header from '../Components/Header';
+import MultipleSelectCheckmarks from '../Components/select';
+
+// 데이터 타입 정의
+interface Option {
+  ID: number;
+  type: string;
+  word: string;
+  description: string;
+}
+// 그룹핑 함수 정의
+function groupOptions(data: Option[]): Option[][] {
+  const groupedOptions: Option[][] = [[], [], [], [], []];
+
+  data.forEach((item, index) => {
+    const groupIndex = index % 5; // 0 ~ 4의 인덱스를 생성
+    groupedOptions[groupIndex].push(item);
+  });
+
+  return groupedOptions;
+}
 
 export default function RegisterPage() {
   // JSON 파일로부터 데이터 가져오기
   const descriptions = data;
-
+  const groupedOptions = groupOptions(data);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const handleItemClick = (id: number) => {
@@ -139,22 +159,33 @@ export default function RegisterPage() {
             </div>
           </div>
 
+
+
+          {groupedOptions.map((group, index) => (
+            <div className='item'>
+              <div className='TypoBox'>
+                <MultipleSelectCheckmarks key={index} options={group} tag={`선택 ${(index+1).toString()}`}/>
+              </div>
+            </div>
+            
+          ))}
+
           <div>
             <ul>
-              {descriptions.map((item: { ID: number; 설명: string }) => (
+              {descriptions.map((item: { ID: number; description: string }) => (
                 <li
                   key={item.ID}
                   onClick={() => handleItemClick(item.ID)}
                   style={{
                     cursor: 'pointer',
                     padding: '5px 10px',
-                    border:'2px solid #7be388',
-                    marginTop:'15px',
-                    borderRadius:'15px',
+                    border: '2px solid #7be388',
+                    marginTop: '15px',
+                    borderRadius: '15px',
                     backgroundColor: selectedItems.includes(item.ID) ? '#d3f9d8' : '#fff'
                   }}
                 >
-                  {item.설명}
+                  {item.description}
                 </li>
               ))}
             </ul>
