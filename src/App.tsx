@@ -13,6 +13,7 @@ import FundPage from './Pages/FundPage';
 import JobDetailPage from './Pages/JobDetailPage';
 import EduDetailPage from './Pages/EduDetailPage';
 import InfoPage from './Pages/InfoPage';
+import InfoEditPage from './Pages/InfoEditPage';
 import ResumePage from './Pages/ResumePage';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/jobdetail" element={<JobDetailPage />} />
         <Route path="/edudetail" element={<EduDetailPage />} />
         <Route path="/mypage" element={<InfoPage />} />
+        <Route path="/editmypage" element={<InfoEditPage />} />
         <Route path="/resume" element={<ResumePage />} />
       </Routes>
 
