@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGooglePlusG } from "react-icons/fa";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import axios from "axios";
 
 interface SignInFormState {
-  email: string;
+  loginId: string;
   password: string;
 }
 
 function SignInForm() {
   const [state, setState] = useState<SignInFormState>({
-    email: "",
+    loginId: "",
     password: ""
   });
-
+  const [error, setError] = useState<string | null>(null);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setState({
@@ -22,18 +23,37 @@ function SignInForm() {
     });
   };
 
-  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { loginId, password } = state;
 
-    const { email, password } = state;
-    alert(`You are logging in with email: ${email} and password: ${password}`);
+    try {
+      const response = await axios.post("https://8f9f-115-22-210-176.ngrok-free.app/login", {
+        loginId,
+        password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-    // Clear the form fields
-    setState({
-      email: "",
-      password: ""
-    });
-  };
+      const token = response.headers['Authorization']; // API 응답에 토큰이 포함되어 있다고 가정합니다.
+
+      // 토큰을 localStorage 또는 sessionStorage에 저장합니다.
+      localStorage.setItem("token", token);
+
+      // 폼 필드를 초기화합니다.
+      setState({
+        loginId: "",
+        password: ""
+      });
+
+      // 로그인 성공 메시지 또는 UI 업데이트
+      alert("로그인 성공!");
+    } catch (error) {
+      setError("로그인에 실패했습니다. 자격 증명을 확인하고 다시 시도하세요.");
+    }
+  }
 
   return (
     <div className="form-container sign-in-container">
@@ -42,10 +62,10 @@ function SignInForm() {
         
         
         <input
-          type="email"
+          type="text"
           placeholder="아이디"
-          name="email"
-          value={state.email}
+          name="loginId"
+          value={state.loginId}
           onChange={handleChange}
           className="input"
         />
