@@ -163,7 +163,7 @@ export default function RegisterPage() {
 
           {groupedOptions.map((group, index) => (
             <div className='item'>
-              <div className='TypoBox'>
+              <div className=''>
                 <MultipleSelectCheckmarks key={index} options={group} tag={`선택 ${(index+1).toString()}`}/>
               </div>
             </div>

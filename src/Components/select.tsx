@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import { Box } from '@mui/material';
 
 const ITEM_HEIGHT = 46;
 const ITEM_PADDING_TOP = 0;
@@ -29,7 +30,7 @@ interface Option {
 // 컴포넌트 정의
 interface MultipleSelectCheckmarksProps {
   options: Option[];
-  tag:string;
+  tag: string;
 }
 
 export default function MultipleSelectCheckmarks({
@@ -49,12 +50,14 @@ export default function MultipleSelectCheckmarks({
     console.log(selectedOptions)
   };
 
-  
+
 
   return (
     <div>
-      <FormControl sx={{ width: 360 ,height: 46}}>
-        <InputLabel id="demo-multiple-checkbox-label">{tag}</InputLabel>
+
+      <FormControl sx={{ width: 360, height: 46 }}>
+        <InputLabel id="demo-multiple-checkbox-label"
+        sx={{borderWidth:0}}>{tag}</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
@@ -62,7 +65,7 @@ export default function MultipleSelectCheckmarks({
           value={selectedOptions}
           onChange={handleChange}
           input={<OutlinedInput label="Tag"
-          sx={{ height: 46, lineHeight: '46px' }} />}
+            sx={{ height: 46, lineHeight: '46px' ,borderWidth:0}} />}
           renderValue={(selected) => selected.map(id => {
             const option = options.find(option => option.ID === id);
             return option ? option.description : "";
@@ -78,6 +81,7 @@ export default function MultipleSelectCheckmarks({
           ))}
         </Select>
       </FormControl>
+
     </div>
   );
 }
