@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './ListCss.css';
 
 interface Job {
@@ -8,16 +9,26 @@ interface Job {
   title: string;
   regionName: string;
   salary: string | null;
-  signupDate: string;
+  dueDate: string;
 }
 
 export default function JobList() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [activePage, setActivePage] = useState(1);
+  const [activePage, setActivePage] = useState(0);
   const [totalItemsCount, setTotalItemsCount] = useState(0);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const [error, setError] = useState<string | null>(null); // 에러 상태 추가
   const itemsPerPage = 10;
+  const navigate = useNavigate();
+
+  // axios 인스턴스 생성
+  const client = axios.create({
+    withCredentials: true,
+    headers: {
+      'Access-Control-Allow-Credentials': true,
+      'ngrok-skip-browser-warning': true,
+    },
+  });
 
   useEffect(() => {
     fetchJobs(activePage);
@@ -26,7 +37,7 @@ export default function JobList() {
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
     try {
-      const response = await axios.get(`https://8f9f-115-22-210-176.ngrok-free.app/work/list?page=${pageNumber}`);
+      const response = await client.get(`https://7e4b-115-22-210-176.ngrok-free.app/work/list?page=${pageNumber}`);
       setJobs(response.data.content || []); // content가 undefined일 경우 빈 배열로 초기화
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
@@ -41,6 +52,10 @@ export default function JobList() {
   const handlePageChange = (pageNumber: number) => {
     console.log(`active page is ${pageNumber}`);
     setActivePage(pageNumber);
+  };
+
+  const handleRowClick = (jobId: number) => {
+    navigate(`/job/${jobId}`);
   };
 
   if (loading) {
@@ -87,14 +102,16 @@ export default function JobList() {
           <tbody>
             {jobs.length > 0 ? (
               jobs.map((job) => (
-                <tr key={job.id} className="border-b border-gray-200">
+                <tr key={job.id} className="border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition"
+                  onClick={()=> handleRowClick(job.id)}
+                >
                   <td className="max-w-0 py-5 pl-4 pr-3 text-lg sm:pl-0">
                     <div className="font-medium text-gray-900">{job.title}</div>
                     <div className="mt-1 truncate text-gray-500">{job.regionName}</div>
                   </td>
                   <td className="hidden px-3 py-5 text-right text-lg text-gray-500 sm:table-cell">{job.regionName}</td>
                   <td className="hidden px-3 py-5 text-right text-lg text-gray-500 sm:table-cell">{job.salary || '정보 없음'}</td>
-                  <td className="py-5 pl-3 pr-4 text-right text-lg text-gray-500 sm:pr-0">{new Date(job.signupDate).toLocaleDateString()}</td>
+                  <td className="py-5 pl-3 pr-4 text-right text-lg text-gray-500 sm:pr-0">{new Date(job.dueDate).toLocaleDateString()}</td>
                 </tr>
               ))
             ) : (

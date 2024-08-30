@@ -29,7 +29,7 @@ function App() {
         <Route path="/education" element={<EduPage />} />
         <Route path="/recommendations" element={<RecomPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/jobdetail" element={<JobDetailPage />} />
+        <Route path="/job/:id" element={<JobDetailPage />} />
         <Route path="/edudetail" element={<EduDetailPage />} />
         <Route path="/mypage" element={<InfoPage />} />
         <Route path="/editmypage" element={<InfoEditPage />} />
