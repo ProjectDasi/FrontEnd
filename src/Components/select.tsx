@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -31,13 +32,15 @@ interface Option {
 interface MultipleSelectCheckmarksProps {
   options: Option[];
   tag: string;
+  setSelectedOptionsAll: (items: number[]) => void;
 }
 
 export default function MultipleSelectCheckmarks({
   options,
-  tag
+  tag,
+  setSelectedOptionsAll
 }: MultipleSelectCheckmarksProps) {
-  const [selectedOptions, setSelectedOptions] = React.useState<number[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof selectedOptions>) => {
     const {
@@ -47,6 +50,11 @@ export default function MultipleSelectCheckmarks({
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',').map(Number) : value
     );
+    // setSelectedOptionsAll(prevState =>
+    //   prevState.includes(id)
+    //     ? prevState.filter(i => i !== id)
+    //     : [...prevState, id]
+    // );
     console.log(selectedOptions)
   };
 
