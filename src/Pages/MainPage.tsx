@@ -1,6 +1,6 @@
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import scroll from '../Images/scroll4.png';
+import scroll from '../Images/scroll5.png';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -84,11 +84,11 @@ export default function MainPage() {
             muted
             className={`opacity-80 ${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-36 Gamtan text-black font-semibold text-5xl animate-pulse">
-            <p>당신의 새로운 시작을</p><p className='mt-3'>응원합니다</p>
+          <div className="absolute md:top-24 md:right-12 lg:top-36 lg:right-32 Gamtan text-gray-800 font-semibold text-5xl animate-pulse">
+            <p><span className='font-semibold text-[56px] pr-2 text-black'>당신</span>의 새로운 시작을</p><p className='mt-5'><span className='font-semibold text-[55px] pr-2 text-black'>응원</span>합니다</p>
           </div>
-          <div className="absolute md:top-80 md:right-48 lg:top-96 lg:right-80 animate-pulse">
-            <img src={scroll} className="buttonPosition h-10" />
+          <div className="absolute md:top-80 md:right-48 lg:top-[43vh] lg:right-80 animate-pulse">
+            <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>
       </div>
@@ -104,15 +104,15 @@ export default function MainPage() {
         }}
       >
         <div className='h-full w-full flex items-center justify-center mt-40 mb-24'>
-          <div className='grid grid-cols-1 xl:grid-cols-2 w-5/6 p-20 gap-x-10 h-full gap-y-10'>
+          <div className='grid grid-cols-1 xl:grid-cols-2 w-5/6 p-20 gap-x-10 h-full gap-y-10 GamtanBold'>
             <Link to="/job">
-              <div className="bg-[#1E3888] w-full h-3/5 min-h-56 p-6 flex items-center justify-end rounded-xl shadow-lg hover:cursor-pointer">
+              <div className="bg-[#7DB0B5] w-full h-3/5 min-h-56 p-6 flex items-center justify-end rounded-xl shadow-lg hover:cursor-pointer">
                 <div className='flex flex-col pr-4'>
-                  <h2 className="text-white text-2xl font-bold text-right">일자리검색</h2>
-                  <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
+                  <h2 className="text-white text-4xl text-right">일자리 검색</h2>
+                  <p className="text-white mt-2 text-lg">당신에게 꼭 맞는 일자리</p>
                 </div>
                 <div>
-                  <div className="bg-[#476BD7] p-4 rounded-full">
+                  <div className="bg-[#1C919C] p-4 rounded-full">
                     <img
                       src={job}
                       className="h-12 w-12 text-white"
@@ -123,9 +123,9 @@ export default function MainPage() {
               </div>
             </Link>
             <Link to="/education">
-              <div className="bg-[#317787] w-full h-3/5 min-h-56 p-6 flex items-center rounded-xl shadow-lg hover:cursor-pointer">
+              <div className="bg-[#78BCE3] w-full h-3/5 min-h-56 p-6 flex items-center rounded-xl shadow-lg hover:cursor-pointer">
                 <div className='mr-3'>
-                  <div className="bg-[#4BA9BE] p-4 rounded-full">
+                  <div className="bg-[#2A9BDC] p-4 rounded-full">
                     <img
                       src={edu}
                       className="h-12 w-12 text-white"
@@ -134,20 +134,20 @@ export default function MainPage() {
                   </div>
                 </div>
                 <div className='flex flex-col'>
-                  <h2 className="text-white text-2xl font-bold text-left">교육검색</h2>
-                  <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
+                  <h2 className="text-white text-4xl text-left">교육 검색</h2>
+                  <p className="text-white mt-2 text-lg">배우고 익히는 즐거움</p>
                 </div>
 
               </div>
             </Link>
             <Link to="/">
-              <div className="bg-yellow-500 w-full h-3/5 min-h-56 p-6 flex items-center justify-end rounded-xl shadow-lg hover:cursor-pointer">
+              <div className="bg-[#E3B5C8] w-full h-3/5 min-h-56 p-6 flex items-center justify-end rounded-xl shadow-lg hover:cursor-pointer">
                 <div className='flex flex-col pr-4'>
-                  <h2 className="text-white text-2xl font-bold text-right">이력서 작성</h2>
-                  <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 작성하세요.</p>
+                  <h2 className="text-white text-4xl text-right">이력서 작성</h2>
+                  <p className="text-white mt-2 text-lg">이력서 적기가 제일 쉬웠어요</p>
                 </div>
                 <div>
-                  <div className="bg-yellow-300 p-4 rounded-full">
+                  <div className="bg-[#E281A9] p-4 rounded-full">
                     <img
                       src={resume}
                       className="h-12 w-12 text-white pl-1"
@@ -158,9 +158,9 @@ export default function MainPage() {
               </div>
             </Link>
             <Link to="/">
-              <div className="bg-[#E06500] w-full h-3/5 min-h-56 p-6 flex items-center rounded-xl shadow-lg hover:cursor-pointer">
+              <div className="bg-[#A7ABDD] w-full h-3/5 min-h-56 p-6 flex items-center rounded-xl shadow-lg hover:cursor-pointer">
                 <div className='mr-3'>
-                  <div className="bg-[#FF9A47] p-4 rounded-full">
+                  <div className="bg-[#6C72C6] p-4 rounded-full">
                     <img
                       src={job}
                       className="h-12 w-12 text-white"
@@ -168,9 +168,9 @@ export default function MainPage() {
 
                   </div>
                 </div>
-                <div className='flex flex-col'>
-                  <h2 className="text-white text-2xl font-bold text-left">일자리검색</h2>
-                  <p className="text-white mt-2">누구나 어쩌구 저쩌구 지금 신청하세요.</p>
+                <div className='flex flex-col GamtanBold'>
+                  <h2 className="text-white text-4xl text-left">지원금 검색</h2>
+                  <p className="text-white mt-2 text-lg">돈 받아가세열</p>
                 </div>
 
               </div>

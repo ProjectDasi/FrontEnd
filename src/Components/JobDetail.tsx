@@ -23,41 +23,6 @@ interface JobDetailData {
   link:string;
 }
 
-// interface Location {
-//   name: string;
-//   people: Person[];
-// }
-
-// const jobdetailSample = [
-//   {
-//     id: 260,
-//     source: "워크넷",
-//     company: "나눔누리주식회사",
-//     title: "요양보호사 선생님을 모십니다.",
-//     subtitle: "",
-//     salary: "시급 12,500원 ~ 12,500원",
-//     signup_date: "2024-08-09",
-//     due_date: "채용시까지",
-//     region_name: "부산광역시 수영구 남천동로 41 (남천동, 남천동 코오롱 하늘채 골든비치)",
-//     career: "관계없음",
-//     education: "학력무관",
-//     work_type: "주 5일 근무",
-//     work_category: "방문 복지서비스 제공업",
-//     link: "https://www.work.go.kr/empInfo/empInfoSrch/detail/empDetailAuthView.do?searchInfoType=VALIDATION&callPage=detail&wantedAuthNo=KF10922408090006&rtnTarget=list5",
-//     contact: "",
-//     work_hours: "",
-//     details: "<td> [남천동] 요양보호사 선생님을 모십니다.<br/>- 대상자: 2등급 여자 어르신 70대 <br/>- 근무시간: 오전 08:00-11:00 (주 5일 / 3시간 근무)<br/>- 근무내용: 일상생활 도움, 운동<br/>- 시급: 12,500원(수당 포함) <br/>- 근무장소: 남천동 코오롱하늘채아파트<br/>- 자격증: 요양보호사 자격증 필수<br/>- 채용담당자: 010-7476-0907 (연락 후 방문)<br/><br/>동 구인은 실제 서비스 제공기간에 따라 임금을 계산하여 지급하는 형태로 <br/>채용시 근로자마다 주소정 근로시간이나 임금, 근무(예정)지 등에 차이가 있을 수 있음 </td>",
-//     email: "",
-//     certification: "요양보호사(필수)",
-
-//   }
-// //   // More locations...
-// ];
-
-// function classNames(...classes: (string | boolean | undefined)[]): string {
-//   return classes.filter(Boolean).join(' ');
-// }
-
 export default function JobDetail() {
   const { id } = useParams<{ id: string }>();
   const [jobDetail, setJobDetail] = useState<JobDetailData | null>(null);
