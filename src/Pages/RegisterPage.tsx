@@ -165,7 +165,7 @@ export default function RegisterPage() {
             <div className='item'>
               <div className=''>
                 <MultipleSelectCheckmarks key={index} options={group} tag={`선택 ${(index + 1).toString()}`} 
-                setSelectedOptionsAll={setSelectedItems}/>
+                setSelectedOptionsAll={setSelectedItems} selectedOptionsAll={selectedItems}/>
               </div>
             </div>
 

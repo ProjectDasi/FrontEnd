@@ -32,12 +32,14 @@ interface Option {
 interface MultipleSelectCheckmarksProps {
   options: Option[];
   tag: string;
+  selectedOptionsAll: number[];
   setSelectedOptionsAll: (items: number[]) => void;
 }
 
 export default function MultipleSelectCheckmarks({
   options,
   tag,
+  selectedOptionsAll,
   setSelectedOptionsAll
 }: MultipleSelectCheckmarksProps) {
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
@@ -46,16 +48,13 @@ export default function MultipleSelectCheckmarks({
     const {
       target: { value },
     } = event;
-    setSelectedOptions(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',').map(Number) : value
-    );
-    // setSelectedOptionsAll(prevState =>
-    //   prevState.includes(id)
-    //     ? prevState.filter(i => i !== id)
-    //     : [...prevState, id]
-    // );
-    console.log(selectedOptions)
+
+    const updatedOptions = typeof value === 'string' ? value.split(',').map(Number) : value;
+    setSelectedOptions(updatedOptions);
+   
+    const newSelectedOptionsAll = [...selectedOptionsAll.filter(id => !selectedOptions.includes(id)), ...updatedOptions];
+    setSelectedOptionsAll(newSelectedOptionsAll);
+    console.log(selectedOptionsAll)
   };
 
 
