@@ -41,7 +41,7 @@ export default function JobDetail() {
     const fetchJobDetail = async () => {
       setLoading(true);
       try {
-        const response = await client.get(`https://7e4b-115-22-210-176.ngrok-free.app/work/detail?id=${id}`);
+        const response = await client.get(`https://ce4f-115-22-210-176.ngrok-free.app/work/detail?id=${id}`);
         setJobDetail(response.data); // 서버에서 가져온 데이터를 상태에 저장
         console.log(response);
       } catch (error) {
