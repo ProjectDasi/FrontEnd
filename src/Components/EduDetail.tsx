@@ -45,7 +45,7 @@ export default function EduDetail() {
     const fetchEduDetail = async () =>{
       setLoading(true);
       try {
-        const response = await client.get(`https://ce4f-115-22-210-176.ngrok-free.app/learning/detail?id=${id}`);
+        const response = await client.get(process.env.REACT_APP_API_URL + `learning/detail?id=${id}`);
         SetEduDetail(response.data);
         console.log(response.data);
       } catch (error) {
