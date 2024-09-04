@@ -1,14 +1,21 @@
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react';
 import logo from '../Images/icon6.png'
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '../recoil/atoms';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  //const isLoggedIn = useRecoilValue(isLoggedInState);
+  const isLoggedIn = localStorage.getItem("token");
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('token');
+  };
   return (
     <header className="w-full">
       <nav className="flex items-center justify-between p-3 mt-3 lg:px-8" aria-label="Global">
@@ -42,8 +49,17 @@ const Header: React.FC = () => {
           <Link to="/fund" className="nav-item text-4xl leading-6 text-gray-900">지원금</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
-          <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">나의 정보</Link>
-          <Link to="/login" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그인 <span aria-hidden="true">&rarr;</span></Link>
+          {isLoggedIn ?
+            (
+              <>
+                <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">나의 정보</Link>
+                <button onClick={handleLogout} className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그아웃 <span aria-hidden="true">&rarr;</span></button>
+              </>
+            )
+            :
+            (<Link to="/login" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그인 <span aria-hidden="true">&rarr;</span></Link>)
+          }
+
         </div>
       </nav>
       {/* Mobile menu, show/hide based on menu open state. */}
@@ -77,8 +93,11 @@ const Header: React.FC = () => {
                   <Link to="/fund" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
                 </div>
                 <div className="py-6">
-                  <Link to="/mypage" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">나의 정보</Link>
-                  <Link to="/login" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">로그인</Link>
+                  {isLoggedIn ?
+                    (<Link to="/mypage" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">나의 정보</Link>)
+                    :
+                    (<Link to="/login" className="nav-item -mx-3 block rounded-lg px-3 py-2.5 text-2xl font-semibold leading-7 text-gray-900 GamtanBold hover:bg-gray-50">로그인</Link>)
+                  }
                 </div>
               </div>
             </div>
