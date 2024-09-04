@@ -15,6 +15,7 @@ const Header: React.FC = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
   };
   return (
     <header className="w-full">

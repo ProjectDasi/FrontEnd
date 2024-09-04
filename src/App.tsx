@@ -15,28 +15,31 @@ import EduDetailPage from './Pages/EduDetailPage';
 import InfoPage from './Pages/InfoPage';
 import InfoEditPage from './Pages/InfoEditPage';
 import ResumePage from './Pages/ResumePage';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
     <div className='flex flex-col h-screen w-full justify-center items-center min-w-[1000px]'>
-    <BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
 
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/fund" element={<FundPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/job" element={<JobPage />} />
-        <Route path="/education" element={<EduPage />} />
-        <Route path="/recommendations" element={<RecomPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/job/:id" element={<JobDetailPage />} />
-        <Route path="/education/:id" element={<EduDetailPage />} />
-        <Route path="/mypage" element={<InfoPage />} />
-        <Route path="/editmypage" element={<InfoEditPage />} />
-        <Route path="/resume" element={<ResumePage />} />
-      </Routes>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/fund" element={<FundPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/job" element={<JobPage />} />
+            <Route path="/education" element={<EduPage />} />
+            <Route path="/recommendations" element={<RecomPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/job/:id" element={<JobDetailPage />} />
+            <Route path="/education/:id" element={<EduDetailPage />} />
+            <Route path="/mypage" element={<InfoPage />} />
+            <Route path="/editmypage" element={<InfoEditPage />} />
+            <Route path="/resume" element={<ResumePage />} />
+          </Routes>
 
-    </BrowserRouter>
+        </BrowserRouter>
+      </RecoilRoot>
     </div>
   );
 }

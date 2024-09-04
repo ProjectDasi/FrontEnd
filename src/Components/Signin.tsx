@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { FaGooglePlusG } from "react-icons/fa";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '../recoil/atoms';
 
 interface SignInFormState {
   loginId: string;
@@ -9,6 +12,8 @@ interface SignInFormState {
 }
 
 function SignInForm() {
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const navigate = useNavigate();
   const [state, setState] = useState<SignInFormState>({
     loginId: "",
     password: ""
@@ -40,7 +45,8 @@ function SignInForm() {
 
       // 토큰을 localStorage 또는 sessionStorage에 저장합니다.
       localStorage.setItem("token", token);
-
+      localStorage.setItem("id",response.data.id)
+      setIsLoggedIn(true);
       // 폼 필드를 초기화합니다.
       setState({
         loginId: "",
@@ -48,7 +54,9 @@ function SignInForm() {
       });
 
       // 로그인 성공 메시지 또는 UI 업데이트
+      
       alert("로그인 성공!");
+      navigate("/");
     } catch (error) {
       setError("로그인에 실패했습니다. 자격 증명을 확인하고 다시 시도하세요.");
     }
