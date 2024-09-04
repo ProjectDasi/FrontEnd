@@ -86,9 +86,6 @@ function SignInForm() {
         <span>소셜 계정 로그인</span>
         <div className="social-container">
           <a href="#" className="social a">
-            <FaFacebookF />
-          </a>
-          <a href="#" className="social a">
             <FaGooglePlusG />
           </a>
           <a href="#" className="social a">

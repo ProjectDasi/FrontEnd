@@ -87,7 +87,7 @@ export default function MainPage() {
           <div className="absolute md:top-24 md:right-12 lg:top-36 lg:right-32 Gamtan text-gray-800 font-semibold text-5xl animate-pulse">
             <p><span className='font-semibold text-[56px] pr-2 text-black'>당신</span>의 새로운 시작을</p><p className='mt-5'><span className='font-semibold text-[55px] pr-2 text-black'>응원</span>합니다</p>
           </div>
-          <div className="absolute md:top-80 md:right-48 lg:top-[43vh] lg:right-80 animate-pulse">
+          <div className="absolute md:top-80 md:right-48 lg:top-[47vh] lg:right-80 animate-pulse">
             <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>
@@ -169,8 +169,8 @@ export default function MainPage() {
                   </div>
                 </div>
                 <div className='flex flex-col GamtanBold'>
-                  <h2 className="text-white text-4xl text-left">지원금 검색</h2>
-                  <p className="text-white mt-2 text-lg">돈 받아가세열</p>
+                  <h2 className="text-white text-4xl text-left">취업 이정표</h2>
+                  <p className="text-white mt-2 text-lg">ㅍㅍㅍㅍ</p>
                 </div>
 
               </div>
