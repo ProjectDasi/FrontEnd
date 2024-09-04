@@ -39,7 +39,7 @@ export default function EdueList() {
   const fetchEdus = async (pageNumber: number) => {
     setLoading(true);
     try {
-      const response = await client.get(`https://cc7a-115-22-210-176.ngrok-free.app/learning/list?page=${pageNumber}`);
+      const response = await client.get(process.env.REACT_APP_API_URL+`learning/list?page=${pageNumber}`);
       setEdus(response.data.content || []);
       setTotalItemsCount(response.data.totalElements);
       console.log(response);

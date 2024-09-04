@@ -14,14 +14,12 @@ interface Job {
 
 export default function JobList() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>([]); //필터링된 일자리데이터 업데이트
   const [activePage, setActivePage] = useState(0);
   const [totalItemsCount, setTotalItemsCount] = useState(0);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const [error, setError] = useState<string | null>(null); // 에러 상태 추가
   const itemsPerPage = 10;
   const navigate = useNavigate();
-  const [searchWord,setSearchWord] = useState(''); //검색어 상태
 
   // axios 인스턴스 생성
   const client = axios.create({
@@ -39,7 +37,7 @@ export default function JobList() {
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
     try {
-      const response = await client.get(`https://cc7a-115-22-210-176.ngrok-free.app/work/list?page=${pageNumber}`);
+      const response = await client.get(process.env.REACT_APP_API_URL+`work/list?page=${pageNumber}`);
       setJobs(response.data.content || []); // content가 undefined일 경우 빈 배열로 초기화
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
@@ -68,16 +66,7 @@ export default function JobList() {
     return <div>{error}</div>; // 에러 메시지 표시
   }
 
-  useEffect(() => {
-    handleSearch(searchWord);
-  },[jobs, searchWord])
 
-  const handleSearch = (word: string) => {
-    const filtered = jobs.filter((job) => 
-    job.title.toLowerCase().includes(word.toLowerCase())
-    )
-    setFilteredJobs(filtered);
-  }
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
       <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
