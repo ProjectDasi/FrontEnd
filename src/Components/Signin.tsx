@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaFacebookF } from "react-icons/fa";
 import { FaGooglePlusG } from "react-icons/fa";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import axios from "axios";
@@ -93,7 +92,7 @@ function SignInForm() {
           </a>
         </div>
         
-        <button className="button" type="submit">로그인</button>
+        <button className="button GamtanBold" type="submit"><span className="text-lg">로그인</span></button>
       </form>
     </div>
   );

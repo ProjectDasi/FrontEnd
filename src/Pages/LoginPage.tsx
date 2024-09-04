@@ -12,7 +12,7 @@ export default function LoginPage() {
 
 
   return (
-    <div className="App">
+    <div className="Gamtan">
       
       <div className="container" id="container">
         
@@ -21,8 +21,8 @@ export default function LoginPage() {
           <div className="overlay">
             
             <div className="overlay-panel overlay-right">
-              <h1 className='h1'>Hello, Friend!</h1>
-              <p className='p'>Enter your personal details and start journey with us</p>
+              <h1 className='h1'>다시 꿈꾸는 나이</h1>
+              <p className='p'>당신의 새로운 시작을 저희가 함께 합니다.</p>
               <button
                 className="ghost button"
                 id="signUp"
