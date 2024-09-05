@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaGooglePlusG } from "react-icons/fa";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import { SiNaver } from "react-icons/si";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
@@ -65,7 +66,7 @@ function SignInForm() {
   return (
     <div className="form-container sign-in-container">
       <form className="form" onSubmit={handleOnSubmit}>
-        <h1 className="h1">로그인</h1>
+        <h1 className="h1"><span className="text-3xl GamtanBold">로그인</span></h1>
         
         
         <input
@@ -84,16 +85,11 @@ function SignInForm() {
           onChange={handleChange}
           className="input"
         />
-        <div className="flex">
-            <a className="a" href="#">비밀번호 찾기</a>
-            <p className="between"> / </p>
-            <a className="a" href="#">아이디 찾기</a>
-        </div>
 
-        <span>소셜 계정 로그인</span>
+        <span className="mt-3">소셜 계정 로그인</span>
         <div className="social-container">
-          <a href="#" className="social a">
-            <FaGooglePlusG />
+          <a href="#" className="social a p-[10px]">
+          <SiNaver />
           </a>
           <a href="#" className="social a">
             <RiKakaoTalkFill />
@@ -101,6 +97,11 @@ function SignInForm() {
         </div>
         
         <button className="button GamtanBold" type="submit"><span className="text-lg">로그인</span></button>
+        <div className="flex">
+            <a className="a" href="#">비밀번호 찾기</a>
+            <p className="between"> / </p>
+            <a className="a" href="#">아이디 찾기</a>
+        </div>
       </form>
     </div>
   );

@@ -4,6 +4,7 @@ import data from '../Data/preference.json';
 import Header from '../Components/Header';
 import MultipleSelectCheckmarks from '../Components/select';
 import axios from 'axios';
+import DialogRegister from '../Components/DialogRegister';
 
 // 데이터 타입 정의
 interface Option {
@@ -293,6 +294,7 @@ export default function RegisterPage() {
               </div>
             </div>
           ))}
+          <DialogRegister/>
 
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
         </form>

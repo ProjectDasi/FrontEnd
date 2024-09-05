@@ -1,10 +1,10 @@
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import scroll from '../Images/scroll5.png';
+import scroll from '../Images/scroll6.png';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import './main.css';
+import '../styles/main.css';
 import edu from '../Images/school.png'
 import job from '../Images/job.png'
 import resume from '../Images/resume.png'
@@ -82,12 +82,12 @@ export default function MainPage() {
             autoPlay
             loop
             muted
-            className={`opacity-80 ${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
+            className={`${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-12 lg:top-36 lg:right-32 Gamtan text-gray-800 font-semibold text-5xl animate-pulse">
-            <p><span className='font-semibold text-[56px] pr-2 text-black'>당신</span>의 새로운 시작을</p><p className='mt-5'><span className='font-semibold text-[55px] pr-2 text-black'>응원</span>합니다</p>
+          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 Gamtan text-white font-semibold text-[40px] animate-pulse ">
+            <p className='text-right'>다시시작해는 당신의 새로운</p><p className=' text-right'> 시작을 응원합니다</p>
           </div>
-          <div className="absolute md:top-80 md:right-48 lg:top-[47vh] lg:right-80 animate-pulse">
+          <div className="absolute md:top-80 md:right-48 lg:top-[41vh] lg:right-72 animate-pulse">
             <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>

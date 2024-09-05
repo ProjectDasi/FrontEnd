@@ -3,6 +3,7 @@ import SignInForm from '../Components/Signin';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/login.css"
+import Header from '../Components/Header';
 export default function LoginPage() {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
   const navigate = useNavigate();
@@ -12,10 +13,12 @@ export default function LoginPage() {
 
 
   return (
-    <div className="Gamtan">
-      
+    <div className="Gamtan h-full w-full">
+      <div className='shadow-md'>
+    <Header/>
+    </div>
+    <div className='w-full h-[83vh] flex justify-center flex-col items-center'>
       <div className="container" id="container">
-        
         <SignInForm />
         <div className="overlay-container">
           <div className="overlay">
@@ -33,6 +36,7 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
