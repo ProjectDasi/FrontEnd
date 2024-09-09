@@ -294,7 +294,9 @@ export default function RegisterPage() {
               </div>
             </div>
           ))}
+          <div className='w-full'>
           <DialogRegister/>
+          </div>
 
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
         </form>

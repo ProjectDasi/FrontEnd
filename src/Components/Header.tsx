@@ -47,7 +47,7 @@ const Header: React.FC = () => {
           <Link to="/job" className="nav-item text-4xl leading-6 text-gray-900">일자리</Link>
           <Link to="/education" className="nav-item text-4xl leading-6 text-gray-900">교육</Link>
           <Link to="/recommendations" className="nav-item text-4xl leading-6 text-gray-900">맞춤</Link>
-          <Link to="/fund" className="nav-item text-4xl leading-6 text-gray-900">지원금</Link>
+          <Link to="/compass" className="nav-item text-4xl leading-6 text-gray-900">이정표</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
           {isLoggedIn ?
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
       </nav>
       {/* Mobile menu, show/hide based on menu open state. */}
       {menuOpen && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
+        <div className="lg:hidden fixed inset-0 z-[200]" role="dialog" aria-modal="true">
           {/* Background backdrop, show/hide based on slide-over state. */}
           <div className="fixed inset-0 z-50"></div>
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                   <Link to="/job" className="nav-item -mx-3 rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
                   <Link to="/education" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
                   <Link to="/recommendations" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">맞춤</Link>
-                  <Link to="/fund" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
+                  <Link to="/compass" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">이정표</Link>
                 </div>
                 <div className="py-6">
                   {isLoggedIn ?

@@ -3,7 +3,7 @@ import './App.css';
 // import Footer from './Components/Footer';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
-import ComPage from './Pages/ComPage';
+import CompassPage from './Pages/CompassPage';
 import LoginPage from './Pages/LoginPage';
 import JobPage from './Pages/JobPage';
 import EduPage from './Pages/EduPage';
@@ -25,7 +25,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/fund" element={<FundPage />} />
+            <Route path="/compass" element={<CompassPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/job" element={<JobPage />} />
             <Route path="/education" element={<EduPage />} />

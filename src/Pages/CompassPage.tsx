@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ComPage() {
+export default function CompassPage() {
   return (
     <div>
-      Community
+      CompassPage
     </div>
   )
 }

@@ -11,15 +11,13 @@ import Dialog from '@mui/material/Dialog';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Checkbox from '@mui/material/Checkbox';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Data from '../Data/preference.json'; // preference.json 파일을 가져옴
 
-const options = [
-  '쓸모 있는 것을 좋아한다.',
-  '일을 정확하고 세밀하게 한다.',
-  '현장에서 일하는 것을 좋아한다.',
-  '손을 이용해 무엇인가를 만드는 것을 좋아한다.',
-  '전기나 기계와 관련된 일을 잘한다.'
-];
+// 유형별 데이터를 나누는 함수
+const getOptionsByRange = (start: number, end: number) => {
+  return Data.filter(item => item.ID >= start && item.ID <= end).map(item => item.description);
+};
 
 export interface ConfirmationDialogRawProps {
   id: string;
@@ -27,10 +25,11 @@ export interface ConfirmationDialogRawProps {
   value: string[];
   open: boolean;
   onClose: (value?: string[]) => void;
+  options: string[]; // options를 props로 받도록 설정
 }
 
 function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
-  const { onClose, value: valueProp, open, ...other } = props;
+  const { onClose, value: valueProp, open, options, ...other } = props; // options를 받아옴
   const [value, setValue] = React.useState<string[]>(valueProp || []);
 
   React.useEffect(() => {
@@ -65,7 +64,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
       <DialogTitle>자신을 설명할 문장 2개 이상 선택해 주세요.</DialogTitle>
       <DialogContent dividers>
         <FormGroup>
-          {options.map((option) => (
+          {options.map((option) => ( // options 배열을 사용하여 체크박스 생성
             <FormControlLabel
               key={option}
               control={
@@ -81,73 +80,91 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={handleCancel}>
-          Cancel
+        취소
         </Button>
-        <Button onClick={handleOk}>Ok</Button>
+        <Button onClick={handleOk}>확인</Button>
       </DialogActions>
     </Dialog>
   );
 }
 
 const theme = createTheme({
-    palette: {
-      background: {
-        paper: '#fff',
-      },
-      text: {
-        primary: '#173A5E',
-        secondary: '#46505A',
-      },
-      action: {
-        active: '#001E3C',
-      },
-      success: {
-        dark: '#009688',
-      },
+  palette: {
+    primary: {
+      main: '#000000',
     },
-  });
+    secondary: {
+      main: '#E0C2FF',
+      light: '#F5EBFF',
+      contrastText: '#47008F',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#46505A',
+    },
+  },
+});
 
 export default function DialogRegister() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<string[]>([]);
+  const [dialogs, setDialogs] = React.useState<{ open: boolean; value: string[]; options: string[] }[]>(
+    Array.from({ length: 5 }, (_, i) => ({
+      open: false,
+      value: [],
+      options: getOptionsByRange(i * 5 + 1, (i + 1) * 5), // ID 1~5, 6~10, 11~15 ... 이런식으로 설정
+    }))
+  );
 
-  const handleClickListItem = () => {
-    setOpen(true);
+  const handleClickListItem = (index: number) => {
+    const newDialogs = dialogs.map((dialog, i) =>
+      i === index ? { ...dialog, open: true } : dialog
+    );
+    setDialogs(newDialogs);
   };
 
-  const handleClose = (newValue?: string[]) => {
-    setOpen(false);
-
-    if (newValue) {
-      setValue(newValue);
-    }
+  const handleClose = (index: number, newValue?: string[]) => {
+    const newDialogs = dialogs.map((dialog, i) =>
+      i === index ? { ...dialog, open: false, value: newValue || dialog.value } : dialog
+    );
+    setDialogs(newDialogs);
   };
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <List component="div" role="group">
-        <ListItemButton divider disabled>
-            <ThemeProvider theme={theme}>
-                <ListItemText primary="일자리 성격 유형 검사입니다."/>
-            </ThemeProvider>
-        </ListItemButton>
-        <ListItemButton
-          divider
-          aria-haspopup="true"
-          aria-controls="ringtone-menu"
-          aria-label="phone ringtone"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="유형 1" secondary={value.join(' ')} />
-        </ListItemButton>
-        <ConfirmationDialogRaw
-          id="ringtone-menu"
-          keepMounted
-          open={open}
-          onClose={handleClose}
-          value={value}
-        />
-      </List>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: '100%', bgcolor: 'background.paper', textAlign:'center'}}>
+        <List component="div" role="group">
+          <ListItemButton divider disabled>
+            <ListItemText primary="일자리 성격 유형 검사입니다." sx={{textAlign:'center', color:'text.primary'}} />
+          </ListItemButton>
+
+          {dialogs.map((dialog, index) => (
+            <React.Fragment key={index}>
+              <ListItemButton
+                divider
+                aria-haspopup="true"
+                aria-controls="ringtone-menu"
+                aria-label={`유형 ${index + 1}`}
+                onClick={() => handleClickListItem(index)}
+                sx={{textAlign:'center'}}
+              >
+                <ListItemText
+                  primary={`유형 ${index + 1}`}
+                  secondary={dialog.value.join(' ')}
+                  sx={{textAlign:'center'}}
+                />
+              </ListItemButton>
+
+              <ConfirmationDialogRaw
+                id={`ringtone-menu-${index}`}
+                keepMounted
+                open={dialog.open}
+                onClose={(newValue) => handleClose(index, newValue)}
+                value={dialog.value}
+                options={dialog.options}
+              />
+            </React.Fragment>
+          ))}
+        </List>
+      </Box>
+    </ThemeProvider>
   );
 }
