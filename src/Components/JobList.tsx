@@ -70,6 +70,11 @@ export default function JobList() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
       <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
+      {/* 검색란 만들기, onClick함수 만들고 검색 버튼에 연결, onClick하면 검색API로 검색어 및 지역을 fetch해서 jobs업데이트 후 보여 줌*/}
+        {/* <div className='bg-lime-300 flex justify-end items-center my-3'>
+          <input type="text" id='search' className='rounded-lg focus:border-blue-500 border-gray-500'></input>
+          <button className='bg-gray-500 text-white ml-5 rounded-lg px-2'>검색</button>
+        </div> */}
       <div className="-mx-4 mt-8 flow-root sm:mx-0 w-full">
         <table className="min-w-full">
           <colgroup>
