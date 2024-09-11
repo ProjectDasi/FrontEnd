@@ -1,9 +1,12 @@
 import React from 'react'
 import SignInForm from '../Components/Signin';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "../styles/login.css"
 import Header from '../Components/Header';
+import bg from '../Images/6583.jpg'
+import Footer from '../Components/Footer';
+
 export default function LoginPage() {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
   const navigate = useNavigate();
@@ -14,11 +17,11 @@ export default function LoginPage() {
 
   return (
     <div className="Gamtan h-full w-full">
-      <div className='shadow-md'>
+      {/* <div className='shadow-md'>
     <Header/>
-    </div>
-    <div className='w-full h-[83vh] flex justify-center flex-col items-center'>
-      <div className="container" id="container">
+    </div> */}
+    <div className='w-full h-[88vh] flex justify-center flex-col items-center'>
+      <div className="container -mb-10" id="container">
         <SignInForm />
         <div className="overlay-container">
           <div className="overlay">
@@ -33,9 +36,17 @@ export default function LoginPage() {
               >
                 회원가입
               </button>
+              <div className="flex mt-3">
+            <Link to="/findid" className="a"><span className='text-white'>비밀번호 찾기</span></Link>
+            <p className="between"> / </p>
+            <Link to="/findpw" className="a"><span className='text-white'>아이디 찾기</span></Link>
+        </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="w-full h-36 mt-20 opacity-80">
+      <img src={bg}/>
       </div>
       </div>
     </div>

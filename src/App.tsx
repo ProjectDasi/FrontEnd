@@ -1,6 +1,4 @@
 import './App.css';
-// import Header from './Components/Header';
-// import Footer from './Components/Footer';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
 import CompassPage from './Pages/CompassPage';
@@ -9,12 +7,14 @@ import JobPage from './Pages/JobPage';
 import EduPage from './Pages/EduPage';
 import RecomPage from './Pages/RecomPage';
 import RegisterPage from './Pages/RegisterPage';
-import FundPage from './Pages/FundPage';
 import JobDetailPage from './Pages/JobDetailPage';
 import EduDetailPage from './Pages/EduDetailPage';
 import InfoPage from './Pages/InfoPage';
 import InfoEditPage from './Pages/InfoEditPage';
 import ResumePage from './Pages/ResumePage';
+import FindIDPage from './Pages/FindIDPage';
+import FindPWPage from './Pages/FindPWPage';
+
 import { RecoilRoot } from 'recoil';
 
 function App() {
@@ -36,6 +36,8 @@ function App() {
             <Route path="/mypage" element={<InfoPage />} />
             <Route path="/editmypage" element={<InfoEditPage />} />
             <Route path="/resume" element={<ResumePage />} />
+            <Route path='/findid' element={<FindIDPage />} />
+            <Route path='/findpw' element={<FindPWPage />} />
           </Routes>
 
         </BrowserRouter>

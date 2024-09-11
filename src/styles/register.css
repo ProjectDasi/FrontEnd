@@ -12,7 +12,7 @@
 }
 
 .wrapper{
-    width: 560px;
+    width: 590px;
     margin:0 auto;
     padding-bottom: 100px;
     position: relative;
@@ -34,7 +34,7 @@
     display: inline-block;
     margin-bottom: 8px;
     color: #373f57;
-    font-size: 16px;
+    font-size: 20px;
 }
 .TypoBox{
     display: inline-block;
@@ -51,12 +51,11 @@
     border-radius: 4px;
     box-sizing: border-box;
     color: var(--gray100);
-    font-size: 14px;
     line-height: 20px;
     background: none;
     padding: 11px 12px;
     height: 46px;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 24px;
 }
 
@@ -70,28 +69,33 @@ div{
 }
 .TypoBox:hover{
     border: 1px solid #8491a7;
-    background-color: #eff5ff;
+    background-color: #7db0b547;
 }
 
 .Btn{
-    margin-top: 24px;
+    margin-top: 50px;
     padding: 10px 15px 12px;
-    height: 48px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 20px;
     line-height: 24px;
-    width: 100%;
+    width: 30%;
     display: inline-flex;
     position: relative;
-    border: 1px solid #28c657;
+    border: 1px solid #7DB0B5;
     border-radius: 4px;
     box-sizing: border-box;
     color: white;
     text-align: center;
     vertical-align: top;
-    background-color: #28c657;
+    background-color: #7DB0B5;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+.Btn:hover{
+    background-color: white;
+    color: #7DB0B5;
+    transition: background-color 0.5s ease;
 }
 
 .birthdate-box {
@@ -113,7 +117,7 @@ div{
 
 .birthdate-input:hover{
     border: 1px solid #8491a7;
-    background-color: #eff5ff;
+    background-color: #7db0b547;
 }
 
 input::-webkit-outer-spin-button,

@@ -51,7 +51,7 @@
     font-weight: bold;
   }
   .between{
-    color: #424242;
+    color: white;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 15px;
@@ -60,8 +60,8 @@
   
   .button {
     border-radius: 30px;
-    border: 1px solid #1C919C;
-    background-color: #1C919C;
+    border: 1px solid #7DB0B5;
+    background-color: #7DB0B5;
     color: #ffffff;
     font-size: 17px;
     font-weight: bold;
@@ -106,12 +106,12 @@
   .container {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15), 0 10px 8px rgba(0, 0, 0, 0.10);
     position: relative;
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 400px;
   }
   
   .form-container {
@@ -175,9 +175,9 @@
   }
   
   .overlay {
-    background: #1C919C;
-    background: -webkit-linear-gradient(to right, #7DB0B5, #1C919C);
-    background: linear-gradient(to right, #7DB0B5, #1C919C);
+    background: #7DB0B5;
+    background: -webkit-linear-gradient(to right, #7DB0B5, #7DB0B5);
+    background: linear-gradient(to right, #7DB0B5, #7DB0B5);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -228,7 +228,7 @@
   
   .social-container {
     margin-top: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 17px;
   }
   
   .social-container a {

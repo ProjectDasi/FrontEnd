@@ -13,6 +13,8 @@ import FormGroup from '@mui/material/FormGroup';
 import Checkbox from '@mui/material/Checkbox';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Data from '../Data/preference.json'; // preference.json 파일을 가져옴
+import { typography } from '@mui/system';
+
 
 // 유형별 데이터를 나누는 함수
 const getOptionsByRange = (start: number, end: number) => {
@@ -102,8 +104,11 @@ const theme = createTheme({
       primary: '#000000',
       secondary: '#46505A',
     },
+    },
+    typography: {
+      fontFamily:"GamtanBold"
   },
-});
+  });
 
 export default function DialogRegister() {
   const [dialogs, setDialogs] = React.useState<{ open: boolean; value: string[]; options: string[] }[]>(
@@ -130,10 +135,10 @@ export default function DialogRegister() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%', bgcolor: 'background.paper', textAlign:'center'}}>
+      <Box sx={{ width: '100%', textAlign:'center', borderRadius:'30%'}}>
         <List component="div" role="group">
           <ListItemButton divider disabled>
-            <ListItemText primary="일자리 성격 유형 검사입니다." sx={{textAlign:'center', color:'text.primary'}} />
+            <ListItemText primary="아래의 유형을 클릭해주세요." sx={{textAlign:'center', color:'text.primary'}} />
           </ListItemButton>
 
           {dialogs.map((dialog, index) => (

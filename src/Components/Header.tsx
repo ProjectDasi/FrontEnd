@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react';
-import logo from '../Images/icon6.png'
+import logo from '../Images/icon7.png'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLoggedInState } from '../recoil/atoms';
 

@@ -127,16 +127,15 @@ export default function RegisterPage() {
 
   return (
     <div className='h-screen w-full'>
-      <div className='mb-20 bg-white border-b-slate-300 border'>
+      <div className='mb-14 bg-white border-b-slate-300 border'>
         <Header />
       </div>
-      <div className='wrapper'>
+      <div className='wrapper GamtanBold'>
         <form name='frm' id='frm' method='post' action=''>
-          <h3 className='title font-'>회원가입</h3>
           <div>
 
             <div className='item'>
-              <label htmlFor="loginId" >
+              <label htmlFor="loginId" className='pr-5' >
                 <strong>아이디</strong>
               </label>
               <div className='TypoBox'>
@@ -153,7 +152,7 @@ export default function RegisterPage() {
             </div>
 
             <div className='item'>
-              <label htmlFor="password" >
+              <label htmlFor="password" className='pr-5'>
                 <strong>비밀번호</strong>
               </label>
               <div className='TypoBox'>
@@ -170,7 +169,7 @@ export default function RegisterPage() {
             </div>
 
             <div className='item'>
-              <label htmlFor="name" >
+              <label htmlFor="name" className='pr-5'>
                 <strong>이름</strong>
               </label>
               <div className='TypoBox'>
@@ -187,7 +186,7 @@ export default function RegisterPage() {
             </div>
 
             <div className='item'>
-              <label htmlFor="birth_date" >
+              <label htmlFor="birth_date" className='pr-5'>
                 <strong>생년월일</strong>
               </label>
               <div className='birthdate-box'>
@@ -231,7 +230,7 @@ export default function RegisterPage() {
             </div>
 
             <div className='item'>
-              <label htmlFor="phone" >
+              <label htmlFor="phone" className='pr-5'>
                 <strong>휴대폰</strong>
               </label>
               <div className='TypoBox'>
@@ -248,7 +247,7 @@ export default function RegisterPage() {
             </div>
 
             <div className='item'>
-              <label htmlFor="region" >
+              <label htmlFor="region" className='pr-3'>
                 <strong>구/군 선택</strong>
               </label>
               <div className='TypoBox'>
@@ -280,9 +279,18 @@ export default function RegisterPage() {
                 </select>
               </div>
             </div>
+          <div className='item'>
+            
+              <label htmlFor="favor" className='pr-5 text-center'>
+                <strong>선호도<br/>검사</strong>
+              </label>
+            
+            <div className='TypoBox px-4'>
+          <DialogRegister/></div>
+          </div>
           </div>
 
-          {groupedOptions.map((group, index) => (
+          {/* {groupedOptions.map((group, index) => (
             <div className='item' key={index}>
               <div className=''>
                 <MultipleSelectCheckmarks
@@ -293,12 +301,10 @@ export default function RegisterPage() {
                 />
               </div>
             </div>
-          ))}
-          <div className='w-full'>
-          <DialogRegister/>
-          </div>
-
+          ))} */}
+          <div className='flex flex-col justify-center items-center'>
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
+          </div>
         </form>
       </div>
     </div>
