@@ -45,7 +45,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <div className="w-full h-36 mt-20 opacity-80">
+      <div className="w-full h-36 mt-20 opacity-70">
       <img src={bg}/>
       </div>
       </div>

@@ -84,7 +84,7 @@ export default function MainPage() {
             muted
             className={`${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 Gamtan text-white font-semibold text-[40px] animate-pulse ">
+          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 GamtanBold text-white text-[45px] animate-pulse ">
             <p className='text-right'>다시 시작해는 당신의 새로운</p><p className=' text-right'> 시작을 응원합니다</p>
           </div>
           <div className="absolute md:top-80 md:right-48 lg:top-[41vh] lg:right-72 animate-pulse">

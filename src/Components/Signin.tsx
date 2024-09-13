@@ -67,7 +67,7 @@ function SignInForm() {
     <div className="form-container sign-in-container">
       <form className="form" onSubmit={handleOnSubmit}>
         <Link to='/'>
-        <h1 className="h1"><span className="text-3xl GamtanBold text-[#52949a] tracking-[4px]">다시 시작해</span></h1>
+        <h1 className="h1"><span className="text-4xl text-[#52949a] GamtanBold tracking-[4px]">다시 시작해</span></h1>
         </Link>
         
         <input
