@@ -104,9 +104,9 @@ const theme = createTheme({
       primary: '#000000',
       secondary: '#46505A',
     },
-    },
+  },
     typography: {
-      fontFamily:"GamtanBold"
+      fontFamily:"GamtandotumBold"
   },
   });
 

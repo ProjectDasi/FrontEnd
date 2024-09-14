@@ -24,14 +24,6 @@ export default function EdueList() {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const client = axios.create({
-    withCredentials: true,
-    headers: {
-      'Access-Control-Allow-Credentials': true,
-      'ngrok-skip-browser-warning': true,
-    },
-  });
-
   useEffect(() => {
     fetchEdus(activePage);
   }, [activePage]);
@@ -39,7 +31,7 @@ export default function EdueList() {
   const fetchEdus = async (pageNumber: number) => {
     setLoading(true);
     try {
-      const response = await client.get(process.env.REACT_APP_API_URL+`learning/list?page=${pageNumber}`);
+      const response = await axios.get(`http://localhost:8080/learning/list?page=${pageNumber}`);
       setEdus(response.data.content || []);
       setTotalItemsCount(response.data.totalElements);
       console.log(response);

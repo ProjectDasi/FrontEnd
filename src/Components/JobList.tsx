@@ -37,7 +37,7 @@ export default function JobList() {
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
     try {
-      const response = await client.get(process.env.REACT_APP_API_URL+`work/list?page=${pageNumber}`);
+      const response = await client.get(`http://localhost:8080/work/list?page=${pageNumber}`);
       setJobs(response.data.content || []); // content가 undefined일 경우 빈 배열로 초기화
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
