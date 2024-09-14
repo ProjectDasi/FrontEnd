@@ -33,19 +33,19 @@ export default function EduDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const client = axios.create({
-    withCredentials: true,
-    headers: {
-      'Access-Control-Allow-Credentials': true,
-      'ngrok-skip-browser-warning': true,
-    },
-  });
+  // const client = axios.create({
+  //   withCredentials: true,
+  //   headers: {
+  //     'Access-Control-Allow-Credentials': true,
+  //     'ngrok-skip-browser-warning': true,
+  //   },
+  // });
   
   useEffect(()=>{
     const fetchEduDetail = async () =>{
       setLoading(true);
       try {
-        const response = await client.get(process.env.REACT_APP_API_URL + `learning/detail?id=${id}`);
+        const response = await axios.get(`http://localhost:8080/learning/detail?id=${id}`);
         SetEduDetail(response.data);
         console.log(response.data);
       } catch (error) {
@@ -217,7 +217,7 @@ export default function EduDetail() {
             </div>
           </div>
           <div className='flex justify-end items-center px-8 py-5'>
-            <Link to='/job'>
+            <Link to='/education'>
           <div className='border border-gray-200 shadow rounded-lg px-7 py-3 GamtanBold text-2xl'>목록</div></Link>
       </div>
       </div>

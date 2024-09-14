@@ -21,14 +21,6 @@ export default function JobList() {
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
-  // axios 인스턴스 생성
-  const client = axios.create({
-    withCredentials: true,
-    headers: {
-      'Access-Control-Allow-Credentials': true,
-      'ngrok-skip-browser-warning': true,
-    },
-  });
 
   useEffect(() => {
     fetchJobs(activePage);
@@ -37,7 +29,7 @@ export default function JobList() {
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
     try {
-      const response = await client.get(`http://localhost:8080/work/list?page=${pageNumber}`);
+      const response = await axios.get(`http://localhost:8080/work/list?page=${pageNumber}`);
       setJobs(response.data.content || []); // content가 undefined일 경우 빈 배열로 초기화
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
@@ -112,7 +104,7 @@ export default function JobList() {
           <tbody>
             {jobs.length > 0 ? (
               jobs.map((job) => (
-                <tr key={job.id} className="border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition"
+                <tr key={job.id} className="border-b border-gray-200 cursor-pointer hover:bg-[#afd3d6a9] transitio duration-200"
                   onClick={()=> handleRowClick(job.id)}
                 >
                   <td className="whitespace-nowrap"></td>

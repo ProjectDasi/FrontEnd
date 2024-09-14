@@ -17,6 +17,7 @@ export default function ResumePage() {
     ];
     const [currentStep, setCurrentStep] = useState(0);
 
+
     const handleNextClick = () => {
         setCurrentStep((prevStep) => prevStep + 1);
     };

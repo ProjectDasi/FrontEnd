@@ -29,19 +29,19 @@ export default function JobDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const client = axios.create({
-    withCredentials: true,
-    headers: {
-      'Access-Control-Allow-Credentials': true,
-      'ngrok-skip-browser-warning': true,
-    },
-  });
+  // const client = axios.create({
+  //   withCredentials: true,
+  //   headers: {
+  //     'Access-Control-Allow-Credentials': true,
+  //     'ngrok-skip-browser-warning': true,
+  //   },
+  // });
 
   useEffect(() => {
     const fetchJobDetail = async () => {
       setLoading(true);
       try {
-        const response = await client.get(process.env.REACT_APP_API_URL+`work/detail?id=${id}`);
+        const response = await await axios.get(`http://localhost:8080/work/detail?id=${id}`);
         setJobDetail(response.data); // 서버에서 가져온 데이터를 상태에 저장
         console.log(response);
       } catch (error) {
@@ -90,7 +90,7 @@ export default function JobDetail() {
                       <th
                         colSpan={5}
                         scope="colgroup"
-                        className="pt-5 pb-7 pl-5 pr-3 text-left text-3xl text-gray-900 sm:pl-5 GamtanBold"
+                        className="pt-5 pb-7 pl-5 pr-3 text-left text-3xl text-gray-900 sm:pl-5 GamtanBold  max-w-40"
                       >
                         {jobDetail.title}
                       </th>

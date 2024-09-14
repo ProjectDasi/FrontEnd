@@ -14,7 +14,7 @@ export default function JobPage() {
       <div className='h-full w-5/6 flex flex-col justify-start mb-5'>
         <FavorJob/>
       </div>
-      <div className=' bg-green-50 w-full flex justify-center items-center'>
+      <div className=' bg-[#9bdce243] w-full flex justify-center items-center'>
       <div className='h-full w-5/6 flex flex-col items-center mb-10'>
         <JobList/>
       </div>

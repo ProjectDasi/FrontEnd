@@ -57,15 +57,6 @@ export default function FavorJob() {
     }
   };
 
-    // axios 인스턴스 생성
-    const client = axios.create({
-      withCredentials: true,
-      headers: {
-        'Access-Control-Allow-Credentials': true,
-        'ngrok-skip-browser-warning': true,
-      },
-    });
-
     useEffect(() => {
       fetchJobs(activePage);
     }, [activePage]);
@@ -73,7 +64,7 @@ export default function FavorJob() {
     const fetchJobs = async (pageNumber: number) => {
       setLoading(true); // 로딩 상태를 true로 설정
       try {
-        const response = await client.get(`http://localhost:8080/work/recommend?id=1`);
+        const response = await axios.get('http://localhost:8080/work/recommend?id=1');
         setFavJobs(response.data || []); // content가 undefined일 경우 빈 배열로 초기화
         console.log('response',response);
       } catch (error) {

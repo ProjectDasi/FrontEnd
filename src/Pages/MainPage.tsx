@@ -10,6 +10,7 @@ import job from '../Images/job.png'
 import resume from '../Images/resume.png'
 import PopulationChart from '../Components/PopulationChart';
 import ElderlyChart from '../Components/PopulationJobChart';
+import TypeIt from 'typeit';
 
 export default function MainPage() {
   const data = [
@@ -67,6 +68,21 @@ export default function MainPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+ 
+useEffect(() =>{
+  
+  new TypeIt("#element", { 
+    speed: 120
+})
+	.type("또 다른 시작을",{delay:400})
+  .delete(8, {delay:200})
+  .type("새로운 시작을", {delay:400})
+  .delete(7, {delay:200})
+  .type("놀라운 시작을")
+	.go();
+},[])
+
+
 
   return (
     <div className='h-screen w-full'>
@@ -84,10 +100,13 @@ export default function MainPage() {
             muted
             className={`${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 GamtanBold text-white text-[45px] animate-pulse ">
-            <p className='text-right'>다시 시작해는 당신의 새로운</p><p className=' text-right'> 시작을 응원합니다</p>
+          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 GamtanBold text-white text-[45px]">
+            <div className='text-right'>다시 시작해는 당신의</div>
+            {/* 여기가 이상하게 표현돼 실행한 상태에서 p를 div로 바꾸거나 div를 p로 바꾸면 제대로 작동함ㅗㅗ */}
+            <div id='element' className='text-right'></div>
+            <div className=' text-right'>응원합니다</div>
           </div>
-          <div className="absolute md:top-80 md:right-48 lg:top-[41vh] lg:right-72 animate-pulse">
+          <div className="absolute md:top-80 md:right-48 lg:top-[50vh] lg:right-60 animate-pulse">
             <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>
