@@ -1,7 +1,7 @@
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import scroll from '../Images/scroll6.png';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/main.css';
@@ -13,6 +13,7 @@ import ElderlyChart from '../Components/PopulationJobChart';
 import TypeIt from 'typeit';
 
 export default function MainPage() {
+  const typeItInstance = useRef<any>(null);
   const data = [
     { Year: '2014', 'Total Population': 50623704.0, 'Population 65+': 6989920.0, 'Aging Index': 16.01 },
     { Year: '2015', 'Total Population': 50926264.0, 'Population 65+': 7383343.0, 'Aging Index': 16.84 },
@@ -70,16 +71,17 @@ export default function MainPage() {
   }, []);
  
 useEffect(() =>{
-  
-  new TypeIt("#element", { 
-    speed: 120
-})
-	.type("또 다른 시작을",{delay:400})
-  .delete(8, {delay:200})
-  .type("새로운 시작을", {delay:400})
-  .delete(7, {delay:200})
-  .type("놀라운 시작을")
-	.go();
+  if (!typeItInstance.current) {
+    typeItInstance.current = new TypeIt("#element", { 
+      speed: 120
+    })
+    .type("또 다른 시작을", { delay: 400 })
+    .delete(8, { delay: 200 })
+    .type("새로운 시작을", { delay: 400 })
+    .delete(7, { delay: 200 })
+    .type("놀라운 시작을")
+    .go();
+  }
 },[])
 
 
