@@ -30,6 +30,9 @@ export default function RegisterPage() {
   // JSON 파일로부터 데이터 가져오기
   const groupedOptions = groupOptions(data);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [idValid, setIdValid] = useState(true);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -47,6 +50,12 @@ export default function RegisterPage() {
       ...prevState,
       [name]: value,
     }));
+    if(name === 'password'){
+      checkPw(value);
+    }
+    if(name === 'loginId'){
+      checkId(value);
+    }
   };
 
   const generateYears = () => {
@@ -125,6 +134,28 @@ export default function RegisterPage() {
     }
   };
 
+  const checkPw = (password:string) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+    setPasswordValid(regex.test(password));
+  }
+  const checkId = async (loginId:string) => {
+    const regex = /^[a-z0-9]{8,}$/;
+    setIdValid(regex.test(loginId));
+    // if (regex.test(loginId)) {
+    //   try {
+    //     // 서버에 아이디 중복 확인 요청 (예시: /api/check-duplicate)
+    //     const response = await axios.post('/signUp/checkdup', { loginId });
+    //     setIsDuplicate(response.data.isDuplicate); // 중복 여부를 서버 응답에 따라 설정
+    //   } catch (error) {
+    //     console.error('중복 확인 요청 실패', error);
+    //     setIsDuplicate(false);
+    //   }
+    // } else {
+    //   setIsDuplicate(false); // 유효하지 않은 경우 중복 체크 안함
+    // }
+  }
+  
+
   return (
     <div className='h-screen w-full'>
       <div className='mb-14 bg-white border-b-slate-300 border'>
@@ -138,37 +169,54 @@ export default function RegisterPage() {
               <label htmlFor="loginId" className='pr-5' >
                 <strong>아이디</strong>
               </label>
-              <div className='TypoBox'>
-                <input
-                  type='text'
-                  name='loginId'
-                  id='loginId'
-                  placeholder='ID 규칙~~'
-                  className='Typo'
-                  value={formData.loginId}
-                  onChange={handleChange}
-                />
+              <div className='flex flex-col w-full'>
+                <div className='TypoBox'>
+                  <input
+                    type='text'
+                    name='loginId'
+                    id='loginId'
+                    placeholder='영어 소문자와 숫자를 입력해 주세요.'
+                    className='Typo'
+                    value={formData.loginId}
+                    onChange={handleChange}
+                  />
+                </div>
+                {!idValid && 
+                <div className="text-red-800 text-sm mt-1">영어 소문자와 숫자로 8자 이상 입력해 주세요.</div>}
+                {idValid && isDuplicate && (
+                <div className="text-red-800 text-sm mt-1">
+                  이미 사용 중인 아이디입니다.
+                </div>
+                )}
+                {idValid && !isDuplicate && formData.loginId && (
+                <div className="text-green-800 text-sm mt-1">
+                  사용 가능한 아이디입니다.
+                </div>
+                )}
               </div>
             </div>
 
-            <div className='item'>
+            <div className='item mt-5'>
               <label htmlFor="password" className='pr-5'>
                 <strong>비밀번호</strong>
               </label>
+              <div className='flex flex-col w-full'>
               <div className='TypoBox'>
                 <input
                   type='password'
                   name='password'
                   id='password'
-                  placeholder='비밀번호규칙~~'
+                  placeholder='영어 대소문자와 숫자를 하나 이상 포함해 주세요.'
                   className='Typo'
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
+                {!passwordValid && <div className="text-red-800 text-sm mt-1">대소문자와 숫자를 각각 하나 이상 포함해야 합니다.</div>}
+            </div>
             </div>
 
-            <div className='item'>
+            <div className='item mt-5'>
               <label htmlFor="name" className='pr-5'>
                 <strong>이름</strong>
               </label>
@@ -177,7 +225,7 @@ export default function RegisterPage() {
                   type='text'
                   name='name'
                   id='name'
-                  placeholder='이름 입력'
+                  placeholder='이름을 입력해 주세요.'
                   className='Typo'
                   value={formData.name}
                   onChange={handleChange}
@@ -185,7 +233,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className='item'>
+            <div className='item mt-5'>
               <label htmlFor="birth_date" className='pr-5'>
                 <strong>생년월일</strong>
               </label>
@@ -229,7 +277,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className='item'>
+            <div className='item mt-5'>
               <label htmlFor="phone" className='pr-5'>
                 <strong>휴대폰</strong>
               </label>
@@ -238,7 +286,7 @@ export default function RegisterPage() {
                   type='text'
                   name='phone'
                   id='phone'
-                  placeholder="'-' 빼고 숫자만 입력"
+                  placeholder="'-' 빼고 숫자만 입력해 주세요."
                   className='Typo'
                   value={formData.phone}
                   onChange={handleChange}
@@ -246,7 +294,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className='item'>
+            <div className='item mt-5'>
               <label htmlFor="region" className='pr-3'>
                 <strong>구/군 선택</strong>
               </label>
@@ -279,7 +327,7 @@ export default function RegisterPage() {
                 </select>
               </div>
             </div>
-          <div className='item'>
+          <div className='item mt-5'>
             
               <label htmlFor="favor" className='pr-5 text-center'>
                 <strong>선호도<br/>검사</strong>
@@ -302,7 +350,7 @@ export default function RegisterPage() {
               </div>
             </div>
           ))} */}
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex flex-col justify-center items-end'>
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
           </div>
         </form>

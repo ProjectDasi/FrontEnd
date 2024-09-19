@@ -37,9 +37,9 @@ export default function LoginPage() {
                 회원가입
               </button>
               <div className="flex mt-3">
-            <Link to="/findid" className="a"><span className='text-white'>비밀번호 찾기</span></Link>
+            <Link to="/findpw" className="a"><span className='text-white'>비밀번호 찾기</span></Link>
             <p className="between"> / </p>
-            <Link to="/findpw" className="a"><span className='text-white'>아이디 찾기</span></Link>
+            <Link to="/findid" className="a"><span className='text-white'>아이디 찾기</span></Link>
         </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import EditResume from '../Components/EditResume';
 import FinishedResume from '../Components/FinishedResume';
+import FAQbutton from '../Components/FAQbutton';
 
 export default function ResumePage() {
     const steps = [
@@ -48,6 +49,9 @@ export default function ResumePage() {
         {currentStep === 2 && <FinishedResume onPreClick={handleBeforeClick} onNextClick={handleNextClick}/>}
       </div>
     </div>
+    <div className='quickbt'>
+        <FAQbutton />
+      </div>
     <Footer/>
     </div>
   )

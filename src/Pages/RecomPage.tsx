@@ -3,6 +3,8 @@ import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import RecomIntro from '../Components/RecomIntro'
 import Recommend from '../Components/Recommend'
+import FAQbutton from '../Components/FAQbutton'
+import '../styles/button.css'
 
 export default function RecomPage() {
   const [recommendStart, setRecommendStart] = useState(false);
@@ -23,6 +25,9 @@ export default function RecomPage() {
         ) : (
           <RecomIntro onStartClick={handleStartClick}/>
         )}
+      </div>
+      <div className='quickbt'>
+        <FAQbutton />
       </div>
   </div>
   )

@@ -73,11 +73,11 @@ export default function MainPage() {
 useEffect(() =>{
   if (!typeItInstance.current) {
     typeItInstance.current = new TypeIt("#element", { 
-      speed: 120
+      speed: 140
     })
-    .type("또 다른 시작을", { delay: 400 })
+    .type("또 다른 시작을", { delay: 500 })
     .delete(8, { delay: 200 })
-    .type("새로운 시작을", { delay: 400 })
+    .type("새로운 시작을", { delay: 500 })
     .delete(7, { delay: 200 })
     .type("놀라운 시작을")
     .go();
@@ -102,13 +102,12 @@ useEffect(() =>{
             muted
             className={`${isScrolled ? 'w-[87.5%] rounded-3xl' : 'w-full'} transition-all duration-500 ease-in-out`}
           />
-          <div className="absolute md:top-24 md:right-12 lg:top-40 lg:right-32 GamtanBold text-white text-[45px]">
+          <div className="absolute md:top-24 md:right-24 lg:top-40 lg:right-32 GamtanBold text-white text-[45px]">
             <div className='text-right'>다시 시작해는 당신의</div>
-            {/* 여기가 이상하게 표현돼 실행한 상태에서 p를 div로 바꾸거나 div를 p로 바꾸면 제대로 작동함ㅗㅗ */}
             <div id='element' className='text-right'></div>
             <div className=' text-right'>응원합니다</div>
           </div>
-          <div className="absolute md:top-80 md:right-48 lg:top-[50vh] lg:right-60 animate-pulse">
+          <div className="absolute md:bottom-24 md:right-48 lg:top-[50vh] lg:right-60">
             <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>

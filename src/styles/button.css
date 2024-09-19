@@ -1,0 +1,7 @@
+.quickbt{
+    position: fixed;
+    bottom: 8%;
+    right: 4%;
+    z-index: 200;
+    /* box-shadow: rgba(0, 0, 0, .35) 0px 5px 15px; */
+}
