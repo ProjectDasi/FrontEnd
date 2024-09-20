@@ -11,6 +11,7 @@ import resume from '../Images/resume.png'
 import PopulationChart from '../Components/PopulationChart';
 import ElderlyChart from '../Components/PopulationJobChart';
 import TypeIt from 'typeit';
+import FAQbutton from '../Components/FAQbutton';
 
 export default function MainPage() {
   const typeItInstance = useRef<any>(null);
@@ -112,7 +113,9 @@ useEffect(() =>{
           </div>
         </div>
       </div>
-
+      <div className='quickbt'>
+        <FAQbutton />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

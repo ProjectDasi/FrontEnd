@@ -17,4 +17,8 @@
       transform: translateY(0);
       opacity: 1;
     }
-  } 
+  }
+  .MatChum {
+    height: 70px;
+    border-radius: 10px;
+  }

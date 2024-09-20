@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 import MultipleSelectCheckmarks from '../Components/select';
 import axios from 'axios';
 import DialogRegister from '../Components/DialogRegister';
+import FAQbutton from '../Components/FAQbutton';
 
 // 데이터 타입 정의
 interface Option {
@@ -354,6 +355,9 @@ export default function RegisterPage() {
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
           </div>
         </form>
+      </div>
+      <div className='quickbt'>
+        <FAQbutton />
       </div>
     </div>
   );

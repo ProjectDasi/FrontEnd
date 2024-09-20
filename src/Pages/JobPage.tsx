@@ -3,6 +3,7 @@ import FavorJob from '../Components/FavorJob'
 import JobList from '../Components/JobList'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import FAQbutton from '../Components/FAQbutton'
 
 export default function JobPage() {
   return (
@@ -20,6 +21,9 @@ export default function JobPage() {
       </div>
       </div>
     </div>
+    <div className='quickbt'>
+        <FAQbutton />
+      </div>
     <Footer/>
     </div>
   )

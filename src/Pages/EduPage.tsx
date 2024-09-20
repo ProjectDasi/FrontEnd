@@ -3,6 +3,7 @@ import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import FavorEdu from '../Components/FavorEdu'
 import EduList from '../Components/EduList'
+import FAQbutton from '../Components/FAQbutton'
 
 export default function EduPage() {
   return (
@@ -20,6 +21,9 @@ export default function EduPage() {
       </div>
       </div>
     </div>
+    <div className='quickbt'>
+        <FAQbutton />
+      </div>
     <Footer/>
     </div>
   )

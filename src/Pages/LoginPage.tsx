@@ -6,6 +6,7 @@ import "../styles/login.css"
 import Header from '../Components/Header';
 import bg from '../Images/6583.jpg'
 import Footer from '../Components/Footer';
+import FAQbutton from '../Components/FAQbutton';
 
 export default function LoginPage() {
   const [type, setType] = useState<"signIn" | "signUp">("signIn");
@@ -48,6 +49,9 @@ export default function LoginPage() {
       <div className="w-full h-36 mt-20 opacity-70">
       <img src={bg}/>
       </div>
+      </div>
+      <div className='quickbt'>
+        <FAQbutton />
       </div>
     </div>
   );

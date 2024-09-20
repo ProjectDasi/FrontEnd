@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import RecomIntro from '../Components/RecomIntro'
-import Recommend from '../Components/Recommend'
+import Recommed from '../Components/Recommed'
 import FAQbutton from '../Components/FAQbutton'
 import '../styles/button.css'
 
@@ -21,7 +21,7 @@ export default function RecomPage() {
       </div>
       <div className='w-full flex justify-center flex-col items-center'>
         {recommendStart ? (
-          <Recommend/>
+          <Recommed/>
         ) : (
           <RecomIntro onStartClick={handleStartClick}/>
         )}
