@@ -320,7 +320,6 @@ export default function RegisterPage() {
                   <option value="사하구">사하구</option>
                   <option value="연제구">연제구</option>
                   <option value="해운대구">해운대구</option>
-                  <option value="금정구">금정구</option>
                   <option value="동구">동구</option>
                   <option value="북구">북구</option>
                   <option value="서구">서구</option>

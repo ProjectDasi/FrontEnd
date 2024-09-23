@@ -3,6 +3,7 @@ import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ListCss.css';
+import SearchBox from '../Components/SearchBox'
 
 interface Edu {
   id: number;
@@ -22,11 +23,20 @@ export default function EdueList() {
   const itemsPerPage = 10;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useState({
+    region: '',
+    keyword: '',
+  });
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchEdus(activePage);
-  }, [activePage]);
+    if (isSearchActive) {
+      fetchSearchResults(activePage, searchParams.region, searchParams.keyword);
+    } else {
+      fetchEdus(activePage);
+    }
+  }, [activePage, isSearchActive]);
 
   const fetchEdus = async (pageNumber: number) => {
     setLoading(true);
@@ -43,6 +53,28 @@ export default function EdueList() {
     }
   };
 
+  const fetchSearchResults = async (pageNumber: number, region: string, keyword: string) => {
+    setLoading(true);
+    // learnging -> learning 서버연결 후 수정하기
+    try {
+      const response = await axios.get(`http://localhost:8080/learnging/search`, {
+        params: {
+          page: pageNumber,
+          region: region || undefined,
+          keyword: keyword || undefined,
+        },
+      });
+      setEdus(response.data.content || []);
+      setTotalItemsCount(response.data.totalElements);
+      console.log(response);
+    } catch (error) {
+      console.error('Failed to fetch search results', error);
+      setError('검색 결과를 불러오는 데 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handlePageChange = (pageNumber: number) => {
     console.log(`active page is ${pageNumber}`);
     setActivePage(pageNumber);
@@ -50,6 +82,12 @@ export default function EdueList() {
 
   const handleRowClick = (eduId: number) => {
     navigate(`/education/${eduId}`);
+  };
+
+  const handleSearch = (region: string, keyword: string) => {
+    setSearchParams({ region, keyword });
+    setIsSearchActive(true);
+    setActivePage(0);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
   };
 
   if (loading) {
@@ -63,6 +101,11 @@ export default function EdueList() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
       <div className='bg-white -mt-5 mb-5 border border-gray-200 shadow p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>일반 교육과정</div>
+      <div className='w-full flex justify-end items-center'>
+        <div>
+        <SearchBox onSearch={handleSearch}/>
+    </div>
+      </div>
       <div className="-mx-4 mt-8 flow-root sm:mx-0 w-full">
         <table className="min-w-full">
           <colgroup>
