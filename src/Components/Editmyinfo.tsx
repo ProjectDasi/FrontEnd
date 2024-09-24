@@ -1,24 +1,39 @@
-import React,{ Fragment } from 'react'
+import React,{ Fragment, useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { userState } from '../recoil/atoms'
 
 export default function Editmyinfo() {
-  const people = [
-    { name: 'Lindsay Walton',id:'LindaWorld', address: '부산시 수영구', birth: '19600101', phonenumber:'010-1234-5678' },
-    // More people...
-  ]
+  const navigate = useNavigate();
+  const [user, setUser] = useRecoilState(userState); //유저인포 업데이트 후 response를 저장하여 리코일에 저장
+  const [editUser, setEditUser] = useState({
+
+    phone: '',
+    password:'',
+    region: '',
+    birth_year: '',
+    birth_month: '',
+    birth_day: '',
+    // preference: [
+    //     {
+    //         "id": 1,
+    //         "type": "현실형"
+    //     },
+    //     {
+    //         "id": 6,
+    //         "type": "관습형"
+    //     }
+    // ],
+  })
+
   return (
     <div className="w-full Gamtan my-10">
       <div className='GamtanBold text-4xl pb-10'>나의정보 수정하기</div>
       <div className=" overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-300 border-t border-b border-gray-200">
               <tbody className="divide-y divide-gray-200 bg-white text-center">
-                {people.map((person) => (
                     <Fragment>
-                    <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">
-                        아이디
-                        </td>
-                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{person.id}</td>
-                    </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0 ">
                         비밀번호
@@ -59,7 +74,6 @@ export default function Editmyinfo() {
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">선호도 select</td>
                     </tr>
                     </Fragment>
-                ))}
               </tbody>
             </table>
             <div className='flex justify-end items-end mt-20'>

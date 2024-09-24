@@ -11,13 +11,13 @@ const theme = createTheme({
   });
 
   interface SearchBoxProps {
-    onSearch: (region: string, searchWord: string) => void;
+    onSearch: (region: string, keyword: string) => void;
   }
 
 export default function SearchBox({ onSearch }: SearchBoxProps) {
   const [formData, setFormData] = useState({
     region: '',
-    searchWord: '',
+    keyword: '',
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,18 +33,30 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
   const handleSearchWordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
       ...prevState,
-      searchWord: e.target.value,
+      keyword: e.target.value,
     }));
   };
 
-  const handleSearch = () => {
-    onSearch(formData.region, formData.searchWord);
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (formData.region || formData.keyword) {
+      onSearch(formData.region, formData.keyword);
+      // 검색폼 초기화
+      // setFormData({
+      //   region: '',
+      //   keyword: '',
+      // });
+    } else {
+      alert("지역 또는 검색어를 입력하세요.");
+    }
   };
 
   return (
     <div className='flex items-center GamtanBold'>
+      <form onSubmit={handleSearch} className='flex items-center'>
     <div className="relative">
       <button
+        type='button'
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-52 p-2 border border-gray-300 rounded-lg shadow-sm opacity-100 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
@@ -152,21 +164,26 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
       component="form"
       sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
       noValidate
-      autoComplete="off">
+      autoComplete="off"
+      // onSubmit={handleSearch}
+      >
         <TextField id="outlined-basic" label="검색어" variant="outlined"
         sx={{ '.MuiInputBase-root': { height: '42px'} }}
         InputLabelProps={{
           style: { top: '-6px' },  // label 위치를 위로 조정
         }}
-        value={formData.searchWord}
+        value={formData.keyword}
         onChange={handleSearchWordChange}
         />
       </Box>
       </ThemeProvider>
-      <button className='border border-slate-400 rounded-md p-[8px]'
-              onClick={handleSearch}
+      <button 
+              type="submit"
+              className='border border-slate-400 rounded-md p-[8px]'
+              // onClick={handleSearch}
               >
         검색</button>
+        </form>
     </div>
   );
 }

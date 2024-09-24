@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react';
 import logo from '../Images/icon7.png'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -6,6 +6,7 @@ import { isLoggedInState } from '../recoil/atoms';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   //const isLoggedIn = useRecoilValue(isLoggedInState);
   const isLoggedIn = localStorage.getItem("token");
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    navigate('/');
   };
   return (
     <header className="w-full">
@@ -55,8 +57,8 @@ const Header: React.FC = () => {
           {isLoggedIn ?
             (
               <>
-                <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">나의 정보</Link>
-                <button onClick={handleLogout} className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그아웃 <span aria-hidden="true">&rarr;</span></button>
+                <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold mr-2">나의 정보</Link>
+                <button onClick={handleLogout} className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그아웃</button>
               </>
             )
             :

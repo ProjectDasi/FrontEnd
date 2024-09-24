@@ -102,9 +102,7 @@ export default function EdueList() {
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
       <div className='bg-white -mt-5 mb-5 border border-gray-200 shadow p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>일반 교육과정</div>
       <div className='w-full flex justify-end items-center'>
-        <div>
         <SearchBox onSearch={handleSearch}/>
-    </div>
       </div>
       <div className="-mx-4 mt-8 flow-root sm:mx-0 w-full">
         <table className="min-w-full">

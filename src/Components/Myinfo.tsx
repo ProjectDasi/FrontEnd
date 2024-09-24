@@ -1,11 +1,45 @@
-import React,{ Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React,{ Fragment, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { userState, isLoggedInState } from '../recoil/atoms'
 
 export default function Myinfo() {
-    const people = [
-        { name: 'Lindsay Walton',id:'LindaWorld', address: '부산시 수영구', birth: '19600101', phonenumber:'010-1234-5678' },
-        // More people...
-      ]
+    const [user, setUser] = useRecoilState(userState);
+    const setIsLoggedIn = useRecoilState(isLoggedInState)[1];
+    const navigate = useNavigate();
+
+    const fetchinfo = async () => {
+      const id = localStorage.getItem('id');
+      const token = localStorage.getItem('token');
+      console.log("token: ",token);
+
+      // 백엔드에서 토큰사용하는 코드로 수정 후 주석 해제하기
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+      try {
+        const response = await axios.get(`http://localhost:8080/profile?id=${id}`
+          , {
+          headers: {
+            Authorization : `Bearer ${token}`,
+          }
+        }
+      );
+        setUser(response.data);
+      } catch (error) {
+        console.error('사용자의 정보를 불러오는데 실패 했습니다.',error)
+        // setIsLoggedIn(false);
+        // localStorage.clear();
+        // navigate('/login');
+        navigate('/');
+      }
+    };
+    useEffect(() => {
+      fetchinfo();
+    },[navigate, setUser, setIsLoggedIn]);
+
   return (
 
     <div className="w-full Gamtan my-10">
@@ -34,38 +68,38 @@ export default function Myinfo() {
           {/* <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"> */}
             <table className="min-w-full divide-y divide-gray-300 border-t border-b border-gray-200">
               <tbody className="divide-y divide-gray-200 bg-white text-center">
-                {people.map((person) => (
+                {/* {user.map((person) => ( */}
                     <Fragment>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0 ">
                         이름
                         </td>
-                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{person.name}</td>
+                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{user.name}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">
                         아이디
                         </td>
-                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{person.id}</td>
+                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{user.id}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">전화번호</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{person.phonenumber}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.phonenumber}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">주소</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{person.address}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.address}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">생년월일</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{person.birth}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.birth}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">선호도</td>
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">자신의 직업선호도 결과 (수정하기 버튼을 만들어야 할 수도 있음) </td>
                     </tr>
                     </Fragment>
-                ))}
+                {/* ))} */}
               </tbody>
             </table>
           {/* </div> */}

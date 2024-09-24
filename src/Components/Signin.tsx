@@ -42,7 +42,7 @@ function SignInForm() {
         }
       });
 
-      const token = response.headers['Authorization']; // API 응답에 토큰이 포함되어 있다고 가정합니다.
+      const token = response.headers['authorization']; // API 응답에 토큰이 포함되어 있다고 가정합니다.
 
       // 토큰을 localStorage 또는 sessionStorage에 저장합니다.
       localStorage.setItem("token", token);

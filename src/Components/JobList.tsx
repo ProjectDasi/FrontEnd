@@ -3,6 +3,7 @@ import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ListCss.css';
+import SearchBox from '../Components/SearchBox'
 
 interface Job {
   id: number;
@@ -19,12 +20,20 @@ export default function JobList() {
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const [error, setError] = useState<string | null>(null); // 에러 상태 추가
   const itemsPerPage = 10;
+  const [searchParams, setSearchParams] = useState({
+    region: '',
+    keyword: '',
+  });
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    fetchJobs(activePage);
-  }, [activePage]);
+    if (isSearchActive) {
+      fetchSearchResults(activePage, searchParams.region, searchParams.keyword);
+    } else {
+      fetchJobs(activePage);
+    }
+  }, [activePage, isSearchActive]);
 
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
@@ -41,6 +50,27 @@ export default function JobList() {
     }
   };
 
+  const fetchSearchResults = async (pageNumber: number, region: string, keyword: string) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`http://localhost:8080/work/search`, {
+        params: {
+          page: pageNumber,
+          region: region || undefined,
+          keyword: keyword || undefined,
+        },
+      });
+      setJobs(response.data.content || []);
+      setTotalItemsCount(response.data.totalElements);
+      console.log(response);
+    } catch (error) {
+      console.error('Failed to fetch search results', error);
+      setError('검색 결과를 불러오는 데 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handlePageChange = (pageNumber: number) => {
     console.log(`active page is ${pageNumber}`);
     setActivePage(pageNumber);
@@ -48,6 +78,12 @@ export default function JobList() {
 
   const handleRowClick = (jobId: number) => {
     navigate(`/job/${jobId}`);
+  };
+
+  const handleSearch = (region: string, keyword: string) => {
+    setSearchParams({ region, keyword });
+    setIsSearchActive(true);
+    setActivePage(0);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
   };
 
   if (loading) {
@@ -62,11 +98,11 @@ export default function JobList() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
       <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
-      {/* 검색란 만들기, onClick함수 만들고 검색 버튼에 연결, onClick하면 검색API로 검색어 및 지역을 fetch해서 jobs업데이트 후 보여 줌*/}
-        {/* <div className='bg-lime-300 flex justify-end items-center my-3'>
-          <input type="text" id='search' className='rounded-lg focus:border-blue-500 border-gray-500'></input>
-          <button className='bg-gray-500 text-white ml-5 rounded-lg px-2'>검색</button>
-        </div> */}
+      <div className='w-full flex justify-end items-center'>
+        <div>
+        <SearchBox onSearch={handleSearch}/>
+        </div>
+      </div>
       <div className="-mx-4 mt-8 flow-root sm:mx-0 w-full">
         <table className="min-w-full">
           <colgroup>
