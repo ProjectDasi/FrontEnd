@@ -108,7 +108,7 @@ useEffect(() =>{
             <div id='element' className='text-right'></div>
             <div className=' text-right'>응원합니다</div>
           </div>
-          <div className="absolute md:bottom-24 md:right-48 lg:top-[50vh] lg:right-60">
+          <div className="absolute md:bottom-24 md:right-48 lg:top-[55vh] lg:right-60">
             <img src={scroll} className="buttonPosition h-12" />
           </div>
         </div>

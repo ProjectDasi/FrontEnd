@@ -7,8 +7,7 @@ import { userState } from '../recoil/atoms'
 export default function Editmyinfo() {
   const navigate = useNavigate();
   const [user, setUser] = useRecoilState(userState); //유저인포 업데이트 후 response를 저장하여 리코일에 저장
-  const [editUser, setEditUser] = useState({
-
+  const [editUser, setEditUser] = useState({ //서버로 보낼 유저인포
     phone: '',
     password:'',
     region: '',
@@ -26,6 +25,32 @@ export default function Editmyinfo() {
     //     }
     // ],
   })
+  
+  const UpdateUser = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token')
+    const id = localStorage.getItem('id')
+    if(!token){
+      navigate('/login')
+      return;
+    }
+    try {
+      const response = await axios.put(`http://localhost:8080/profile/edit`, editUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert('회원정보를 수정했습니다.');
+      setUser(response.data); //response를 recoil에 저장
+      navigate('/mypage');
+    }
+    catch (error) {
+      console.error('회원정보 수정 실패', error);
+      alert('회원정보를 수정하지 못 했습니다.');
+      navigate('/mypage');
+    }
+
+  }
 
   return (
     <div className="w-full Gamtan my-10">

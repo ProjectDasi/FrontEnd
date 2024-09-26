@@ -43,7 +43,7 @@ export default function ResumePage() {
             </Stepper>
             </Box>
         </div>
-      <div className='h-auto w-2/3 flex flex-col justify-start items-center my-5'>
+      <div className='h-auto w-[88%] flex flex-col justify-start items-center my-5'>
         {currentStep === 0 && <Resume onNextClick={handleNextClick} />}
         {currentStep === 1 && <EditResume onPreClick={handleBeforeClick} onNextClick={handleNextClick}/>}
         {currentStep === 2 && <FinishedResume onPreClick={handleBeforeClick} onNextClick={handleNextClick}/>}
