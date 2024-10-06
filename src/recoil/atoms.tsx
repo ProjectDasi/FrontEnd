@@ -17,14 +17,14 @@ export const isLoggedInState = atom({
 
 export const userState = atom({
   key: 'userState',
-  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('id')|| 'false') : false, // 새로고침 시 로컬 스토리지에서 사용자 정보 가져오기
+  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')|| 'false') : false, // 새로고침 시 로컬 스토리지에서 사용자 정보 가져오기
   effects_UNSTABLE: [
     ({ onSet }) => { //atom의 상태가 변경될 때 로컬 스토리지에 해당값을 동기화
       onSet(newValue => { //변경될 때 호출된다.
         if (newValue) {
-          localStorage.setItem('id', JSON.stringify(newValue));
+          localStorage.setItem('user', JSON.stringify(newValue));
         } else {
-          localStorage.removeItem('id');
+          localStorage.removeItem('user');
         }
       });
     },
