@@ -13,6 +13,7 @@ export default function Myinfo() {
       const id = localStorage.getItem('id');
       const token = localStorage.getItem('token');
       console.log("token: ",token);
+      console.log("id: ",id);
 
       // 백엔드에서 토큰사용하는 코드로 수정 후 주석 해제하기
       if (!token) {

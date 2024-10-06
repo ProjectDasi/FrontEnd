@@ -42,10 +42,10 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
     if (formData.region || formData.keyword) {
       onSearch(formData.region, formData.keyword);
       // 검색폼 초기화
-      // setFormData({
-      //   region: '',
-      //   keyword: '',
-      // });
+       setFormData({
+         region: '',
+         keyword: '',
+       });
     } else {
       alert("지역 또는 검색어를 입력하세요.");
     }
