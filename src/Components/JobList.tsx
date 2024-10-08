@@ -15,7 +15,7 @@ interface Job {
 
 export default function JobList() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [activePage, setActivePage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
   const [totalItemsCount, setTotalItemsCount] = useState(0);
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const [error, setError] = useState<string | null>(null); // 에러 상태 추가
@@ -28,17 +28,19 @@ export default function JobList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isSearchActive) {
+    if (searchParams.region || searchParams.keyword) {
       fetchSearchResults(activePage, searchParams.region, searchParams.keyword);
+      setIsSearchActive(true); // 검색이 실행된 상태로 유지
     } else {
       fetchJobs(activePage);
+      setIsSearchActive(false); // 일반 목록이 실행된 상태로 유지
     }
-  }, [activePage, isSearchActive]);
+  }, [activePage, searchParams]);
 
   const fetchJobs = async (pageNumber: number) => {
     setLoading(true); // 로딩 상태를 true로 설정
     try {
-      const response = await axios.get(`http://localhost:8080/work/list?page=${pageNumber}`);
+      const response = await axios.get(`http://localhost:8080/work/list?page=${pageNumber-1}`);
       setJobs(response.data.content || []); // content가 undefined일 경우 빈 배열로 초기화
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
@@ -55,7 +57,7 @@ export default function JobList() {
     try {
       const response = await axios.get(`http://localhost:8080/work/search`, {
         params: {
-          page: pageNumber,
+          page: pageNumber-1,
           region: region || undefined,
           keyword: keyword || undefined,
         },
@@ -82,8 +84,9 @@ export default function JobList() {
 
   const handleSearch = (region: string, keyword: string) => {
     setSearchParams({ region, keyword });
-    setIsSearchActive(true);
-    setActivePage(0);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
+    setActivePage(1);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
+    setIsSearchActive(false); 
+    setTimeout(() => setIsSearchActive(true), 0); 
   };
 
   if (loading) {

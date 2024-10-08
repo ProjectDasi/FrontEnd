@@ -18,7 +18,7 @@ interface Edu {
 
 export default function EdueList() {
   const [edus, setEdus] = useState<Edu[]>([]);
-  const [activePage, setActivePage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
   const [totalItemsCount, setTotalItemsCount] = useState(0);
   const itemsPerPage = 10;
   const [loading, setLoading] = useState(true);
@@ -31,17 +31,19 @@ export default function EdueList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isSearchActive) {
+    if (searchParams.region || searchParams.keyword) {
       fetchSearchResults(activePage, searchParams.region, searchParams.keyword);
+      setIsSearchActive(true); // 검색이 실행된 상태로 유지
     } else {
       fetchEdus(activePage);
+      setIsSearchActive(false); // 일반 목록이 실행된 상태로 유지
     }
-  }, [activePage, isSearchActive]);
+  }, [activePage, searchParams]);
 
   const fetchEdus = async (pageNumber: number) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8080/learning/list?page=${pageNumber}`);
+      const response = await axios.get(`http://localhost:8080/learning/list?page=${pageNumber-1}`);
       setEdus(response.data.content || []);
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
@@ -57,9 +59,9 @@ export default function EdueList() {
     setLoading(true);
     // learnging -> learning 서버연결 후 수정하기
     try {
-      const response = await axios.get(`http://localhost:8080/learnging/search`, {
+      const response = await axios.get(`http://localhost:8080/learning/search`, {
         params: {
-          page: pageNumber,
+          page: pageNumber-1,
           region: region || undefined,
           keyword: keyword || undefined,
         },
@@ -86,8 +88,10 @@ export default function EdueList() {
 
   const handleSearch = (region: string, keyword: string) => {
     setSearchParams({ region, keyword });
-    setIsSearchActive(true);
-    setActivePage(0);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
+    setActivePage(1);  // 새로운 검색 시 페이지를 첫 번째 페이지로 초기화
+    setIsSearchActive(false); 
+    setTimeout(() => setIsSearchActive(true), 0); 
+    console.log(region+" "+keyword)
   };
 
   if (loading) {
