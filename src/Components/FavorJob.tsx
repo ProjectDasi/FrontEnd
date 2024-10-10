@@ -64,7 +64,7 @@ export default function FavorJob() {
     const fetchJobs = async (pageNumber: number) => {
       setLoading(true); // 로딩 상태를 true로 설정
       try {
-        const response = await axios.get('http://localhost:8080/work/recommend?id=1');
+        const response = await axios.get('http://172.21.38.152:8080/work/recommend?id=1');
         setFavJobs(response.data || []); // content가 undefined일 경우 빈 배열로 초기화
         console.log('response',response);
       } catch (error) {

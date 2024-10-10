@@ -88,6 +88,17 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
     }));
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({
+      ...prevState,
+      resume: {
+        ...prevState.resume,
+        [name]: value,
+      },
+    }));
+  };
+
   return (
     <div className='w-full Gamtan'>
       <div className='w-full flex justify-center items-center'>
@@ -95,7 +106,7 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
           <Fragment>
             <table className='w-full'>
               <tbody>
-              <tr className="border-t border-gray-200">
+              <tr className="border-y border-gray-200">
                       <th
                         colSpan={5}
                         scope="colgroup"
@@ -108,23 +119,57 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     이름
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.resume.name}</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">연락처</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.resume.phone}</td>
-                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder={userData.resume.name}
+                      value={userData.resume.name}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    />
                   </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">연락처</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder={userData.resume.phone}
+                      value={userData.resume.phone}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    />
+                  </td>
+                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"></td>
                 </tr>
                 <tr className='font-semibold'>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     생년월일
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.resume.birthDate}</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">Email</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.resume.email}</td>
-                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                    <input
+                      type="text"
+                      name="birthDate"
+                      placeholder={userData.resume.birthDate}
+                      value={userData.resume.birthDate}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    />
                   </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">Email</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder={userData.resume.email}
+                      value={userData.resume.email}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    />
+                  </td>
+                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"></td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-y border-gray-200">
                       <th
                         colSpan={5}
                         scope="colgroup"
@@ -138,9 +183,14 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
                     근무기간
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500"
-                  colSpan={2}>{userData.workExperience[0]?.start} ~ {userData.workExperience[0]?.end}</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900"></td>
-                  {/* <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500"></td> */}
+                  colSpan={2}>{userData.workExperience[0]?.start} ~ 
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">
+
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  {userData.workExperience[0]?.end}
+                  </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   </td>
                 </tr>
@@ -148,13 +198,29 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     근무처
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.workExperience[0]?.company}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="company"
+                      placeholder={userData.workExperience[0]?.company}
+                      value={userData.workExperience[0]?.company}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    /></td>
                   <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">업무내용</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.workExperience[0]?.workDescription}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="workDescription"
+                      placeholder={userData.workExperience[0]?.workDescription}
+                      value={userData.workExperience[0]?.workDescription}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    /></td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   </td>
                 </tr>
-                <tr className="border-t border-gray-200">
+                <tr className="border-y border-gray-200">
                       <th
                         colSpan={5}
                         scope="colgroup"
@@ -167,29 +233,59 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     훈련기간
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500"
-                  colSpan={2}>{userData.training[0]?.start} ~ {userData.training[0]?.end}</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900"></td>
-                  {/* <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500"></td> */}
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="trainingstart"
+                      placeholder={userData.training[0]?.start ?? ''}
+                      value={userData.training[0]?.start ?? ''}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1 text-center"
+                    />
+                    </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900 text-center"> ~ </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="trainingend"
+                      placeholder={userData.training[0]?.end ?? ''}
+                      value={userData.training[0]?.end ?? ''}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1 text-center"
+                    />
+                    </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   </td>
                 </tr>
-                <tr className='font-semibold'>
+                <tr className='font-semibold border-b border-gray-200'>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     훈련명
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.training[0]?.trainingName}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="trainingName"
+                      placeholder={userData.training[0]?.trainingName}
+                      value={userData.training[0]?.trainingName}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    /></td>
                   <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">훈련기관</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{userData.training[0]?.trainingInstitution}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="trainingInstitution"
+                      placeholder={userData.training[0]?.trainingInstitution}
+                      value={userData.training[0]?.trainingInstitution}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1"
+                    /></td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   </td>
                 </tr>
               </tbody>
             </table>
           </Fragment>
-        </div>
-        <div className='h-[50vh] w-1/3 m-5 border border-gray-200 rounded-xl p-5'>
-          수정할 수 있는 div만들기???
         </div>
       </div>
       <div className='flex justify-center items-center'>
