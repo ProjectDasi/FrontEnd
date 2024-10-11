@@ -5,6 +5,8 @@ import SampleResume from '../Data/resumeSample.json';
 interface EditResumeProps {
   onPreClick: () => void;
   onNextClick: () => void;
+  userData: UserData;
+  setUserData: (updatedData: UserData) => void;
 }
 
 // Resume Interface
@@ -57,7 +59,7 @@ interface UserData {
   education: Education[];
 }
 
-const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
+const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userData, setUserData  }) => {
   // `userData` 상태를 초기화
   const [userData, setUserData] = useState<UserData>({
     resume: SampleResume.resume,
@@ -78,27 +80,33 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
   });
 
   // 데이터를 업데이트하는 함수
-  const updateName = (newName: string) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      resume: {
-        ...prevState.resume,
-        name: newName,
-      },
-    }));
-  };
+  // const updateName = (newName: string) => {
+  //   setUserData((prevState: UserData) => ({
+  //     ...prevState,
+  //     resume: {
+  //       ...prevState.resume,
+  //       name: newName,
+  //     },
+  //   }));
+  // };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+  
+    // `setUserData`를 사용하여 상태를 업데이트
     setUserData((prevState) => ({
       ...prevState,
       resume: {
         ...prevState.resume,
-        [name]: value,
+        [name]: value,  // name 필드에 맞게 value를 설정
       },
+      // 다른 필드들 (workExperience, certification 등)은 변경되지 않음
     }));
   };
+  
 
+  
+  
   return (
     <div className='w-full Gamtan'>
       <div className='w-full flex justify-center items-center'>
@@ -182,14 +190,28 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick }) => {
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                     근무기간
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500"
-                  colSpan={2}>{userData.workExperience[0]?.start} ~ 
+                  <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
+                  <input
+                      type="text"
+                      name="workstart"
+                      placeholder={userData.workExperience[0]?.start}
+                      value={userData.workExperience[0]?.start}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1 text-center"
+                    />                    
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">
-
+                  ~ 
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">
-                  {userData.workExperience[0]?.end}
+                  <input
+                      type="text"
+                      name="workend"
+                      placeholder={userData.workExperience[0]?.end ?? ''}
+                      value={userData.workExperience[0]?.end ?? ''}
+                      onChange={handleInputChange}
+                      className="border rounded px-2 py-1 text-center"
+                    />   
                   </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   </td>

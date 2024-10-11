@@ -43,7 +43,7 @@ export default function EdueList() {
   const fetchEdus = async (pageNumber: number) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8080/learning/list?page=${pageNumber-1}`);
+      const response = await axios.get(process.env.REACT_APP_API_URL+`/learning/list?page=${pageNumber-1}`);
       setEdus(response.data.content || []);
       setTotalItemsCount(response.data.totalElements);
       console.log(response);
