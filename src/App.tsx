@@ -14,6 +14,7 @@ import InfoEditPage from './Pages/InfoEditPage';
 import ResumePage from './Pages/ResumePage';
 import FindIDPage from './Pages/FindIDPage';
 import FindPWPage from './Pages/FindPWPage';
+import FAQPage from './Pages/FAQPage';
 
 import { RecoilRoot } from 'recoil';
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/resume" element={<ResumePage />} />
             <Route path='/findid' element={<FindIDPage />} />
             <Route path='/findpw' element={<FindPWPage />} />
+            <Route path='/faq' element={<FAQPage />} />
           </Routes>
 
         </BrowserRouter>

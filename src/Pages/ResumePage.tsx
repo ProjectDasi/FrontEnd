@@ -124,7 +124,7 @@ export default function ResumePage() {
             <FinishedResume 
               onPreClick={handleBeforeClick} 
               onNextClick={handleNextClick} 
-              // userData={userData} // FinishedResume에도 userData 전달
+              userData={userData} // FinishedResume에도 userData 전달
             />
           }
         </div>

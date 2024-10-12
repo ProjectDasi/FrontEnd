@@ -13,10 +13,10 @@ interface Navigation {
 
 const navigation: Navigation = {
   main: [
-    { name: 'FrontEnd', href: 'https://github.com/Dr-Energy/FrontEnd_PowerForecast' },
+    { name: 'FrontEnd', href: 'https://github.com/ProjectDasi/FrontEnd' },
     { name: 'BackEnd', href: 'https://github.com/Dr-Energy/Backend_PowerForecast' },
-    { name: 'DataAnalysis', href: 'https://github.com/Dr-Energy/DA_PowerForecast' },
-    { name: 'DoctorEnergy', href: 'https://github.com/Dr-Energy' },
+    { name: 'DataAnalysis', href: 'https://github.com/ProjectDasi/Data_anlysis' },
+    { name: 'ProjectDASI', href: 'https://github.com/ProjectDasi' },
   ],
   social: [
     {
@@ -85,7 +85,7 @@ const navigation: Navigation = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1e2824] w-full">
+    <footer className="bg-[#A7ABDD] w-full">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-5 lg:px-8">
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
           ))}
         </nav>
         <p className="mt-5 text-center text-xs leading-5 text-white">
-          &copy; 2024 Doctor Energy. All rights reserved.
+          &copy; 2024 Dreaming Age SenIor. All rights reserved.
         </p>
       </div>
     </footer>
