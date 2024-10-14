@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function FAQbutton() {
   return (
-    <Link to='/'>
+    <Link to='/faq'>
     <motion.div className='bg-[#2a74dc] rounded-full p-4'
     animate={{ scale: [1,1.05,1] }}
     transition={{ repeat: Infinity, repeatDelay: 0.7}}
