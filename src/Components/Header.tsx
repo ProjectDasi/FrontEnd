@@ -50,8 +50,8 @@ const Header: React.FC = () => {
         <div className="hidden lg:flex lg:gap-x-12 GamtanBold font-bold">
           <Link to="/job" className="nav-item text-4xl leading-6 text-gray-900">일자리</Link>
           <Link to="/education" className="nav-item text-4xl leading-6 text-gray-900">교육</Link>
-          <Link to="/recommendations" className="nav-item text-4xl leading-6 text-gray-900">맞춤</Link>
-          <Link to="/compass" className="nav-item text-4xl leading-6 text-gray-900">이정표</Link>
+          <Link to="/recommendations" className="nav-item text-4xl leading-6 text-gray-900">AI매칭</Link>
+          {/* <Link to="/compass" className="nav-item text-4xl leading-6 text-gray-900">이정표</Link> */}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
           {isLoggedIn ?
@@ -94,8 +94,8 @@ const Header: React.FC = () => {
                 <div className="space-y-2 py-6 GamtanBold">
                   <Link to="/job" className="nav-item -mx-3 rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
                   <Link to="/education" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
-                  <Link to="/recommendations" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">맞춤</Link>
-                  <Link to="/compass" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">이정표</Link>
+                  <Link to="/recommendations" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">AI매칭</Link>
+                  {/* <Link to="/compass" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">이정표</Link> */}
                 </div>
                 <div className="py-6">
                   {isLoggedIn ?

@@ -109,7 +109,8 @@ export default function JobDetail() {
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
                           근무시간
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{jobDetail.workType}{jobDetail.workHours}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">  {jobDetail.workType}
+                        {jobDetail.workHours ? `, ${jobDetail.workHours}` : ''}</td>
                         <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">근무업종</td>
                         <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{jobDetail.workCategory}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
