@@ -100,7 +100,7 @@ export default function JobList() {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 Haeparang w-full flex flex-col justify-center items-center">
-      <div className='bg-gray-300 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
+      <div className='bg-gray-400 -mt-5 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>일반 일자리</div>
       <div className='w-full flex justify-end items-center'>
         <div>
         <SearchBox onSearch={handleSearch}/>

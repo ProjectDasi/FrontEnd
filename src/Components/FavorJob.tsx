@@ -5,6 +5,9 @@ import './FavorCss.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/text.css';
+import { isLoggedInState } from '../recoil/atoms';
+import { useRecoilValue } from 'recoil';
 
 interface FavorJob {
   id: number;
@@ -21,27 +24,28 @@ export default function FavorJob() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(0);
   const totalSlides = sampleJob.length;
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
-  const [error, setError] = useState<string | null>(null); // 에러 상태 추가
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
     const updateSlidesToShow = () => {
       if (window.innerWidth >= 1300) {
-        setSlidesToShow(5); // lg 화면일 때 5개
+        setSlidesToShow(5); 
       } else if (window.innerWidth >= 768) {
-        setSlidesToShow(3); // md 화면일 때 3개
+        setSlidesToShow(3);
       } else {
-        setSlidesToShow(3); // sm 화면일 때 1개
+        setSlidesToShow(3);
       }
-      setCurrentSlide(0);// 화면 크기 변경 시 첫 슬라이드로 초기화
+      setCurrentSlide(0);
     };
 
-    updateSlidesToShow(); // 컴포넌트가 마운트될 때 초기 설정
-    window.addEventListener('resize', updateSlidesToShow); // 화면 크기 변경 감지
+    updateSlidesToShow(); 
+    window.addEventListener('resize', updateSlidesToShow);
 
     return () => {
-      window.removeEventListener('resize', updateSlidesToShow); // 정리 작업
+      window.removeEventListener('resize', updateSlidesToShow);
     };
   }, []);
 
@@ -57,35 +61,42 @@ export default function FavorJob() {
     }
   };
 
-    useEffect(() => {
-      fetchJobs(activePage);
-    }, [activePage]);
-  
-    const fetchJobs = async (pageNumber: number) => {
-      setLoading(true); // 로딩 상태를 true로 설정
-      try {
-        const response = await axios.get(process.env.REACT_APP_API_URL+'/work/recommend?id=1');
-        setFavJobs(response.data || []); // content가 undefined일 경우 빈 배열로 초기화
-        console.log('response',response);
-      } catch (error) {
-        console.error('Failed to fetch jobs', error);
-        setError('데이터를 불러오는 데 실패했습니다.'); // 에러 메시지 설정
-      } finally {
-        setLoading(false); // 로딩 상태를 false로 설정
-      }
-    };
+  useEffect(() => {
+    fetchJobs(activePage);
+  }, [activePage]);
 
-    if (loading) {
-      return <div>로딩 중...</div>; // 로딩 중 표시
+  const fetchJobs = async (pageNumber: number) => {
+    setLoading(true);
+    const id = localStorage.getItem('id');
+    if (!id) {
+      setError('사용자의 id를 확인할 수 없습니다.');
+      setLoading(false);
+      return;
     }
-  
-    if (error) {
-      return <div>{error}</div>; // 에러 메시지 표시
+
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/work/recommend?id=${id}`);
+      setFavJobs(response.data || []);
+      setError(null); 
+    } catch (error) {
+      console.error('Failed to fetch jobs', error);
+      setError('데이터를 불러오는 데 실패했습니다.');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
-      <div className='bg-gray-300 mt-8 mb-5 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>추천 일자리</div>
+      {/* This part will always be visible */}
+      <div className='bg-gray-400 mb-12 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>추천 일자리</div>
+      
+      {/* Conditional rendering based on login state */}
+      {isLoggedIn ? (
       <div className="slider__wrap w-[1140px]">
         <div className="slider__btn">
           <button onClick={goToPrevSlide} className="prev rounded-md bg-white px-2 py-1.5 text-3xl font-bold text-gray-500 shadow-md ring-1 ring-inset ring-gray-300 hover:bg-gray-100" title="이전이미지">
@@ -121,6 +132,13 @@ export default function FavorJob() {
           </button>
         </div>
       </div>
+      ) : (
+        <div className='content text-center m-8 pb-12'>
+        <div className='text-4xl text-[#e279a5] GamtanBold letter'>
+            로그인 후 추천 일자리를 확인하실 수 있습니다.
+          </div>
+        </div>
+      )}
     </div>
   );
 }

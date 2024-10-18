@@ -3,12 +3,16 @@ import { motion } from 'framer-motion';
 import sampleJob from '../Data/finalSample.json';
 import './FavorCss.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import '../styles/text.css';
+import { isLoggedInState } from '../recoil/atoms';
+import { useRecoilValue } from 'recoil';
 
 export default function FavorEdu() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const totalSlides = sampleJob.length;
   const [slideWidth, setSlideWidth] = useState<number>(1140);
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
     const updateSlidesToShow = () => {
@@ -47,11 +51,12 @@ export default function FavorEdu() {
     if (currentSlide > 0) {
       setCurrentSlide(currentSlide - 1);
     }
-  };
+  }
 
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
-      <div className='border border-gray-200 shadow mt-8 mb-16 p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>추천 교육과정</div>
+      <div className='border border-gray-200 shadow mb-12 p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>추천 교육과정</div>
+      {isLoggedIn ? (
       <div className={`slider__wrap w-[1140px]`}>
         <div className="slider__btn">
           <button onClick={goToPrevSlide} className="prev rounded-md bg-white px-2 py-1.5 text-3xl font-bold text-gray-500 shadow-md ring-1 ring-inset ring-gray-300 hover:bg-gray-100" title="이전이미지">
@@ -87,6 +92,13 @@ export default function FavorEdu() {
           </button>
         </div>
       </div>
+              ) : (
+                <div className='content text-center m-8 pb-12'>
+                <div className='text-4xl text-[#e279a5] GamtanBold letter'>
+                    로그인 후 추천 교육과정을 확인하실 수 있습니다.
+                  </div>
+                </div>
+              )}
     </div>
   );
 }
