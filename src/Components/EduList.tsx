@@ -138,7 +138,7 @@ export default function EdueList() {
           </thead>
           <tbody>
             {edus.map((edu) => (
-              <tr key={edu.title} className="border-b border-gray-200 cursor-pointer hover hover:bg-blue-100 transition"
+              <tr key={edu.title} className="border-b border-gray-200 cursor-pointer hover hover:bg-[#78bce35d] transition"
                 onClick={() => handleRowClick(edu.id)}>
                 <td className="whitespace-nowrap"></td> {/* 좌측 공백 */}
                 <td className="max-w-0 py-5 pl-4 pr-3 text-lg sm:pl-0">

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/text.css';
 import sampledata from '../Data/recomSample.json'
+import RecomSteps from './RecomSteps';
 
 interface EducationDetail {
   id: number;
@@ -190,6 +191,10 @@ export default function Recommend() {
   };
 
   return (
+    <div className='w-full flex flex-col justify-center items-center'>
+      <div className='w-full'>
+      <RecomSteps/>
+      </div>
     <div className='w-[85%] mt-10 Gamtan'>
       <div className='text-left GamtanBold text-4xl mb-10'>AI 맞춤 일자리</div>
       <div className='grid lg:grid-cols-3 gap-5 sm:grid-cols-2'>
@@ -243,6 +248,7 @@ export default function Recommend() {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
     </div>
   );
 }

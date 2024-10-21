@@ -26,7 +26,7 @@ export default function EduPage() {
         <div className='h-full w-5/6 flex flex-col justify-start mb-5'>
           <FavorEdu/>
         </div>
-        <div className=' bg-blue-50 w-full flex flex-col justify-center items-center'>
+        <div className=' bg-[#78BCE3] bg-opacity-20 w-full flex flex-col justify-center items-center'>
         <div className='h-full w-5/6 flex flex-col items-center mb-10'>
           <EduList/>
         </div>
