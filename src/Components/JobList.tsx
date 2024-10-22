@@ -173,6 +173,7 @@ export default function JobList() {
             totalItemsCount={totalItemsCount}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
+            activeClass="active-page"
           />
         </div>
       </div>

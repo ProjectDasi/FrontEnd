@@ -160,23 +160,20 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
       )}
     </div>
     <ThemeProvider theme={theme}>
-      <Box 
-      component="form"
-      sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-      noValidate
-      autoComplete="off"
-      // onSubmit={handleSearch}
-      >
-        <TextField id="outlined-basic" label="검색어" variant="outlined"
-        sx={{ '.MuiInputBase-root': { height: '42px'} }}
-        InputLabelProps={{
-          style: { top: '-6px' },  // label 위치를 위로 조정
-        }}
-        value={formData.keyword}
-        onChange={handleSearchWordChange}
-        />
-      </Box>
-      </ThemeProvider>
+          <div className="m-1 w-56">
+            <TextField
+              id="outlined-basic"
+              label="검색어"
+              variant="outlined"
+              sx={{ '.MuiInputBase-root': { height: '42px' } }}
+              InputLabelProps={{
+                style: { top: '-6px'  }, // label 위치를 위로 조정
+              }}
+              value={formData.keyword}
+              onChange={handleSearchWordChange}
+            />
+          </div>
+        </ThemeProvider>
       <button 
               type="submit"
               className='border border-slate-400 rounded-md p-[8px]'
