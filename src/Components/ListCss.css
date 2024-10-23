@@ -38,4 +38,10 @@
     background-color: #fff;
     border-color: #dee2e6;
   }
+
+  .active-page {
+    font-weight:900;
+    text-decoration:underline; /*밑줄 지울라면 아래거까지 두개 지우면 됨 색도 바뀌게 하고 싶었는데 위에 것들이랑 꼬여서 잘 모르겠음*/
+    text-underline-position: under;
+  }
   

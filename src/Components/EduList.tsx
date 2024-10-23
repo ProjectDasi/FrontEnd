@@ -166,6 +166,7 @@ export default function EdueList() {
             totalItemsCount={totalItemsCount}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
+            activeClass="active-page"
           />
         </div>
       </div>
