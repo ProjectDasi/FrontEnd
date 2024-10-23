@@ -24,14 +24,16 @@ interface Resume {
   updateDate: string;
 }
 
-// Common Fields Interface
-type CommonFields = {
-  start: string;
-  end: string | null;
-};
+// // Common Fields Interface
+// type CommonFields = {
+//   start: string;
+//   end: string | null;
+// };
 
 // Work Experience, Certification, Training Interfaces
-interface WorkExperience extends CommonFields {
+interface WorkExperience {
+  workStart: string | null;
+  workEnd: string | null;
   company: string;
   workDescription: string;
 }
@@ -42,14 +44,19 @@ interface Certification {
   issuingAuthority: string;
 }
 
-interface Training extends CommonFields {
+interface Training {
+  trainingStart: string | null;
+  trainingEnd: string | null;
   trainingName: string;
   trainingInstitution: string;
 }
 
-// Education Interface (placeholder for now)
+// Education Interface
 interface Education {
-  // Define properties if they exist
+  educationStart: string | null;
+  educationEnd: string | null;
+  schoolName: string;
+  major: string;
 }
 
 // Main Data Interface
@@ -68,21 +75,28 @@ export default function ResumePage() {
         '이력서 완성하기',
     ];
     const [currentStep, setCurrentStep] = useState(0);
+    // const [userData, setUserData] = useState<UserData>({
+    //   resume: SampleResume.resume,
+    //   workExperience: SampleResume.workExperience.map((work) => ({
+    //     start: work.workStart, // 여기서 workStart를 start로 변환
+    //     end: work.workEnd,     // workEnd를 end로 변환
+    //     company: work.company,
+    //     workDescription: work.workDescription,
+    //   })),
+    //   certification: SampleResume.certification,
+    //   training: SampleResume.training.map((training) => ({
+    //     start: training.trainingStart, // trainingStart를 start로 변환
+    //     end: training.trainingEnd,     // trainingEnd를 end로 변환
+    //     trainingName: training.trainingName,
+    //     trainingInstitution: training.trainingInstitution,
+    //   })),
+    //   education: SampleResume.education,
+    // });
     const [userData, setUserData] = useState<UserData>({
       resume: SampleResume.resume,
-      workExperience: SampleResume.workExperience.map((work) => ({
-        start: work.workStart,
-        end: work.workEnd,
-        company: work.company,
-        workDescription: work.workDescription,
-      })),
+      workExperience: SampleResume.workExperience, // JSON 구조와 동일하게 매핑
       certification: SampleResume.certification,
-      training: SampleResume.training.map((training) => ({
-        start: training.trainingStart,
-        end: training.trainingEnd,
-        trainingName: training.trainingName,
-        trainingInstitution: training.trainingInstitution,
-      })),
+      training: SampleResume.training, // JSON 구조와 동일하게 매핑
       education: SampleResume.education,
     });
 

@@ -1,37 +1,83 @@
 {
-    "resume": {
-        "photo": null,
-        "name": "성명",
-        "address": "주소",
-        "phone": "010-1234-5678",
-        "email": "potato@gmail.com",
-        "emergencyContact": "",
-        "emergencyRelationship": "",
-        "birthDate": "1960.01.01",
-        "updateDate": ""
-    },
+	"resume":{
+		 "id": 10,
+    "photo": null,
+    "name": "박철수",
+    "address": "부산광역시 해운대구 해운대로 456",
+    "phone": "010-1234-1234",
+    "email": "parkcheolsu@example.com",
+    "emergencyContact": "010-5678-5678",
+    "emergencyRelationship": "",
+    "birthDate": "1950-07-20",
+    "updateDate": "2024-10-22"
+	},
     "workExperience": [
         {
-            "workStart": "2020.01.01",
-            "workEnd": "2024.01.01",
-            "company": "근무처",
-            "workDescription": "업무내용"
+            "id": 23,
+            "workStart": "1975-03-01",
+            "workEnd": "1995-12-01",
+            "company": "안녕",
+            "workDescription": "하세요"
+        },
+        {
+            "id": 24,
+            "workStart": "1996-01-01",
+            "workEnd": "2010-06-01",
+            "company": "반갑",
+            "workDescription": "습니다"
+        },
+        {
+            "id": 25,
+            "workStart": "2011-01-01",
+            "workEnd": "2022-12-01",
+            "company": "조심히",
+            "workDescription": "가세요"
+        }
+    ],
+    "education": [
+        {
+            "id": 16,
+            "educationStart": null,
+            "educationEnd": null,
+            "schoolName": "부산대학교",
+            "major": "기계공학"
+        },
+        {
+            "id": 17,
+            "educationStart": null,
+            "educationEnd": null,
+            "schoolName": "부산대학교 대학원",
+            "major": "산업공학"
         }
     ],
     "certification": [
         {
-            "acquisitionDate": null,
-            "certificationName": null,
-            "issuingAuthority": "시행처"
+            "id": 11,
+            "acquisitionDate": "1980-08-20",
+            "certificationName": "이 력 서",
+            "issuingAuthority": "한국산업인력공단"
+        },
+        {
+            "id": 12,
+            "acquisitionDate": "1985-03-10",
+            "certificationName": "품질경영기사",
+            "issuingAuthority": "한국품질관리협회"
         }
     ],
     "training": [
         {
-            "trainingStart": "2018.01.01",
-            "trainingEnd": "2019.01.01",
-            "trainingName": "훈련명",
-            "trainingInstitution": "훈련기관"
+            "id": 16,
+            "trainingStart": "1995-06-01",
+            "trainingEnd": "2005-06-01",
+            "trainingName": "산업안전 관리",
+            "trainingInstitution": "한국공장관리협회"
+        },
+        {
+            "id": 17,
+            "trainingStart": "2018-09-01",
+            "trainingEnd": "1972-02-01",
+            "trainingName": "2018,.12",
+            "trainingInstitution": "재취업지원센터"
         }
-    ],
-    "education": []
+    ]
 }

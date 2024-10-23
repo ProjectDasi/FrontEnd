@@ -7,7 +7,7 @@ interface FinishedResumeProps {
   userData: UserData;  // userData를 props로 받음
 }
 interface Resume {
-  photo?: string | null;
+  photo?: string | null | undefined;
   name: string;
   address: string;
   phone: string;
@@ -18,14 +18,16 @@ interface Resume {
   updateDate: string;
 }
 
-// Common Fields Interface
-type CommonFields = {
-  start: string;
-  end: string | null;
-};
+// // Common Fields Interface
+// type CommonFields = {
+//   start: string;
+//   end: string | null;
+// };
 
 // Work Experience, Certification, Training Interfaces
-interface WorkExperience extends CommonFields {
+interface WorkExperience {
+  workStart: string | null;
+  workEnd: string | null;
   company: string;
   workDescription: string;
 }
@@ -36,14 +38,19 @@ interface Certification {
   issuingAuthority: string;
 }
 
-interface Training extends CommonFields {
+interface Training {
+  trainingStart: string | null;
+  trainingEnd: string | null;
   trainingName: string;
   trainingInstitution: string;
 }
 
-// Education Interface (placeholder for now)
+// Education Interface
 interface Education {
-  // Define properties if they exist
+  educationStart: string | null;
+  educationEnd: string | null;
+  schoolName: string;
+  major: string;
 }
 
 // Main Data Interface
