@@ -55,7 +55,7 @@ function SignInForm() {
       });
 
       // 로그인 성공 메시지 또는 UI 업데이트
-      
+      console.log("로그인 정보",response.data);
       alert("로그인 성공!");
       navigate("/");
     } catch (error) {

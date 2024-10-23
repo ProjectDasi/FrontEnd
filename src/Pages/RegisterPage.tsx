@@ -6,6 +6,7 @@ import MultipleSelectCheckmarks from '../Components/select';
 import axios from 'axios';
 import DialogRegister from '../Components/DialogRegister';
 import FAQbutton from '../Components/FAQbutton';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // 데이터 타입 정의
 interface Option {
@@ -44,6 +45,7 @@ export default function RegisterPage() {
     birth_month: '',
     birth_day: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -128,10 +130,14 @@ export default function RegisterPage() {
       });
   
       console.log('회원가입 성공:', response.data);
+      alert("회원가입이 완료되었습니다.")
+      navigate('/login');
       // 성공 처리 로직 추가
     } catch (error: any) {
       console.error('회원가입 실패:', error.response ? error.response.data : error.message);
       // 실패 처리 로직 추가
+      alert("회원가입에 실패했습니다.")
+      navigate('/login');
     }
   };
 

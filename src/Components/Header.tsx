@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import logo from '../Images/icon7.png'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isLoggedInState } from '../recoil/atoms';
+import icon from '../Images/user.png'
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,12 +58,17 @@ const Header: React.FC = () => {
           {isLoggedIn ?
             (
               <>
-                <Link to="/mypage" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold mr-2">나의 정보</Link>
-                <button onClick={handleLogout} className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그아웃</button>
+                <Link to="/mypage" 
+                className="text-2xl leading-6 text-[#6C72C6] GamtanBold mr-4 border-2 border-[#A7ABDD] p-2 rounded-xl hover:bg-[#A7ABDD] hover:text-white"
+                >
+                내 정보
+                {/* <img className="h-8 w-8 rounded-full mr-4" src={icon} alt="User image" /> */}
+                </Link>
+                <button onClick={handleLogout} className="text-2xl leading-6 text-[#6C72C6] GamtanBold border-2 border-[#A7ABDD] p-2 rounded-xl hover:bg-[#A7ABDD] hover:text-white">로그아웃</button>
               </>
             )
             :
-            (<Link to="/login" className="text-2xl font-bold leading-6 text-gray-900 GamtanBold">로그인 <span aria-hidden="true">&rarr;</span></Link>)
+            (<Link to="/login" className="text-2xl font-bold leading-6 text-[#6C72C6] Gamtan">로그인 <span aria-hidden="true">&rarr;</span></Link>)
           }
 
         </div>
