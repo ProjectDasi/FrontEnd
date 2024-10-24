@@ -165,7 +165,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
               id="outlined-basic"
               label="검색어"
               variant="outlined"
-              sx={{ '.MuiInputBase-root': { height: '42px' } }}
+              sx={{ '.MuiInputBase-root': { height: '42px' }}}
               InputLabelProps={{
                 style: { top: '-6px'  }, // label 위치를 위로 조정
               }}
@@ -176,7 +176,7 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
         </ThemeProvider>
       <button 
               type="submit"
-              className='border border-slate-400 rounded-md p-[8px]'
+              className='border border-gray-300 text-gray-800 rounded-lg p-[8px] GamtanBold hover:bg-gray-50 hover:text-black transition ease-in-out'
               // onClick={handleSearch}
               >
         검색</button>
