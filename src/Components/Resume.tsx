@@ -1,13 +1,16 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
+import { UserData } from '../Pages/ResumePage'; // ResumePage에서 UserData 타입을 가져옴
 
 interface ResumeProps {
   onNextClick: () => void;
+  onDataFetched: (data: UserData) => void;
 }
 
-const Resume: React.FC<ResumeProps> = ({ onNextClick }) => {
+const Resume: React.FC<ResumeProps> = ({ onNextClick, onDataFetched }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [previewImg, setPreviewImg] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const onUploadImage = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -43,52 +46,70 @@ const Resume: React.FC<ResumeProps> = ({ onNextClick }) => {
       formData.append('file', inputRef.current.files[0]);
 
       try {
-        const response = await axios.post(`http://localhost:8080/scan/resume/${userId}`, formData, {
+        setLoading(true);
+        const response = await axios.post(`http://172.21.6.154:8080/scan/resume/${userId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
+        // const fetchedData: UserData = response.data; // 받아온 데이터를 UserData 형식으로 변환
+        onDataFetched(response.data as UserData); // 페치한 데이터를 전달
         console.log('Image uploaded successfully:', response.data);
         onNextClick();
       } catch (error) {
         console.error('Failed to upload image:', error);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
-    <div>
-      <input
-        type="file"
-        accept="image/*"
-        name="resume"
-        ref={inputRef}
-        onChange={onUploadImage}
-        style={{ display: 'none' }} // 파일 선택 버튼을 숨기기 위해 스타일 적용
-      />
-      {previewImg && (
-        <div className="border border-gray-300 rounded-3xl p-5 mb-8">
-          <img src={previewImg} alt="Preview" style={{ maxWidth: '100%', height: 'auto' }} />
-        </div>
-      )}
-      <div className="flex justify-center items-center">
-        <button
-          type="button"
-          className="mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
-          onClick={onUploadImageButtonClick}
-        >
-          {previewImg ? '다시 업로드하기' : '이력서 업로드'}
-        </button>
+    <div className="relative">
+      {/* 로딩 중일 때 화면을 흐리게 처리 */}
+      <div className={`${loading ? 'opacity-50 pointer-events-none' : ''}`}>
+        <input
+          type="file"
+          accept="image/*"
+          name="resume"
+          ref={inputRef}
+          onChange={onUploadImage}
+          style={{ display: 'none' }} // 파일 선택 버튼을 숨기기 위해 스타일 적용
+        />
         {previewImg && (
+          <div className="border border-gray-300 rounded-3xl p-5 mb-8">
+            <img src={previewImg} alt="Preview" style={{ maxWidth: '100%', height: 'auto' }} />
+          </div>
+        )}
+        <div className="flex justify-center items-center">
           <button
             type="button"
-            className="ml-4 mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
-            onClick={handleImageSubmit} // 이미지 제출
+            className="mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
+            onClick={onUploadImageButtonClick}
           >
-            제출하기
+            {previewImg ? '다시 업로드하기' : '이력서 업로드'}
           </button>
-        )}
+          {previewImg && (
+            <button
+              type="button"
+              className="ml-4 mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
+              onClick={handleImageSubmit} // 이미지 제출
+            >
+              제출하기
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* 로딩 중일 때 스피너 표시 */}
+      {loading && (
+        <div className="absolute inset-0 flex flex-col justify-center items-center bg-white bg-opacity-50 GamtanBold">
+          <div className="inline-block h-16 w-16 animate-spin rounded-full border-8 border-solid border-current border-e-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+          <div className='text-2xl mt-3 font-bold'>데이터 추출 중...</div>
+        </div>
+      )}
     </div>
   );
 };

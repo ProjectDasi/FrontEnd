@@ -59,7 +59,7 @@ export default function EdueList() {
     setLoading(true);
     // learnging -> learning 서버연결 후 수정하기
     try {
-      const response = await axios.get(`http://localhost:8080/learning/search`, {
+      const response = await axios.get(process.env.REACT_APP_API_URL+`/learning/search`, {
         params: {
           page: pageNumber-1,
           region: region || undefined,

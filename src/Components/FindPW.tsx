@@ -73,7 +73,7 @@ export default function FindPW() {
               className="border-2 border-gray-300 rounded-lg p-2 text-xl w-full mt-10"
               value={codeSent ? inputCode : userId}
               onChange={codeSent ? handleCodeChange : handleIdChange}
-              disabled={!codeSent ? false : true} // 인증번호 입력 시에는 아이디 입력 비활성화
+              // disabled={!codeSent ? false : true} // 인증번호 입력 시에는 아이디 입력 비활성화
             />
           <button className='mt-5 text-2xl bg-[#52949a] w-full rounded-lg text-white GamtanBold p-2'
           onClick={codeSent ? handleVerifyCode : handleSendCode}>

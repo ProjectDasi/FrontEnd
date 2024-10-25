@@ -12,7 +12,7 @@ import FAQbutton from '../Components/FAQbutton';
 import SampleResume from '../Data/resumeSample.json';
 
 // Resume Interface
-interface Resume {
+export interface Resume {
   photo?: string | null | undefined;
   name: string;
   address: string;
@@ -31,20 +31,20 @@ interface Resume {
 // };
 
 // Work Experience, Certification, Training Interfaces
-interface WorkExperience {
+export interface WorkExperience {
   workStart: string | null;
   workEnd: string | null;
   company: string;
   workDescription: string;
 }
 
-interface Certification {
+export interface Certification {
   acquisitionDate?: string | null;
   certificationName?: string | null;
   issuingAuthority: string;
 }
 
-interface Training {
+export interface Training {
   trainingStart: string | null;
   trainingEnd: string | null;
   trainingName: string;
@@ -52,7 +52,7 @@ interface Training {
 }
 
 // Education Interface
-interface Education {
+export interface Education {
   educationStart: string | null;
   educationEnd: string | null;
   schoolName: string;
@@ -60,7 +60,7 @@ interface Education {
 }
 
 // Main Data Interface
-interface UserData {
+export interface UserData {
   resume: Resume;
   workExperience: WorkExperience[];
   certification: Certification[];
@@ -100,6 +100,10 @@ export default function ResumePage() {
       education: SampleResume.education,
     });
 
+    const handleDataFetched = (fetchedData: UserData) => {
+      setUserData(fetchedData);
+    };
+
     const handleNextClick = () => {
         setCurrentStep((prevStep) => prevStep + 1);
     };
@@ -125,7 +129,7 @@ export default function ResumePage() {
           </Box>
         </div>
         <div className='h-auto w-[88%] flex flex-col justify-start items-center my-5'>
-          {currentStep === 0 && <Resume onNextClick={handleNextClick} />}
+          {currentStep === 0 && <Resume onNextClick={handleNextClick} onDataFetched={handleDataFetched}/>}
           {currentStep === 1 && 
             <EditResume 
               onPreClick={handleBeforeClick} 

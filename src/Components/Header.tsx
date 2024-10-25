@@ -59,16 +59,17 @@ const Header: React.FC = () => {
             (
               <>
                 <Link to="/mypage" 
-                className="text-2xl leading-6 text-[#6C72C6] GamtanBold mr-4 border-2 border-[#A7ABDD] p-2 rounded-xl hover:bg-[#A7ABDD] hover:text-white"
+                className="text-2xl leading-6 text-[#6C72C6] GamtanBold mr-4 border-r-2 border-[#A7ABDD] pr-4 hover:text-[#A7ABDD]"
                 >
                 내 정보
                 {/* <img className="h-8 w-8 rounded-full mr-4" src={icon} alt="User image" /> */}
                 </Link>
-                <button onClick={handleLogout} className="text-2xl leading-6 text-[#6C72C6] GamtanBold border-2 border-[#A7ABDD] p-2 rounded-xl hover:bg-[#A7ABDD] hover:text-white">로그아웃</button>
+                
+                <button onClick={handleLogout} className="text-2xl leading-6 text-[#6C72C6] GamtanBold hover:text-[#A7ABDD]">로그아웃</button>
               </>
             )
             :
-            (<Link to="/login" className="text-2xl font-bold leading-6 text-[#6C72C6] Gamtan">로그인 <span aria-hidden="true">&rarr;</span></Link>)
+            (<Link to="/login" className="text-2xl font-bold leading-6 text-[#6C72C6] GamtanBold hover:text-[#A7ABDD]">로그인 <span aria-hidden="true">&rarr;</span></Link>)
           }
 
         </div>
