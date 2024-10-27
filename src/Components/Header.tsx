@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   const popupRef = useRef<HTMLDivElement>(null);
 
   const togglePopup = (event: React.MouseEvent) => {
-
+    fetchItems(activeTab);
     setIsOpen(!isOpen);
 
   };
