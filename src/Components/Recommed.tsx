@@ -71,10 +71,10 @@ export default function Recommend() {
 
   const Datafetch = async () => {
     try {
-      // const response = await axios.get('http://localhost:8080/personal/recommend?id=1');
+      const response = await axios.get('http://localhost:8080/personal/recommend?id=1');
 
-      // setAiData(response.data);
-      setAiData(sampledata);
+      setAiData(response.data);
+      // setAiData(sampledata);
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다.', error);
       alert('로그인 후 사용해주세요.');

@@ -33,7 +33,7 @@ function SignInForm() {
     const { loginId, password } = state;
 
     try {
-      const response = await axios.post("http://172.21.6.154:8080/login", {
+      const response = await axios.post("http://localhost:8080/login", {
         loginId,
         password
       }, {
