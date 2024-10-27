@@ -178,7 +178,7 @@ const Header: React.FC = () => {
                 </div>
       
                 {/* Apply Button */}
-                <a href={`/job/${item.id}`} className="apply-button">입사지원</a>
+                <a href={`/job/${item.work.id}`} className="apply-button">입사지원</a>
               </div>)
               ) : (
                 <p>{activeTab === 'job' ? '관심 등록한 일자리가 없습니다.' : '관심 등록한 교육이 없습니다.'}</p>
