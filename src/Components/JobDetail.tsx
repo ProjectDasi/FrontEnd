@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState,MouseEvent  } from 'react';
+import React, { Fragment, useEffect, useState, MouseEvent } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
@@ -24,8 +24,8 @@ interface JobDetailData {
   link: string;
 }
 interface LikeObj {
-  member: string;
-  job: string;
+  memberId: string;
+  likeItemId: string;
 }
 export default function JobDetail() {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +34,7 @@ export default function JobDetail() {
   const [error, setError] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState(false);
 
-  
+
   // const client = axios.create({
   //   withCredentials: true,
   //   headers: {
@@ -46,20 +46,46 @@ export default function JobDetail() {
   useEffect(() => {
     const fetchJobDetail = async () => {
       setLoading(true);
+      
       try {
         const response = await axios.get(`http://localhost:8080/work/detail?id=${id}`);
         setJobDetail(response.data); // 서버에서 가져온 데이터를 상태에 저장
-        console.log(response);
+        console.log(response,isLiked);
       } catch (error) {
         console.error('Failed to fetch job details', error);
         setError('데이터를 불러오는 데 실패했습니다.');
       } finally {
         setLoading(false);
       }
+      
     };
-
+    
     fetchJobDetail();
+
+
   }, [id]);
+
+
+  useEffect(() => {
+    const fetchLikeStatus = async () => {
+      const user = localStorage.getItem('user');
+      if (user) { // user가 null이 아닐 때만 실행
+        const memberId = localStorage.getItem('id');
+        if (jobDetail && memberId) { // jobDetail과 memberId가 존재할 때만 실행
+          try {
+            const response = await axios.get(`http://localhost:8080/like/work/${memberId}/${id}`);
+            setIsLiked(response.data);
+          } catch (error) {
+            console.error('Error fetching like status', error);
+          }
+        }
+      } else {
+        console.error('User data not found in localStorage');
+      }
+    };
+  
+    fetchLikeStatus();
+  }, [jobDetail]);
 
   if (loading) {
     return <div>로딩 중...</div>;
@@ -75,28 +101,28 @@ export default function JobDetail() {
 
   const handleLike = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-  
+
     const user = localStorage.getItem('user');
     if (user) {
-      const memberId = JSON.parse(user).id;
-      const jobId = jobDetail.id;
+      const memberId = localStorage.getItem('id');
+      console.log("mid:"+memberId+",jid:"+id+" "+isLiked)
       try {
         if (isLiked === false) {
           const likeObj: LikeObj = {
-            member: memberId,
-            job: String(jobId)
+            memberId: String(memberId),
+            likeItemId: String(id)
           };
-  
-          const response = await axios.post('http://10.125.121.220:8080/api/likes', likeObj);
-  
+
+          const response = await axios.post('http://localhost:8080/like/work/add', likeObj);
+
           if (response.status === 200) {
             setIsLiked(!isLiked);
           } else {
             console.error('Like failed');
           }
         } else {
-          const response = await axios.delete(`http://10.125.121.220:8080/api/likes/${memberId}/${jobId}`);
-  
+          const response = await axios.delete(`http://localhost:8080/like/work/${memberId}/${id}`);
+
           if (response.status === 200) {
             setIsLiked(!isLiked);
           } else {

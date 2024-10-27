@@ -1,0 +1,121 @@
+.icon-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .popup-layer {
+    position: absolute;
+    top: 120px;
+    right: 70px;
+    width: 376px;
+    height: 720px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    z-index: 1000;
+  }
+  
+  .popup-title {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .popup-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 16px;
+  }
+  
+  .popup-tabs button {
+    font-size: 14px;
+    color: #888;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .popup-tabs >.active-tab {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .popup-content {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    overflow-y: auto;
+    max-height: 500px;
+    height: 80%;
+  }
+  
+  .popup-layer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .job-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .saved-time {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  
+  .job-details {
+    margin: 8px 0;
+  }
+  
+  .company-name {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .job-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #111827;
+    margin-top: 4px;
+  }
+  
+  .job-meta {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+  
+  a.apply-button {
+    align-self: flex-end;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #ef4444;
+    background: none;
+    border: 1px solid #ef4444;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

@@ -1,6 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState,MouseEvent } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 interface EduDetailData {
     source: string;
@@ -25,13 +26,17 @@ interface EduDetailData {
     place: string;
     support: string;
 }
-
+interface LikeObj {
+  memberId: string;
+  likeItemId: string;
+}
 
 export default function EduDetail() {
   const { id } = useParams<{id: string}>();
   const [EduDetail, SetEduDetail] = useState < EduDetailData | null> (null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isLiked, setIsLiked] = useState(false);
 
   // const client = axios.create({
   //   withCredentials: true,
@@ -59,6 +64,27 @@ export default function EduDetail() {
     fetchEduDetail();
   },[id])
 
+  useEffect(() => {
+    const fetchLikeStatus = async () => {
+      const user = localStorage.getItem('user');
+      if (user) { // user가 null이 아닐 때만 실행
+        const memberId = localStorage.getItem('id');
+        if (EduDetail && memberId) { // jobDetail과 memberId가 존재할 때만 실행
+          try {
+            const response = await axios.get(`http://localhost:8080/like/learning/${memberId}/${id}`);
+            setIsLiked(response.data);
+          } catch (error) {
+            console.error('Error fetching like status', error);
+          }
+        }
+      } else {
+        console.error('User data not found in localStorage');
+      }
+    };
+  
+    fetchLikeStatus();
+  }, [EduDetail]);
+
   if (loading) {
     return <div>로딩 중...</div>;
   }
@@ -70,6 +96,45 @@ export default function EduDetail() {
   if (!EduDetail) {
     return <div>데이터를 불러오지 못했습니다.</div>;
   }
+
+  const handleLike = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const memberId = localStorage.getItem('id');
+      console.log("mid:"+memberId+",jid:"+id+" "+isLiked)
+      try {
+        if (isLiked === false) {
+          const likeObj: LikeObj = {
+            memberId: String(memberId),
+            likeItemId: String(id)
+          };
+
+          const response = await axios.post('http://localhost:8080/like/learning/add', likeObj);
+
+          if (response.status === 200) {
+            setIsLiked(!isLiked);
+          } else {
+            console.error('Like failed');
+          }
+        } else {
+          const response = await axios.delete(`http://localhost:8080/like/learning/${memberId}/${id}`);
+
+          if (response.status === 200) {
+            setIsLiked(!isLiked);
+          } else {
+            console.error('Unlike failed');
+          }
+        }
+      } catch (error) {
+        console.error('Request failed', error);
+      }
+    } else {
+      console.error('User not found in localStorage');
+    }
+  };
+
   return (
     <div className="px-4 sm:px-6 lg:px-8 w-6/7 Gamtan">
       <div className="mt-4 flow-root">
@@ -82,12 +147,20 @@ export default function EduDetail() {
                   <Fragment key={EduDetail.link}>
                     <tr>
                       <th
-                        colSpan={5}
+                        colSpan={4}
                         scope="colgroup"
                         className="py-2 pl-3 text-left text-xl text-blue-700 sm:pl-3 GamtanBold"
                       >
                         [{EduDetail.organization}]
                       </th>
+                      <th>
+                      <button className=" p-4 rounded-full hover:bg-slate-50 flex items-center justify-center"
+                        onClick={handleLike}>
+                        <span className="text-2xl text-red-500">
+                          {isLiked ? <GoHeartFill /> : <GoHeart />}
+                        </span>
+                      </button>
+                    </th>
                     </tr>
                     <tr>
                       <th
