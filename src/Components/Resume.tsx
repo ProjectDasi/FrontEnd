@@ -47,7 +47,7 @@ const Resume: React.FC<ResumeProps> = ({ onNextClick, onDataFetched }) => {
 
       try {
         setLoading(true);
-        const response = await axios.post(`http://172.21.6.154:8080/scan/resume/${userId}`, formData, {
+        const response = await axios.post(process.env.REACT_APP_API_URL+`/scan/resume/${userId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

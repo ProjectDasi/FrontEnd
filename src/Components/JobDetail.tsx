@@ -48,7 +48,7 @@ export default function JobDetail() {
       setLoading(true);
       
       try {
-        const response = await axios.get(`http://localhost:8080/work/detail?id=${id}`);
+        const response = await axios.get(process.env.REACT_APP_API_URL+`/work/detail?id=${id}`);
         setJobDetail(response.data); // 서버에서 가져온 데이터를 상태에 저장
         console.log(response,isLiked);
       } catch (error) {
@@ -73,7 +73,7 @@ export default function JobDetail() {
         const memberId = localStorage.getItem('id');
         if (jobDetail && memberId) { // jobDetail과 memberId가 존재할 때만 실행
           try {
-            const response = await axios.get(`http://localhost:8080/like/work/${memberId}/${id}`);
+            const response = await axios.get(process.env.REACT_APP_API_URL+`/like/work/${memberId}/${id}`);
             setIsLiked(response.data);
           } catch (error) {
             console.error('Error fetching like status', error);
@@ -113,7 +113,7 @@ export default function JobDetail() {
             likeItemId: String(id)
           };
 
-          const response = await axios.post('http://localhost:8080/like/work/add', likeObj);
+          const response = await axios.post(process.env.REACT_APP_API_URL+'/like/work/add', likeObj);
 
           if (response.status === 200) {
             setIsLiked(!isLiked);
@@ -121,7 +121,7 @@ export default function JobDetail() {
             console.error('Like failed');
           }
         } else {
-          const response = await axios.delete(`http://localhost:8080/like/work/${memberId}/${id}`);
+          const response = await axios.delete(process.env.REACT_APP_API_URL+`/like/work/${memberId}/${id}`);
 
           if (response.status === 200) {
             setIsLiked(!isLiked);

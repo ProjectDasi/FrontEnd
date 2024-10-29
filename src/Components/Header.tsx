@@ -6,6 +6,7 @@ import { isLoggedInState } from '../recoil/atoms';
 import axios from 'axios';
 import icon from '../Images/user.png'
 import '../styles/header.css'
+import Heart from '../Images/heart.png'
 
 interface Region {
   id: number;
@@ -57,9 +58,9 @@ const Header: React.FC = () => {
       let response;
       const id = localStorage.getItem('id');
       if (type === 'job') {
-        response = await axios.get(`http://localhost:8080/like/work/${id}`);
+        response = await axios.get(process.env.REACT_APP_API_URL+`/like/work/${id}`);
       } else {
-        response = await axios.get(`http://localhost:8080/like/learning/${id}`);
+        response = await axios.get(process.env.REACT_APP_API_URL+`/like/learning/${id}`);
       }
       setItems(response.data);
     } catch (error) {
@@ -121,33 +122,30 @@ const Header: React.FC = () => {
           <Link to="/job" className="nav-item text-4xl leading-6 text-gray-900">일자리</Link>
           <Link to="/education" className="nav-item text-4xl leading-6 text-gray-900">교육</Link>
           <Link to="/recommendations" className="nav-item text-4xl leading-6 text-gray-900">AI매칭</Link>
-          {/* <Link to="/compass" className="nav-item text-4xl leading-6 text-gray-900">이정표</Link> */}
+          <Link to="/fund" className="nav-item text-4xl leading-6 text-gray-900">지원금</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
           {isLoggedIn ?
             (
               <>
                 <button onClick={togglePopup} className="icon-button leading-6 mr-4">
-                  <span role="img" aria-label="icon">📁</span> {/* 여기에 아이콘을 추가 */}
+                  <img src={Heart} alt='heart'
+                  className='h-5 w-5'/>
                 </button>
                 <Link to="/mypage"
                   className="text-2xl leading-6 text-[#6C72C6] GamtanBold mr-4 border-r-2 border-[#A7ABDD] pr-4 hover:text-[#A7ABDD]"
-                >
-                  내 정보
-                  {/* <img className="h-8 w-8 rounded-full mr-4" src={icon} alt="User image" /> */}
+                >내 정보
                 </Link>
-
                 <button onClick={handleLogout} className="text-2xl leading-6 text-[#6C72C6] GamtanBold hover:text-[#A7ABDD]">로그아웃</button>
               </>
             )
             :
             (<Link to="/login" className="text-2xl font-bold leading-6 text-[#6C72C6] GamtanBold hover:text-[#A7ABDD]">로그인 <span aria-hidden="true">&rarr;</span></Link>)
           }
-
         </div>
         {isOpen && (
-          <div ref={popupRef} className="popup-layer">
-            <h3 className="popup-title">내 저장</h3>
+          <div ref={popupRef} className="popup-layer Gamtan">
+            <h3 className="popup-title">내 찜하기 목록</h3>
             <div className="popup-tabs">
               <button
                 onClick={() => handleTabClick('job')}
@@ -170,7 +168,7 @@ const Header: React.FC = () => {
       
                 {/* Job Details */}
                 <div className="job-details">
-                  <p className="company-name">({item.work.company})</p>
+                  <p className="company-name">{item.work.company}</p>
                   <h3 className="job-title">{item.work.title}</h3>
                   <p className="job-meta">
                     {item.work.regionName} · D-{Math.floor((new Date(item.work.dueDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}
@@ -219,7 +217,7 @@ const Header: React.FC = () => {
                   <Link to="/job" className="nav-item -mx-3 rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">일자리</Link>
                   <Link to="/education" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">교육</Link>
                   <Link to="/recommendations" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">AI매칭</Link>
-                  {/* <Link to="/compass" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">이정표</Link> */}
+                  <Link to="/fund" className="nav-item -mx-3 block rounded-lg px-3 py-2 text-2xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">지원금</Link>
                 </div>
                 <div className="py-6">
                   {isLoggedIn ?

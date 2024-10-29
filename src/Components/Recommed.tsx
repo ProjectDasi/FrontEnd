@@ -70,8 +70,9 @@ export default function Recommend() {
   }, []);
 
   const Datafetch = async () => {
+    const userId = localStorage.getItem('id');
     try {
-      const response = await axios.get('http://localhost:8080/personal/recommend?id=1');
+      const response = await axios.get(process.env.REACT_APP_API_URL+`/personal/recommend?id=${userId}`);
 
       setAiData(response.data);
       // setAiData(sampledata);
@@ -202,12 +203,14 @@ export default function Recommend() {
           // <div className='flex w-full'>
           <motion.div
             key={job.id}
-            className='bg-[#52949a] bg-opacity-90 MatChum rounded-lg cursor-pointer w-full text-white'
+            className='bg-[#52949a] bg-opacity-90 MatChum rounded-lg cursor-pointer w-full text-white flex flex-col'
             layoutId={`job${index + 1}`}
             whileHover={{ scale: 1.08 }}
             onClick={() => handleBoxClick(`job${index + 1}`)}
           > 
-            {job.detail.company}
+            <div>{job.detail.company}</div>
+          <div className='text-sm'>
+            매칭률 {Math.round(job.similarity * 100)}%</div>
           </motion.div>
         // </div>
         ))}
@@ -218,12 +221,16 @@ export default function Recommend() {
         {aiData?.educationRecommend.map((edu, index) => (
           <motion.div
             key={edu.id}
-            className='bg-[#2A9BDC] bg-opacity-80 MatChum p-4 rounded-lg cursor-pointer text-white'
+            className='bg-[#2A9BDC] bg-opacity-80 MatChum p-4 rounded-lg cursor-pointer text-white w-full flex flex-col'
             layoutId={`edu${index + 1}`}
             whileHover={{ scale: 1.08 }}
             onClick={() => handleBoxClick(`edu${index + 1}`)}
           >
+            <div>
             {edu.detail.organization}
+            </div>
+            <div className='text-sm'>
+            매칭률 {Math.round(edu.similarity * 100)}%</div>
           </motion.div>
         ))}
       </div>
