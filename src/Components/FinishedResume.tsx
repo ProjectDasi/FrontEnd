@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // FinishedResume Props Interface
 interface FinishedResumeProps {
@@ -63,11 +65,18 @@ interface UserData {
 }
 
 const FinishedResume: React.FC<FinishedResumeProps> = ({ onPreClick, onNextClick, userData }) => {
-  const handleSaveClick = () => {
-    console.log("저장된 데이터: ", userData);
-    //  axios.post('/api/resume/save', userData)
-    //   .then(response => console.log('저장 성공:', response))
-    //   .catch(error => console.error('저장 실패:', error));
+  const navigate = useNavigate();
+  const handleSaveClick = async() => {
+    const userId = localStorage.getItem('id');
+    try{
+      const response = await axios.post(process.env.REACT_APP_API_URL+`/update/resume/${userId}`, userData);
+      console.log("저장된 데이터: ", userData);
+      navigate('/');
+
+    } catch (err) {
+      console.error('데이터를 불러오는데 실패했습니다.', err);
+      alert('이력서를 저장하는데 실패했습니다.');
+    }
   }
   return (
 <div className='w-full Gamtan'>

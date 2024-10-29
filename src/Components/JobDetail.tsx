@@ -266,7 +266,6 @@ export default function JobDetail() {
                       <div dangerouslySetInnerHTML={{ __html: jobDetail.details }} />
                     </td>
                   </tr>
-
                   <tr className='border-gray-200 border-t'>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                     </td>
@@ -278,7 +277,12 @@ export default function JobDetail() {
                       scope="colgroup"
                       className="bg-gray-50 py-2 pl-4 pr-3 text-center text-xl text-gray-900 sm:pl-3 GamtanBold"
                     >
-                      <a href={jobDetail.link}>해당 채용공고 사이트로 이동하려면 <span className='text-yellow-600'>클릭</span>하세요</a>
+                      <a href={jobDetail.link}
+                      onClick={(e) => {
+                        e.preventDefault(); // 기본 링크 동작 방지
+                        window.open(jobDetail.link, '_blank'); // 새 창에서 링크 열기
+                      }}
+                      >해당 채용공고 사이트로 이동하려면 <span className='text-yellow-600'>클릭</span>하세요</a>
                     </th>
                   </tr>
                 </Fragment>

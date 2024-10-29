@@ -21,7 +21,7 @@ export default function Myinfo() {
         return;
       }
       try {
-        const response = await axios.get(`http://localhost:8080/profile?id=${id}`
+        const response = await axios.get(process.env.REACT_APP_API_URL+`/profile?id=${id}`
           , {
           headers: {
             Authorization : `Bearer ${token}`,
@@ -52,7 +52,7 @@ export default function Myinfo() {
           <div className="w-full mt-5 pt-5 text-lg text-gray-700 text-right Haeparang">
             정확한 추천을 위해서 이력서를 입력해주세요.
           </div>
-        <div className="mt-3">
+        <div className="mt-3 flex">
           <Link to="/resume">
           <button
             type="button"
@@ -60,6 +60,9 @@ export default function Myinfo() {
           >
             이력서 입력
           </button>
+          </Link>
+          <Link to='/confirm'>
+          <button>이력서 확인</button>
           </Link>
         </div>
         </div>
@@ -81,15 +84,15 @@ export default function Myinfo() {
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">
                         아이디
                         </td>
-                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{user.id}</td>
+                    <td className="whitespace-nowrap p-4 text-2xl text-gray-500">{user.loginId}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">전화번호</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.phonenumber}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.phone}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">주소</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.address}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.region}</td>
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">생년월일</td>
@@ -97,7 +100,7 @@ export default function Myinfo() {
                     </tr>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0">선호도</td>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">자신의 직업선호도 결과 (수정하기 버튼을 만들어야 할 수도 있음) </td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.preference[0].type}, {user.preference[1].type} </td>
                     </tr>
                     </Fragment>
                 {/* ))} */}

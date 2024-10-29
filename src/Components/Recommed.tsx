@@ -56,6 +56,7 @@ export default function Recommend() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [aiData, setAiData] = useState<{ educationRecommend: EducationDetail[]; jobRecommend: JobDetail[] } | null>(null);
   const navigate = useNavigate();
+  const [accessAllowed, setAccessAllowed] = useState<boolean>(false);
 
   const handleBoxClick = (id: string) => {
     setSelectedId(id); // 클릭 시 해당 Box의 id를 상태로 저장
@@ -66,11 +67,44 @@ export default function Recommend() {
   };
 
   useEffect(() => {
-    Datafetch();
+    checkAccess();
+    // Datafetch();
   }, []);
+
+  const checkAccess = async() =>{
+    const userId = localStorage.getItem('id');
+
+    if (!userId) {
+      alert('로그인 후 사용해주세요.');
+      return navigate('/login');
+    }
+    try{
+      const resumeResponse = await axios.get(process.env.REACT_APP_API_URL+`/resume/existed/${userId}`);
+      const favoritesResponse = await axios.get(process.env.REACT_APP_API_URL+`/like/${userId}`);
+      // console.log("resumeResponse.data",resumeResponse.data)
+
+      const hasResume = resumeResponse.data && Object.keys(resumeResponse.data).length > 0;
+      const hasFavorites = favoritesResponse.data && favoritesResponse.data.length > 0;
+
+      if (hasResume && hasFavorites) {
+        setAccessAllowed(true);
+        Datafetch();
+      } else {
+        alert('이력서 및 관심 항목이 필요합니다.');
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('데이터를 확인하는 중 오류가 발생했습니다.', error);
+      alert('페이지 접근이 제한됩니다.');
+      navigate('/login');
+    
+    }
+
+  }
 
   const Datafetch = async () => {
     const userId = localStorage.getItem('id');
+
     try {
       const response = await axios.get(process.env.REACT_APP_API_URL+`/personal/recommend?id=${userId}`);
 
@@ -78,10 +112,10 @@ export default function Recommend() {
       // setAiData(sampledata);
     } catch (error) {
       console.error('데이터를 불러오는데 실패했습니다.', error);
-      alert('로그인 후 사용해주세요.');
-      navigate('/login');
     }
   };
+
+  if (!accessAllowed) return null;
 
   const getPopupContent = (id: string) => {
     if (!aiData) return '';
