@@ -25,9 +25,33 @@ interface Work {
   region: Region;
 }
 
+interface ApplyMethod {
+  id: number;
+  method: string;
+}
+
+interface LearningProgram {
+  id: number;
+  source: string;
+  title: string;
+  organization: string;
+  applicationStart: string;
+  applicationEnd: string;
+  progressStart: string;
+  progressEnd: string;
+  situation: string;
+  phone: string;
+  link: string;
+  tuition: string;
+  teachingMethod: string;
+  region: Region;
+  applyMethod: ApplyMethod[];
+}
+
 interface Item {
   id: number;
-  work: Work;
+  work?: Work;
+  learningProgram?: LearningProgram;
   savedTime: string;
 }
 
@@ -53,14 +77,14 @@ const Header: React.FC = () => {
   };
 
   const fetchItems = async (type: 'job' | 'education') => {
-    // 예시로 가상의 API 요청
+
     try {
       let response;
       const id = localStorage.getItem('id');
       if (type === 'job') {
-        response = await axios.get(process.env.REACT_APP_API_URL+`/like/work/${id}`);
+        response = await axios.get(process.env.REACT_APP_API_URL + `/like/work/${id}`);
       } else {
-        response = await axios.get(process.env.REACT_APP_API_URL+`/like/learning/${id}`);
+        response = await axios.get(process.env.REACT_APP_API_URL + `/like/learning/${id}`);
       }
       setItems(response.data);
     } catch (error) {
@@ -68,14 +92,14 @@ const Header: React.FC = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchItems(activeTab);
-  },[activeTab])
+  }, [activeTab])
 
-  
+
   const handleTabClick = (tab: 'job' | 'education') => {
     setActiveTab(tab);
-    fetchItems(tab); // 탭 변경 시 데이터 가져오기
+    fetchItems(tab);
   };
 
   const formatDate = (dateString: string) => {
@@ -88,6 +112,15 @@ const Header: React.FC = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     navigate('/');
+  };
+  const calculateDaysDifference = (endDate: string) => {
+    const now = new Date();
+    const targetDate = new Date(endDate);
+
+    targetDate.setFullYear(now.getFullYear());
+
+    const diffInTime = targetDate.getTime() - now.getTime();
+    return Math.floor(diffInTime / (1000 * 60 * 60 * 24));
   };
 
   return (
@@ -130,7 +163,7 @@ const Header: React.FC = () => {
               <>
                 <button onClick={togglePopup} className="icon-button leading-6 mr-4">
                   <img src={Heart} alt='heart'
-                  className='h-5 w-5'/>
+                    className='h-5 w-5' />
                 </button>
                 <Link to="/mypage"
                   className="text-2xl leading-6 text-[#6C72C6] GamtanBold mr-4 border-r-2 border-[#A7ABDD] pr-4 hover:text-[#A7ABDD]"
@@ -160,39 +193,50 @@ const Header: React.FC = () => {
                 관심교육
               </button>
             </div>
-            <div className="popup-content">
+            <div className="popup-content" style={{ paddingTop: items.length>2 ? '280px' : '0px'}}>
               {items.length > 0 ? (
-                items.map((item) => <div key={item.id} className="job-card">
-                {/* savedTime 표시 */}
-                <p className="saved-time">{formatDate(item.savedTime)}</p>
-      
-                {/* Job Details */}
-                <div className="job-details">
-                  <p className="company-name">{item.work.company}</p>
-                  <h3 className="job-title">{item.work.title}</h3>
-                  <p className="job-meta">
-                    {item.work.regionName} · D-{Math.floor((new Date(item.work.dueDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}
-                  </p>
-                </div>
-      
-                {/* Apply Button */}
-                <a href={`/job/${item.work.id}`} className="apply-button">입사지원</a>
-              </div>)
+                items.map((item) => (
+                  <div key={item.id} className="job-card">
+                    {activeTab === 'job' && item.work ? (
+                      <>
+                        <p className="saved-time">{formatDate(item.savedTime)}</p>
+                        <div className="job-details">
+                          <p className="company-name">{item.work.company}</p>
+                          <h3 className="job-title">{item.work.title}</h3>
+                          <p className="job-meta">
+                            {item.work.regionName} · D-{calculateDaysDifference(item.work.dueDate)}
+                          </p>
+                        </div>
+                        <a href={`/job/${item.work.id}`} className="apply-button">입사지원</a>
+                      </>
+                    ) : activeTab === 'education' && item.learningProgram ? (
+                      <>
+                        <p className="saved-time">{formatDate(item.savedTime)}</p>
+                        <div className="job-details">
+                          <p className="company-name">{item.learningProgram.organization}</p>
+                          <h3 className="job-title">{item.learningProgram.title}</h3>
+                          <p className="job-meta">
+                            {item.learningProgram.region.subregion} · D-{calculateDaysDifference(item.learningProgram.applicationEnd)}
+                          </p>
+                        </div>
+                        <a href={`/education/${item.learningProgram.id}`} className="apply-button">상세보기</a>
+                      </>
+                    ) : null}
+                  </div>
+                ))
               ) : (
                 <p>{activeTab === 'job' ? '관심 등록한 일자리가 없습니다.' : '관심 등록한 교육이 없습니다.'}</p>
               )}
-              
             </div>
+
             <div className='flex justify-center items-center'>
-              {activeTab === 'job'?<a href="/job" className="mt-5">스크랩하러 가기 &gt;</a>:<a href="/education" className="mt-5">스크랩하러 가기 &gt;</a>}
+              {activeTab === 'job' ? <a href="/job" className="mt-5">스크랩하러 가기 &gt;</a> : <a href="/education" className="mt-5">스크랩하러 가기 &gt;</a>}
             </div>
           </div>
         )}
       </nav>
-      {/* Mobile menu, show/hide based on menu open state. */}
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 z-[200]" role="dialog" aria-modal="true">
-          {/* Background backdrop, show/hide based on slide-over state. */}
           <div className="fixed inset-0 z-50"></div>
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
