@@ -6,13 +6,30 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import '../styles/text.css';
 import { isLoggedInState } from '../recoil/atoms';
 import { useRecoilValue } from 'recoil';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+interface FavorEdu {
+  id: number;
+  title: string;
+  organization: string;
+  apply: string | null;
+  applicationStart: string | null;
+  applicationEnd: string | null;
+}
 
 export default function FavorEdu() {
+  const [FavEdu, setFavEdu] = useState<FavorEdu[]>([]);
+  const [activePage, setActivePage] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const totalSlides = sampleJob.length;
   const [slideWidth, setSlideWidth] = useState<number>(1140);
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
 
   useEffect(() => {
     const updateSlidesToShow = () => {
@@ -53,6 +70,35 @@ export default function FavorEdu() {
     }
   }
 
+  const handleBlockClick = (eduId: number) => {
+    navigate(`/education/${eduId}`);
+  };
+
+  useEffect(() => {
+    fetchEdus(activePage);
+  }, [activePage]);
+
+  const fetchEdus = async (pageNumber: number) => {
+    setLoading(true);
+    const id = localStorage.getItem('id');
+    if (!id) {
+      setError('사용자의 id를 확인할 수 없습니다.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/learning/recommend?id=${id}`);
+      setFavEdu(response.data || []);
+      setError(null); 
+    } catch (error) {
+      console.error('Failed to fetch jobs', error);
+      setError('데이터를 불러오는 데 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
       <div className='border border-gray-200 shadow mb-12 p-1 w-2/5 text-center text-3xl rounded-xl text-gray-500'>추천 교육과정</div>
@@ -70,16 +116,16 @@ export default function FavorEdu() {
             animate={{ x: `-${currentSlide * 230}px` }}
             transition={{ duration: 0 }}
           >
-            {sampleJob.map((job, index) => (
-              <div className="slider" key={index}>
+            {FavEdu.map((edu, index) => (
+              <div className="slider cursor-pointer" key={index} onClick={() => handleBlockClick(edu.id)}>
                 <div className="w-[220px] p-6 bg-white border border-gray-200 rounded-lg shadow h-[300px]">
-                  <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
-                    {job.title}
+                  <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 max-h-24 overflow-scroll">
+                    {edu.title}
                   </h5>
-                  <p className="mb-3 font-normal text-gray-500">{job.subtitle}</p>
-                  <p className="mb-3 font-normal text-gray-500">{job.location}</p>
+                  <p className="mb-3 font-normal text-gray-500">{edu.organization}</p>
+                  <p className="mb-3 font-normal text-gray-500">{edu.apply}</p>
                   <a href="#" className="inline-flex font-medium items-center text-blue-600 hover:underline">
-                    {job.regidate}
+                    {edu.applicationStart} ~ {edu.applicationEnd}
                   </a>
                 </div>
               </div>

@@ -7,10 +7,10 @@
   
   .popup-layer {
     position: absolute;
-    top: 120px;
+    top: 140px;
     right: 70px;
     width: 376px;
-    height: 720px;
+    height: 500px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -55,7 +55,8 @@
     align-items: center;
     color: #666;
     overflow-y: auto;
-    height: 500px;
+    height: 300px;
+    min-height: 280px;
     padding-top: 280px;
   }
   

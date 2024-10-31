@@ -110,12 +110,16 @@ const theme = createTheme({
   },
   });
 
-export default function DialogRegister() {
-  const [dialogs, setDialogs] = React.useState<{ open: boolean; value: string[]; options: string[] }[]>(
+interface DialogRegisterProps {
+  onSelectionChange: (selectedItems: number[]) => void;
+}
+
+export default function DialogRegister({ onSelectionChange }: DialogRegisterProps) {
+  const [dialogs, setDialogs] = React.useState(
     Array.from({ length: 5 }, (_, i) => ({
       open: false,
-      value: [],
-      options: getOptionsByRange(i * 5 + 1, (i + 1) * 5), // ID 1~5, 6~10, 11~15 ... 이런식으로 설정
+      value: [] as string[],
+      options: getOptionsByRange(i * 5 + 1, (i + 1) * 5),
     }))
   );
 
@@ -131,14 +135,20 @@ export default function DialogRegister() {
       i === index ? { ...dialog, open: false, value: newValue || dialog.value } : dialog
     );
     setDialogs(newDialogs);
+
+    const selectedItems = newDialogs.flatMap(dialog =>
+      dialog.value.map(val => Data.find((d: { description: string, ID: number }) => d.description === val)?.ID)
+        .filter(Boolean) as number[]
+    );
+    onSelectionChange(selectedItems);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%', textAlign:'center', borderRadius:'30%'}}>
+      <Box sx={{ width: '100%', textAlign: 'center', borderRadius: '30%' }}>
         <List component="div" role="group">
           <ListItemButton divider disabled>
-            <ListItemText primary="아래의 유형을 클릭해주세요." sx={{textAlign:'center', color:'text.primary'}} />
+            <ListItemText primary="아래의 유형을 클릭해주세요." sx={{ textAlign: 'center', color: 'text.primary' }} />
           </ListItemButton>
 
           {dialogs.map((dialog, index) => (
@@ -149,12 +159,12 @@ export default function DialogRegister() {
                 aria-controls="ringtone-menu"
                 aria-label={`유형 ${index + 1}`}
                 onClick={() => handleClickListItem(index)}
-                sx={{textAlign:'center'}}
+                sx={{ textAlign: 'center' }}
               >
                 <ListItemText
                   primary={`유형 ${index + 1}`}
                   secondary={dialog.value.join(' ')}
-                  sx={{textAlign:'center'}}
+                  sx={{ textAlign: 'center' }}
                 />
               </ListItemButton>
 
@@ -173,3 +183,73 @@ export default function DialogRegister() {
     </ThemeProvider>
   );
 }
+
+  // export default function DialogRegister({ onSelectionChange }: DialogRegisterProps) {
+  //   const [dialogs, setDialogs] = React.useState(
+  //     Array.from({ length: 5 }, (_, i) => ({
+  //       open: false,
+  //       value: [] as string[],
+  //       options: getOptionsByRange(i * 5 + 1, (i + 1) * 5),
+  //     }))
+  //   );
+  
+  //   const handleClickListItem = (index: number) => {
+  //     const newDialogs = dialogs.map((dialog, i) =>
+  //       i === index ? { ...dialog, open: true } : dialog
+  //     );
+  //     setDialogs(newDialogs);
+  //   };
+  
+  //   const handleClose = (index: number, newValue?: string[]) => {
+  //     const newDialogs = dialogs.map((dialog, i) =>
+  //       i === index ? { ...dialog, open: false, value: newValue || dialog.value } : dialog
+  //     );
+  //     setDialogs(newDialogs);
+  
+  //     const selectedItems = newDialogs.flatMap(dialog =>
+  //       dialog.value.map(val => data.find(d => d.description === val)?.ID).filter(Boolean) as number[]
+  //     );
+  //     onSelectionChange(selectedItems);
+  //   };
+  
+  //   return (
+  //     <ThemeProvider theme={theme}>
+  //       <Box sx={{ width: '100%', textAlign: 'center', borderRadius: '30%' }}>
+  //         <List component="div" role="group">
+  //           <ListItemButton divider disabled>
+  //             <ListItemText primary="아래의 유형을 클릭해주세요." sx={{ textAlign: 'center', color: 'text.primary' }} />
+  //           </ListItemButton>
+  
+  //           {dialogs.map((dialog, index) => (
+  //             <React.Fragment key={index}>
+  //               <ListItemButton
+  //                 divider
+  //                 aria-haspopup="true"
+  //                 aria-controls="ringtone-menu"
+  //                 aria-label={`유형 ${index + 1}`}
+  //                 onClick={() => handleClickListItem(index)}
+  //                 sx={{ textAlign: 'center' }}
+  //               >
+  //                 <ListItemText
+  //                   primary={`유형 ${index + 1}`}
+  //                   secondary={dialog.value.join(' ')}
+  //                   sx={{ textAlign: 'center' }}
+  //                 />
+  //               </ListItemButton>
+  
+  //               <ConfirmationDialogRaw
+  //                 id={`ringtone-menu-${index}`}
+  //                 keepMounted
+  //                 open={dialog.open}
+  //                 onClose={(newValue) => handleClose(index, newValue)}
+  //                 value={dialog.value}
+  //                 options={dialog.options}
+  //               />
+  //             </React.Fragment>
+  //           ))}
+  //         </List>
+  //       </Box>
+  //     </ThemeProvider>
+  //   );
+  // }
+  

@@ -84,7 +84,7 @@ const Resume: React.FC<ResumeProps> = ({ onNextClick, onDataFetched }) => {
         <div className="flex justify-center items-center">
           <button
             type="button"
-            className="mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
+            className="m-2 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white"
             onClick={onUploadImageButtonClick}
           >
             {previewImg ? '다시 업로드하기' : '이력서 업로드'}
@@ -92,7 +92,7 @@ const Resume: React.FC<ResumeProps> = ({ onNextClick, onDataFetched }) => {
           {previewImg && (
             <button
               type="button"
-              className="ml-4 mb-4 block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg font-semibold text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
+              className="ml-4mb-4 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white"
               onClick={handleImageSubmit} // 이미지 제출
             >
               제출하기

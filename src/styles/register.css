@@ -30,6 +30,9 @@
 .item input{
     width: 100%;
 }
+.custom-input {
+    width: auto !important; /* .item input의 width: 100% 무시 */
+  }
 .item label strong {
     display: inline-block;
     margin-bottom: 8px;

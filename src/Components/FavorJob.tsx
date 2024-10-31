@@ -90,6 +90,9 @@ export default function FavorJob() {
     return <div>로딩 중...</div>;
   }
 
+  const handleBlockClick = (jobId: number) => {
+    navigate(`/job/${jobId}`);
+  };
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
       {/* This part will always be visible */}
@@ -111,16 +114,16 @@ export default function FavorJob() {
             transition={{ duration: 0 }}
           >
             {FavJobs.map((job, index) => (
-              <div className="slider" key={index}>
+              <div className="slider cursor-pointer" key={index} onClick={() => handleBlockClick(job.id)}>
                 <div className="w-[220px] p-6 bg-white border border-gray-200 rounded-lg shadow h-[300px]">
                   <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
                     {job.company}
                   </h5>
                   <p className="mb-3 font-normal text-gray-500">{job.title}</p>
                   <p className="mb-3 font-normal text-gray-500">{job.region}</p>
-                  <a href="#" className="inline-flex font-medium items-center text-blue-600 hover:underline">
+                  <p className="inline-flex font-medium items-center text-blue-600 hover:underline">
                     {job.dueDate}
-                  </a>
+                  </p>
                 </div>
               </div>
             ))}

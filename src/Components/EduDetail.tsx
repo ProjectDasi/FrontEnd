@@ -4,27 +4,19 @@ import axios from 'axios';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 interface EduDetailData {
-    source: string;
     title: string;
     organization: string;
-    application_start: string;
-    application_end: string;
-    progress_start: string;
-    progress_end: string;
-    situation: string;
-    apply: string;
-    phone: string;
-    manager: string;
-    charge: string;
-    email: string;
+    applicationStart: string;
+    applicationEnd: string;
+    progressStart: string;
+    progressEnd: string;
+    situation: string | null;
+    apply: string | null;
+    phone: string | null;
+    manager: string | null;
+    email: string | null;
     link: string;
     details: string;
-    instructor: string;
-    tuition: string;
-    teaching_method: string;
-    capacity: string;
-    place: string;
-    support: string;
 }
 interface LikeObj {
   memberId: string;
@@ -71,7 +63,7 @@ export default function EduDetail() {
         const memberId = localStorage.getItem('id');
         if (EduDetail && memberId) { // jobDetail과 memberId가 존재할 때만 실행
           try {
-            const response = await axios.get(`http://localhost:8080/like/learning/${memberId}/${id}`);
+            const response = await axios.get(process.env.REACT_APP_API_URL+`/like/learning/${memberId}/${id}`);
             setIsLiked(response.data);
           } catch (error) {
             console.error('Error fetching like status', error);
@@ -111,7 +103,7 @@ export default function EduDetail() {
             likeItemId: String(id)
           };
 
-          const response = await axios.post('http://localhost:8080/like/learning/add', likeObj);
+          const response = await axios.post(process.env.REACT_APP_API_URL+`/like/learning/add`, likeObj);
 
           if (response.status === 200) {
             setIsLiked(!isLiked);
@@ -119,7 +111,7 @@ export default function EduDetail() {
             console.error('Like failed');
           }
         } else {
-          const response = await axios.delete(`http://localhost:8080/like/learning/${memberId}/${id}`);
+          const response = await axios.delete(process.env.REACT_APP_API_URL+`/like/learning/${memberId}/${id}`);
 
           if (response.status === 200) {
             setIsLiked(!isLiked);
@@ -186,13 +178,13 @@ export default function EduDetail() {
                           지원기간
                         </td>
                         <td
-                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{EduDetail.application_start}&nbsp;&nbsp;~&nbsp;&nbsp;{EduDetail.application_end}</td>
+                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{EduDetail.applicationStart}&nbsp;&nbsp;~&nbsp;&nbsp;{EduDetail.applicationEnd}</td>
                       </tr>
 
                       <tr className='border-gray-200 border-t font-semibold'>
                         <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">교육기간</td>
                         <td
-                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{EduDetail.progress_start}&nbsp;&nbsp;~&nbsp;&nbsp;{EduDetail.progress_end}</td>
+                        className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{EduDetail.progressStart}&nbsp;&nbsp;~&nbsp;&nbsp;{EduDetail.progressEnd}</td>
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
@@ -265,7 +257,7 @@ export default function EduDetail() {
                     <tr className='border-gray-200 border-t border-b'>
                         <td colSpan={5}
                         className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
-                          <div dangerouslySetInnerHTML={{__html:EduDetail.details}}/>
+                          <div dangerouslySetInnerHTML={{ __html: EduDetail.details }} />
                         </td>
                         </tr>
 

@@ -35,6 +35,8 @@ export default function RegisterPage() {
   const [passwordValid, setPasswordValid] = useState(true);
   const [idValid, setIdValid] = useState(true);
   const [isDuplicate, setIsDuplicate] = useState(false);
+  const [computerAbility, setComputerAbility] = useState<number | null>(null);
+  const [workAbility, setWorkAbility] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -78,7 +80,9 @@ export default function RegisterPage() {
     return Array.from({ length: 31 }, (_, i) => i + 1);
   };
 
-
+  const handleSelectionChange = (items: number[]) => {
+    setSelectedItems(items);
+  };
 
   const handleSubmit = async () => {
     const birthDate = `${formData.birth_year.padStart(4, '0')}${formData.birth_month.padStart(2, '0')}${formData.birth_day.padStart(2, '0')}`;
@@ -120,6 +124,8 @@ export default function RegisterPage() {
       password: formData.password,
       birth: parseInt(birthDate), // 형식: YYYYMMDD
       preferenceId: topTwoTypes,
+      workAbility,
+      computerAbility,
     };
     console.log(payload)
     try {
@@ -161,7 +167,20 @@ export default function RegisterPage() {
     //   setIsDuplicate(false); // 유효하지 않은 경우 중복 체크 안함
     // }
   }
+
+  const notificationMethods = [
+    { id: 'email', title: 'Email' },
+    { id: 'sms', title: 'Phone (SMS)' },
+    { id: 'push', title: 'Push notification' },
+  ]
   
+  const handleComputerAbilityChange = (ability: number) => {
+    setComputerAbility(ability);
+  };
+
+  const handleWorkAbilityChange = (ability: boolean) => {
+    setWorkAbility(ability);
+  };
 
   return (
     <div className='h-screen w-full'>
@@ -334,15 +353,90 @@ export default function RegisterPage() {
               </div>
             </div>
           <div className='item mt-5'>
-            
-              <label htmlFor="favor" className='pr-5 text-center'>
-                <strong>선호도<br/>검사</strong>
-              </label>
-            
+            <label htmlFor="favor" className='pr-5 text-center'>
+              <strong>선호도<br/>검사</strong>
+            </label>            
             <div className='TypoBox px-4'>
-          <DialogRegister/></div>
+              <DialogRegister onSelectionChange={handleSelectionChange}/>
+            </div>
           </div>
+
+          <div className='item mt-5'>
+            <label htmlFor="computer" className='pr-5 text-center'>
+              <strong>컴퓨터<br/>활용 능력</strong>
+            </label>            
+            <div className="TypoBox w-full">          
+            <div className="flex items-center py-3 pl-3">
+            <input
+                  type="radio"
+                  name="computerAbility"
+                  onChange={() => handleComputerAbilityChange(1)}
+                  checked={computerAbility === 1}
+                  className="custom-input border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+              <label className="ml-3 block text-lg font-medium leading-6 text-gray-900">
+                컴퓨터를 이용한 문서작성, 은행업무에 어려움이 없다.
+              </label>
+              </div>
+              <div className="flex items-center pl-3">
+              <input
+                  type="radio"
+                  name="computerAbility"
+                  onChange={() => handleComputerAbilityChange(2)}
+                  checked={computerAbility === 2}
+                  className="custom-input border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+              <label className="ml-3 block text-lg font-medium leading-6 text-gray-900">
+                유튜브 시청, 웹 검색에 어려움이 없다.
+              </label>
+              </div>
+              <div className="flex items-center py-3 pl-3">
+              <input
+                  type="radio"
+                  name="computerAbility"
+                  onChange={() => handleComputerAbilityChange(3)}
+                  checked={computerAbility === 3}
+                  className="custom-input border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+              <label className="ml-3 block text-lg font-medium leading-6 text-gray-900">
+                컴퓨터를 이용하는데 타인의 도움이 필요하다.
+              </label>
+              </div>   
+            </div>
           </div>
+
+          <div className='item mt-5'>
+            <label htmlFor="physical" className='pr-5 text-center'>
+              <strong>신체<br/>활동 정도</strong>
+            </label>            
+            <div className="TypoBox w-full">          
+            <div className="flex items-center py-3 pl-3">
+            <input
+                  type="radio"
+                  name="workAbility"
+                  onChange={() => handleWorkAbilityChange(true)}
+                  checked={workAbility === true}
+                  className="custom-input border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+              <label className="ml-3 block text-lg font-medium leading-6 text-gray-900">
+                등산, 달리기, 헬스 등 고강도 운동을 즐겨한다.
+              </label>
+              </div>
+              <div className="flex items-center pb-3 pl-3">
+              <input
+                  type="radio"
+                  name="workAbility"
+                  onChange={() => handleWorkAbilityChange(false)}
+                  checked={workAbility === false}
+                  className="custom-input border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+              <label className="ml-3 block text-lg font-medium leading-6 text-gray-900">
+                가벼운 산책, 요가, 무리하지 않는 운동을 즐겨한다.
+              </label>
+              </div>    
+            </div>
+          </div>
+        </div>
 
           {/* {groupedOptions.map((group, index) => (
             <div className='item' key={index}>

@@ -192,8 +192,8 @@ useEffect(() =>{
                   </div>
                 </div>
                 <div className='flex flex-col GamtanBold'>
-                  <h2 className="text-white text-4xl text-left">취업 이정표</h2>
-                  <p className="text-white mt-2 text-lg">ㅍㅍㅍㅍ</p>
+                  <h2 className="text-white text-4xl text-left">지원금 안내</h2>
+                  <p className="text-white mt-2 text-lg">취업준비에 필요한 지원금을 찾아보세요</p>
                 </div>
 
               </div>

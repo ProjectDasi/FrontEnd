@@ -83,9 +83,11 @@ export default function Recommend() {
       const favoritesResponse = await axios.get(process.env.REACT_APP_API_URL+`/like/${userId}`);
       // console.log("resumeResponse.data",resumeResponse.data)
 
-      const hasResume = resumeResponse.data && Object.keys(resumeResponse.data).length > 0;
-      const hasFavorites = favoritesResponse.data && favoritesResponse.data.length > 0;
+      const hasResume = resumeResponse.data ;
+      const hasFavorites = favoritesResponse.data ;
 
+      console.log("hasFavorites",hasFavorites);
+      console.log("hasResume",hasResume);
       if (hasResume && hasFavorites) {
         setAccessAllowed(true);
         Datafetch();

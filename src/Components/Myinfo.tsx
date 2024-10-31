@@ -43,31 +43,31 @@ export default function Myinfo() {
 
   return (
 
-    <div className="w-full Gamtan my-10">
+    <div className="w-full GamtanBold my-10">
       <div className="w-full sm:flex sm:items-start">
         <div className="sm:flex-auto">
-          <h1 className="w-full text-5xl text-gray-900 Haeparang">나의 정보</h1>
+          <h1 className="w-full text-5xl text-gray-900 GamtanBold">나의 정보</h1>
         </div>
         <div className=' flex flex-col justify-center items-end'>
-          <div className="w-full mt-5 pt-5 text-lg text-gray-700 text-right Haeparang">
+          <div className="w-full mt-5 pt-5 text-lg text-gray-700 text-right">
             정확한 추천을 위해서 이력서를 입력해주세요.
           </div>
         <div className="mt-3 flex">
           <Link to="/resume">
           <button
             type="button"
-            className="block Haeparang rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]"
+            className="mr-2 mb-4 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white"
           >
             이력서 입력
           </button>
           </Link>
           <Link to='/confirm'>
-          <button>이력서 확인</button>
+          <button className='mr-2 mb-4 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white'>이력서 확인</button>
           </Link>
         </div>
         </div>
       </div>
-      <div className="mt-20 flow-root Haeparang">
+      <div className="mt-20 flow-root">
         <div className=" overflow-x-auto">
           {/* <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"> */}
             <table className="min-w-full divide-y divide-gray-300 border-t border-b border-gray-200">
@@ -112,7 +112,7 @@ export default function Myinfo() {
       <div className='flex justify-end items-center py-5'>
         <Link to="/editmypage">
         <button type="button"
-            className="block rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg Haeparang text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]">수정하기</button>
+            className="mb-4 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white">수정하기</button>
         </Link>
       </div>
     </div>

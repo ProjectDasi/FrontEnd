@@ -102,7 +102,7 @@ export default function Editmyinfo() {
               </tbody>
             </table>
             <div className='flex justify-end items-end mt-20'>
-              <button className='block Haeparang rounded-md bg-[#3EB489] px-3 py-2 text-center text-lg text-white shadow-sm hover:bg-[#2E8B57] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3EB489]'>수정하기</button>
+              <button className='mb-4 block rounded-md bg-white px-3 py-2 text-center text-lg GamtanBold text-[#2A9BDC] border-2 border-[#2A9BDC] shadow-sm hover:bg-[#2a9bdc] hover:text-white'>수정하기</button>
             </div>
         </div>
     </div>
