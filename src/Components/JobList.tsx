@@ -105,7 +105,7 @@ export default function JobList() {
             type="submit"
             onClick={handleSenior}
             className={`border border-gray-300 text-gray-800 rounded-lg p-[8px] GamtanBold hover:bg-gray-50 hover:text-black transition ease-in-out mr-2 ${
-              isSeniorList ? 'bg-gray-300' : ''
+              isSeniorList ? 'bg-[#1c919cd7] text-white' : ''
             }`}
           >
             고령자 우대 {isSeniorList ? '비활성화' : '활성화'}

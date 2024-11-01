@@ -244,8 +244,8 @@ export default function Recommend() {
             whileHover={{ scale: 1.08 }}
             onClick={() => handleBoxClick(`job${index + 1}`)}
           > 
-            <div>{job.detail.company}</div>
-          <div className='text-sm'>
+            <div className='text-center w-[80%]'>{job.detail.title}</div>
+          <div className='text-base mt-3'>
             매칭률 {Math.round(job.similarity * 100)}%</div>
           </motion.div>
         // </div>
@@ -262,10 +262,10 @@ export default function Recommend() {
             whileHover={{ scale: 1.08 }}
             onClick={() => handleBoxClick(`edu${index + 1}`)}
           >
-            <div>
-            {edu.detail.organization}
+            <div className='text-center w-[80%]'>
+            {edu.detail.title}
             </div>
-            <div className='text-sm'>
+            <div className='text-base mt-3'>
             매칭률 {Math.round(edu.similarity * 100)}%</div>
           </motion.div>
         ))}
