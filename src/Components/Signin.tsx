@@ -42,13 +42,13 @@ function SignInForm() {
         }
       });
 
-      const token = response.headers['authorization']; // API 응답에 토큰이 포함되어 있다고 가정합니다.
+      const token = response.headers['authorization'];
 
-      // 토큰을 localStorage 또는 sessionStorage에 저장합니다.
+      // 토큰을 localStorage에 저장
       localStorage.setItem("token", token);
       localStorage.setItem("id",response.data.id)
       setIsLoggedIn(true);
-      // 폼 필드를 초기화합니다.
+      // 폼 필드를 초기화
       setState({
         loginId: "",
         password: ""

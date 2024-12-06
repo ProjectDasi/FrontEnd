@@ -59,7 +59,6 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-  //const isLoggedIn = useRecoilValue(isLoggedInState);
   const isLoggedIn = localStorage.getItem("token");
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'job' | 'education'>('job');

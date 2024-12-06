@@ -24,13 +24,6 @@ export interface Resume {
   updateDate: string;
 }
 
-// // Common Fields Interface
-// type CommonFields = {
-//   start: string;
-//   end: string | null;
-// };
-
-// Work Experience, Certification, Training Interfaces
 export interface WorkExperience {
   workStart: string | null;
   workEnd: string | null;
@@ -51,7 +44,6 @@ export interface Training {
   trainingInstitution: string;
 }
 
-// Education Interface
 export interface Education {
   educationStart: string | null;
   educationEnd: string | null;
@@ -59,7 +51,6 @@ export interface Education {
   major: string;
 }
 
-// Main Data Interface
 export interface UserData {
   resume: Resume;
   workExperience: WorkExperience[];
@@ -75,23 +66,6 @@ export default function ResumePage() {
         '이력서 완성하기',
     ];
     const [currentStep, setCurrentStep] = useState(0);
-    // const [userData, setUserData] = useState<UserData>({
-    //   resume: SampleResume.resume,
-    //   workExperience: SampleResume.workExperience.map((work) => ({
-    //     start: work.workStart, // 여기서 workStart를 start로 변환
-    //     end: work.workEnd,     // workEnd를 end로 변환
-    //     company: work.company,
-    //     workDescription: work.workDescription,
-    //   })),
-    //   certification: SampleResume.certification,
-    //   training: SampleResume.training.map((training) => ({
-    //     start: training.trainingStart, // trainingStart를 start로 변환
-    //     end: training.trainingEnd,     // trainingEnd를 end로 변환
-    //     trainingName: training.trainingName,
-    //     trainingInstitution: training.trainingInstitution,
-    //   })),
-    //   education: SampleResume.education,
-    // });
     const [userData, setUserData] = useState<UserData>({
       resume: SampleResume.resume,
       workExperience: SampleResume.workExperience, // JSON 구조와 동일하게 매핑

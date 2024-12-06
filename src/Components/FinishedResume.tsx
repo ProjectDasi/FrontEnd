@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-// FinishedResume Props Interface
 interface FinishedResumeProps {
   onPreClick: () => void;
   onNextClick: () => void;
@@ -20,13 +19,6 @@ interface Resume {
   updateDate: string;
 }
 
-// // Common Fields Interface
-// type CommonFields = {
-//   start: string;
-//   end: string | null;
-// };
-
-// Work Experience, Certification, Training Interfaces
 interface WorkExperience {
   workStart: string | null;
   workEnd: string | null;
@@ -47,7 +39,6 @@ interface Training {
   trainingInstitution: string;
 }
 
-// Education Interface
 interface Education {
   educationStart: string | null;
   educationEnd: string | null;
@@ -55,7 +46,6 @@ interface Education {
   major: string;
 }
 
-// Main Data Interface
 interface UserData {
   resume: Resume;
   workExperience: WorkExperience[];

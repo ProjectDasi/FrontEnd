@@ -31,9 +31,6 @@ export default function Myinfo() {
         setUser(response.data);
       } catch (error) {
         console.error('사용자의 정보를 불러오는데 실패 했습니다.',error)
-        // setIsLoggedIn(false);
-        // localStorage.clear();
-        // navigate('/login');
         navigate('/');
       }
     };
@@ -69,10 +66,8 @@ export default function Myinfo() {
       </div>
       <div className="mt-20 flow-root">
         <div className=" overflow-x-auto">
-          {/* <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"> */}
             <table className="min-w-full divide-y divide-gray-300 border-t border-b border-gray-200">
               <tbody className="divide-y divide-gray-200 bg-white text-center">
-                {/* {user.map((person) => ( */}
                     <Fragment>
                     <tr className="divide-x divide-gray-200 hover:bg-gray-50 transition ease-in hover:transition duration-500">
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl font-medium text-gray-900 sm:pl-0 ">
@@ -103,10 +98,8 @@ export default function Myinfo() {
                         <td className="whitespace-nowrap py-4 pl-4 pr-4 text-2xl text-gray-500 sm:pr-0">{user.preference[0].type}, {user.preference[1].type} </td>
                     </tr>
                     </Fragment>
-                {/* ))} */}
               </tbody>
             </table>
-          {/* </div> */}
         </div>
       </div>
       <div className='flex justify-end items-center py-5'>

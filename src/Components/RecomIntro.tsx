@@ -44,7 +44,6 @@ export default function RecomIntro({ onStartClick }: RecomIntroProps) {
                 </div>
                   </div>
                 )}
-           
             </div>
     </div>
   )

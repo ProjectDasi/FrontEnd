@@ -143,7 +143,6 @@ export default function EdueList() {
                 <td className="whitespace-nowrap"></td> {/* 좌측 공백 */}
                 <td className="max-w-0 py-5 pl-4 pr-3 text-lg sm:pl-0">
                   <div className="font-medium text-gray-900">{edu.title}</div>
-                  {/* <div className="mt-1 truncate text-gray-500">{edu.title}</div> */}
                 </td>
                 <td className="hidden px-3 py-5 text-right text-lg text-gray-500 sm:table-cell">{edu.organization}</td>
                 <td className="hidden px-3 py-5 text-right text-lg text-gray-500 sm:table-cell">

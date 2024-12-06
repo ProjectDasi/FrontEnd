@@ -35,14 +35,6 @@ export default function JobDetail() {
   const [isLiked, setIsLiked] = useState(false);
 
 
-  // const client = axios.create({
-  //   withCredentials: true,
-  //   headers: {
-  //     'Access-Control-Allow-Credentials': true,
-  //     'ngrok-skip-browser-warning': true,
-  //   },
-  // });
-
   useEffect(() => {
     const fetchJobDetail = async () => {
       setLoading(true);

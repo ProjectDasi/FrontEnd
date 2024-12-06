@@ -14,7 +14,7 @@ interface Navigation {
 const navigation: Navigation = {
   main: [
     { name: 'FrontEnd', href: 'https://github.com/ProjectDasi/FrontEnd' },
-    { name: 'BackEnd', href: 'https://github.com/Dr-Energy/Backend_PowerForecast' },
+    { name: 'BackEnd', href: 'https://github.com/ProjectDasi/Backend' },
     { name: 'DataAnalysis', href: 'https://github.com/ProjectDasi/Data_anlysis' },
     { name: 'ProjectDASI', href: 'https://github.com/ProjectDasi' },
   ],

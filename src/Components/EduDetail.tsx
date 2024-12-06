@@ -29,14 +29,6 @@ export default function EduDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState(false);
-
-  // const client = axios.create({
-  //   withCredentials: true,
-  //   headers: {
-  //     'Access-Control-Allow-Credentials': true,
-  //     'ngrok-skip-browser-warning': true,
-  //   },
-  // });
   
   useEffect(()=>{
     const fetchEduDetail = async () =>{
@@ -210,35 +202,6 @@ export default function EduDetail() {
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                         </td>
                       </tr>
-
-                      {/* <tr className='border-gray-200 border-t font-semibold'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
-                          경력
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.career}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">학력</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.education}</td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-                        </td>
-                      </tr>
-
-                      <tr className='border-gray-200 border-t font-semibold'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
-                          필수자격증
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.certification}</td>
-                        </tr>
-
-                      <tr className='border-gray-200 border-t font-semibold'>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-lg text-gray-900 sm:pl-3">
-                          담당자 연락처
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.contact}</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-900">이메일</td>
-                        <td className="whitespace-nowrap px-3 py-4 text-lg text-gray-500">{item.email}</td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-                        </td>
-                      </tr> */}
 
                       <tr className='border-gray-200 border-t'>
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">

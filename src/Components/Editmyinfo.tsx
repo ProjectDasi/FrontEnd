@@ -14,16 +14,6 @@ export default function Editmyinfo() {
     birth_year: '',
     birth_month: '',
     birth_day: '',
-    // preference: [
-    //     {
-    //         "id": 1,
-    //         "type": "현실형"
-    //     },
-    //     {
-    //         "id": 6,
-    //         "type": "관습형"
-    //     }
-    // ],
   })
   
   const UpdateUser = async (e: React.ChangeEvent<HTMLInputElement>) => {

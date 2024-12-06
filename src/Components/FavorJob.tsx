@@ -95,10 +95,8 @@ export default function FavorJob() {
   };
   return (
     <div className='flex justify-center flex-col w-full items-center Haeparang'>
-      {/* This part will always be visible */}
       <div className='bg-gray-400 mb-12 p-1 w-2/5 text-center text-3xl rounded-xl text-white shadow'>추천 일자리</div>
-      
-      {/* Conditional rendering based on login state */}
+
       {isLoggedIn ? (
       <div className="slider__wrap w-[1140px]">
         <div className="slider__btn">

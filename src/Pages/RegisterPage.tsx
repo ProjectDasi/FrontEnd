@@ -154,18 +154,6 @@ export default function RegisterPage() {
   const checkId = async (loginId:string) => {
     const regex = /^[a-z0-9]{8,}$/;
     setIdValid(regex.test(loginId));
-    // if (regex.test(loginId)) {
-    //   try {
-    //     // 서버에 아이디 중복 확인 요청 (예시: /api/check-duplicate)
-    //     const response = await axios.post('/signUp/checkdup', { loginId });
-    //     setIsDuplicate(response.data.isDuplicate); // 중복 여부를 서버 응답에 따라 설정
-    //   } catch (error) {
-    //     console.error('중복 확인 요청 실패', error);
-    //     setIsDuplicate(false);
-    //   }
-    // } else {
-    //   setIsDuplicate(false); // 유효하지 않은 경우 중복 체크 안함
-    // }
   }
 
   const notificationMethods = [
@@ -437,19 +425,6 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-
-          {/* {groupedOptions.map((group, index) => (
-            <div className='item' key={index}>
-              <div className=''>
-                <MultipleSelectCheckmarks
-                  options={group}
-                  tag={`선택 ${(index + 1).toString()}`}
-                  setSelectedOptionsAll={setSelectedItems}
-                  selectedOptionsAll={selectedItems}
-                />
-              </div>
-            </div>
-          ))} */}
           <div className='flex flex-col justify-center items-end'>
           <button type='button' id='btn_submit' className='Btn' onClick={handleSubmit}>회원가입 완료</button>
           </div>

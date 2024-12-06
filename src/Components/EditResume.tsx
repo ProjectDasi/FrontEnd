@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import SampleResume from '../Data/resumeSample.json';
 
-// Props Interface
 interface EditResumeProps {
   onPreClick: () => void;
   onNextClick: () => void;
@@ -9,7 +8,6 @@ interface EditResumeProps {
   setUserData: (updatedData: UserData) => void;
 }
 
-// Resume Interface
 interface Resume {
   photo?: string | null;
   name: string;
@@ -22,20 +20,17 @@ interface Resume {
   updateDate: string;
 }
 
-// Common Fields Interface
 type CommonFields = {
   start: string;
   end: string | null;
 };
 
-// Work Experience, Certification, Training Interfaces
 interface WorkExperience {
   workStart: string | null;
   workEnd: string | null;
   company: string;
   workDescription: string;
 }
-
 interface Certification {
   acquisitionDate?: string | null;
   certificationName?: string | null;
@@ -49,7 +44,6 @@ interface Training {
   trainingInstitution: string;
 }
 
-// Education Interface (placeholder for now)
 interface Education {
   educationStart: string | null;
   educationEnd: string | null;
@@ -57,7 +51,6 @@ interface Education {
   major: string;
 }
 
-// Main Data Interface
 interface UserData {
   resume: Resume;
   workExperience: WorkExperience[];
@@ -70,83 +63,6 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userDa
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number, section: string) => {
     const { name, value } = e.target;
-    
-    // Check if the field belongs to the resume
-  //   if (['name', 'phone', 'birthDate', 'email', 'address', 'emergencyContact', 'emergencyRelationship', 'updateDate'].includes(name)) {
-  //     setUserData({
-  //       ...userData,
-  //       resume: {
-  //         ...userData.resume,
-  //         [name]: value,
-  //       },
-  //     });
-  //   }
-  //   // Check if the field belongs to workExperience
-  //   else if (['workstart', 'workend', 'company', 'workDescription'].includes(name)) {
-  //     setUserData({
-  //       ...userData,
-  //       workExperience: userData.workExperience.map((work, index) => {
-  //         if (index === 0) {
-  //           // Only update the first workExperience entry
-  //           return {
-  //             ...work,
-  //             [name]: value,
-  //           };
-  //         }
-  //         return work;
-  //       }),
-  //     });
-  //   }
-  //   // Check if the field belongs to training
-  //   else if (['trainingstart', 'trainingend', 'trainingName', 'trainingInstitution'].includes(name)) {
-  //     setUserData({
-  //       ...userData,
-  //       training: userData.training.map((training, index) => {
-  //         if (index === 0) {
-  //           // Only update the first training entry
-  //           return {
-  //             ...training,
-  //             [name]: value,
-  //           };
-  //         }
-  //         return training;
-  //       }),
-  //     });
-  //   }
-  //       // Certification
-  //       else if (['acquisitionDate', 'certificationName', 'issuingAuthority'].includes(name)) {
-  //         setUserData({
-  //           ...userData,
-  //           certification: userData.certification.map((cert, index) => {
-  //             if (index === 0) {
-  //               return {
-  //                 ...cert,
-  //                 [name]: value,
-  //               };
-  //             }
-  //             return cert;
-  //           }),
-  //         });
-  //       }
-
-  //       // Education
-  //   else if (['educationstart', 'educationend', 'schoolName', 'major'].includes(name)) {
-  //     setUserData({
-  //       ...userData,
-  //       education: userData.education.map((edu, index) => {
-  //         if (index === 0) {
-  //           return {
-  //             ...edu,
-  //             [name]: value,
-  //           };
-  //         }
-  //         return edu;
-  //       }),
-  //     });
-  //   }
-  //   // Similarly, you can add conditions for certification and education if needed
-  //   console.log(userData);
-  // };
 
   if (section === 'resume') {
     setUserData({
@@ -157,7 +73,7 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userDa
       },
     });
   }
-  // Update work experience
+
   else if (section === 'workExperience') {
     setUserData({
       ...userData,
@@ -166,7 +82,7 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userDa
       ),
     });
   }
-  // Update training
+
   else if (section === 'training') {
     setUserData({
       ...userData,
@@ -175,7 +91,7 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userDa
       ),
     });
   }
-  // Update certification
+
   else if (section === 'certification') {
     setUserData({
       ...userData,
@@ -184,7 +100,7 @@ const EditResume: React.FC<EditResumeProps> = ({ onPreClick, onNextClick, userDa
       ),
     });
   }
-  // Update education
+
   else if (section === 'education') {
     setUserData({
       ...userData,

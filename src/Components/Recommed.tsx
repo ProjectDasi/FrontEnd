@@ -122,7 +122,6 @@ export default function Recommend() {
   const getPopupContent = (id: string) => {
     if (!aiData) return '';
 
-    // Education Recommendation Popup
     if (id.startsWith('edu')) {
       const index = parseInt(id.split('edu')[1], 10) - 1;
       const edu = aiData.educationRecommend[index];
@@ -176,7 +175,6 @@ export default function Recommend() {
       );
     }
 
-    // Job Recommendation Popup
     if (id.startsWith('job')) {
       const index = parseInt(id.split('job')[1], 10) - 1;
       const job = aiData.jobRecommend[index];
@@ -236,7 +234,6 @@ export default function Recommend() {
       <div className='text-left GamtanBold text-4xl mb-10'>AI 맞춤 일자리</div>
       <div className='grid lg:grid-cols-3 gap-5 sm:grid-cols-2'>
         {aiData?.jobRecommend.map((job, index) => (
-          // <div className='flex w-full'>
           <motion.div
             key={job.id}
             className='bg-[#52949a] bg-opacity-90 MatChum rounded-lg cursor-pointer w-full text-white flex flex-col'
@@ -248,7 +245,6 @@ export default function Recommend() {
           <div className='text-base mt-3'>
             매칭률 {Math.round(job.similarity * 100)}%</div>
           </motion.div>
-        // </div>
         ))}
       </div>
 

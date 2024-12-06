@@ -19,7 +19,6 @@ export default function Fund() {
       <div className='text-left GamtanBold text-4xl mb-10'>지원금 제도 소개</div>
       <div className='grid lg:grid-cols-4 gap-5 sm:grid-cols-2'>
         {FundData.map((item, index) => (
-          // <div className='flex w-full'>
           <motion.div
             key={item.id}
             className='border-2 rounded-lg cursor-pointer w-full h-[330px] p-2 flex flex-col justify-start items-center'
@@ -30,7 +29,6 @@ export default function Fund() {
             <img src={images[index]} className='w-30 h-4/5 rounded-t-lg'></img>
             <div className='GamtanBold text-xl text-center pt-3'>{item.title}</div>
           </motion.div>
-        // </div>
         ))}
       </div>
       </div>

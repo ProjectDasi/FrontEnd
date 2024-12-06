@@ -14,7 +14,6 @@ interface Resume {
     updateDate: string;
 }
 
-// Work Experience, Certification, Training Interfaces
 interface WorkExperience {
     workStart: string | null;
     workEnd: string | null;
@@ -35,15 +34,12 @@ interface Training {
     trainingInstitution: string;
 }
 
-// Education Interface
 interface Education {
     educationStart: string | null;
     educationEnd: string | null;
     schoolName: string;
     major: string;
 }
-
-// Main Data Interface
 interface UserData {
     resume: Resume;
     workExperience: WorkExperience[];
